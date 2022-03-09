@@ -1,0 +1,6 @@
+#!/usr/bin/env raku
+
+use Elasticsearch::Data;
+
+my $elasticsearch = Elasticsearch::Data.new(url => "http://server:9200", index => "tests");
+$elasticsearch.post(data => { date => "2018-01-20T19:46:59Z", name => "test", status => "failed"});

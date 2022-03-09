@@ -1,0 +1,24 @@
+use Test;
+
+use Grammar::ErrorReporting;
+#use Grammar::PrettyErrors;
+
+use JenkinsLog;
+
+my $test = q:to/END/;
+t/statistics.t ........................................................ ok
+
+Test Summary Report
+-------------------
+t/invoice_misc.t                                                    (Wstat: 0 Tests: 19 Failed: 1)
+  Failed test:  7
+t/process_homepage_change.t                                         (Wstat: 0 Tests: 99 Failed: 7)
+  Failed tests:  60-65, 67
+Files=301, Tests=11197, 1985 wallclock secs ( 6.94 usr  0.89 sys + 7448.02 cusr 596.63 csys = 8052.48 CPU)
+Result: FAIL
+END
+
+my $m = JenkinsLog::TestSummaryReport.subparse($test, :actions(Action::JenkinsLog::TestSummaryReport.new));
+dd $m.made;
+
+done-testing;

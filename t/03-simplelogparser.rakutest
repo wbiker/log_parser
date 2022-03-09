@@ -1,0 +1,8 @@
+use Test;
+
+use SimpleLogParser;
+
+my @log_lines = './intranet/builds/908/log'.IO.slurp(:enc('utf8-c8'), :close).split("\n");
+SimpleLogParser.new.parse(@log_lines);
+
+done-testing;

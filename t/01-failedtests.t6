@@ -1,0 +1,15 @@
+use Test;
+
+use Grammar::ErrorReporting;
+#use Grammar::PrettyErrors;
+
+use FailedTests;
+
+my $test = 'Failed tests:  60-65, 67';
+my $m = FailedTests.subparse($test, :actions(Action::FailedTests.new));
+dd $m.made;
+
+$test = 'Failed test:  7';
+$m = FailedTests.subparse($test, :actions(Action::FailedTests.new));
+dd $m.made;
+done-testing;
