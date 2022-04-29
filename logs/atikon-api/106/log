@@ -1,0 +1,730 @@
+Started by timer
+Running as SYSTEM
+[WARN] Not a WorkflowRun, automatic builds and deployments won't work.
+Building remotely on [8mha:////4CJZanKDqJUzewsZ1Q1w1pFgufJsik+xVGDzuxHwhv1EAAAApB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy+EgYJ/eT83ILSktQi/YzCgmTdrNS87My8Yl1jALhh8GfNAAAA[0mhqpc-jenkins-3 in workspace /var/jenkins/workspace/Atikon-API
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] Done
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository git@bitbucket.org:atikon/atikon-api.git
+ > git init /var/jenkins/workspace/Atikon-API/repo/Atikon-API # timeout=10
+Fetching upstream changes from git@bitbucket.org:atikon/atikon-api.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git fetch --tags --force --progress -- git@bitbucket.org:atikon/atikon-api.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url git@bitbucket.org:atikon/atikon-api.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 071cbb423f374ad995b766a90ccc194927b93d6f (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 071cbb423f374ad995b766a90ccc194927b93d6f # timeout=10
+Commit message: "MA-915: fix account-name determination logic for domains with 2 country-codes"
+ > git rev-list --no-walk 071cbb423f374ad995b766a90ccc194927b93d6f # timeout=10
+Run condition [Current build status] enabling prebuild for step [Execute shell]
+[Atikon-API] $ /bin/sh -xe /tmp/jenkins16645174920915701817.sh
++ set +e
++ cd /var/jenkins/workspace/Atikon-API/repo/Atikon-API
++ export USER=jenkins
++ USER=jenkins
++ export HOME=/var/lib/jenkins
++ HOME=/var/lib/jenkins
++ export DBNAME_SUFFIX=_jenkins
++ DBNAME_SUFFIX=_jenkins
++ export PATH=/usr/share/perl6/vendor/bin:/opt/atikon/perl-local-lib/bin:/usr/local/bin:/opt/atikon/perl-local-lib/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/opt/puppetlabs/bin
++ PATH=/usr/share/perl6/vendor/bin:/opt/atikon/perl-local-lib/bin:/usr/local/bin:/opt/atikon/perl-local-lib/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/opt/puppetlabs/bin
++ branch=master
++ [[ -n master ]]
++ branch=master
++ git checkout master
+Switched to a new branch 'master'
+Branch 'master' set up to track remote branch 'master' from 'origin'.
++ bitbucket_db_repo_url=git@bitbucket.org:atikon/atikon-db.git
++ git ls-remote --exit-code --heads git@bitbucket.org:atikon/atikon-db.git master
+9a434d1545bfde29b62011f608b1cccf2f521276	refs/heads/master
++ ec=0
++ db_branch_name=master
++ '[' 0 -eq 0 ']'
++ db_branch_name=master
++ git clone --single-branch --branch master git@bitbucket.org:atikon/atikon-db.git /var/jenkins/workspace/Atikon-API/repo/Atikon
+Cloning into '/var/jenkins/workspace/Atikon-API/repo/Atikon'...
++ export PERL5LIB=/var/jenkins/workspace/Atikon-API/repo:/var/jenkins/workspace/Atikon-API/local-lib/lib/perl5:/opt/atikon/perl-local-lib/lib/perl5
++ PERL5LIB=/var/jenkins/workspace/Atikon-API/repo:/var/jenkins/workspace/Atikon-API/local-lib/lib/perl5:/opt/atikon/perl-local-lib/lib/perl5
++ /bin/bash /opt/atikon/jenkins/deploy_and_verify_all.sh
++ pushd /var/jenkins/workspace/Atikon-API/repo/Atikon
+/var/jenkins/workspace/Atikon-API/repo/Atikon /var/jenkins/workspace/Atikon-API/repo/Atikon-API
++ /bin/bash /opt/atikon/jenkins/timemngt/import_timemngt_jenkins.sh
++ set -e
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''timemngt_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''timemngt_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists timemngt_jenkins
++ createdb --lc-collate=en_US.UTF-8 timemngt_jenkins
++ psql timemngt_jenkins -c 'drop schema if exists public'
+DROP SCHEMA
++ psql timemngt_jenkins -c 'create language plperlu'
+CREATE EXTENSION
++ pg_restore -d timemngt_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/timemngt/timemngt_schema.sql
++ pg_restore -d timemngt_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/timemngt/timemngt_data.sql
++ psql timemngt_jenkins -c 'COPY checklist_entries FROM '\''/opt/atikon/jenkins/timemngt/timemngt_checklist_data.sql'\'''
+COPY 2660
++ pg_restore -d timemngt_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/timemngt/timemngt_sqitch.sql
++ psql timemngt_jenkins -c 'create extension pg_trgm'
+CREATE EXTENSION
++ ./sqitcher timemngt deploy
+Deploying changes to db:pg:timemngt_jenkins
+  + KPT-194_nothing_to_do__budgets ........................ ok
+  + smm_plan_builder ...................................... ok
+  + SMM-190 ............................................... ok
+  + INT-4363_goodbye_twitter .............................. ok
+  + SMM-186 ............................................... ok
+  + KPT-205_karrierepaket_20_tasklist ..................... ok
+  + INT-4398 .............................................. ok
+  + int-4374_git_commit_hardening ......................... ok
+  + B20-320_ovc3000 ....................................... ok
+  + INT-4382_bill_date_fj ................................. ok
+  + INT-4387_views_use_new_bill_date ...................... ok
+  + INT-4424_adapt_buyer_personas ......................... ok
+  + ma-565_eigenwartung_standalone ........................ ok
+  + int-4497_cleanup_eigenwartung_in_newsletter_metadata .. ok
+  + NLU-40 ................................................ ok
+  + ma-868_impressum_unternehmer .......................... ok
+  + smm-210_posting_problems .............................. ok
+  + SMM-211_no_pictures_in_linkedin_postings .............. ok
+  + B20-609_content_id_administration_page_count .......... ok
++ ./sqitcher timemngt verify
+Verifying db:pg:timemngt_jenkins
+  * rt15366_sqitch ........................................... ok
+  * rt15678_statistics_data .................................. ok
+  * rt15678_statistics_data_fixes ............................ ok
+  * rt14328_eigenwartung ..................................... ok
+  * rt16140_uidnr_validation_level_2 ......................... ok
+  * rt8900_quarterly_billing_of_monthly_news ................. ok
+  * rt13556_remove_top_keywords .............................. ok
+  * rt16626_add_article_to_steuernews_monthly ................ ok
+  * rt13506_my_business ...................................... ok
+  * rt16154_online_checklist_aliquotation .................... ok
+  * rt16694_adaptions ........................................ ok
+  * rt15431_posting_categories ............................... ok
+  * rt16208_additional_article_info .......................... ok
+  * rt16208_remove_constraint ................................ ok
+  * rt15442_socialmedia_exclusion ............................ ok
+  * rt16140_uidnr_validation_level_2_additional .............. ok
+  * rt14209_grm_webkit ....................................... ok
+  * rt16520_call_reports ..................................... ok
+  * rt14631_orders ........................................... ok
+  * rt17326_quantity_unit_null ............................... ok
+  * rt17240_report_pending ................................... ok
+  * rt16520_call_reports_schema_change ....................... ok
+  * rt17429_versioned_js_files ............................... ok
+  * rt14630_process_events ................................... ok
+  * rt17578_steuernews_customer_create_fix ................... ok
+  * rt17596_fix_release_names ................................ ok
+  * rt17424_save_userid_for_events ........................... ok
+  * rt17616_fix_steuernews_invoice_headline .................. ok
+  * rt17472_ovc_singularity .................................. ok
+  * rt17723_event_states_for_named ........................... ok
+  * rt6437_offer_statistics .................................. ok
+  * rt3966_rechnungsempfaenger_ui_extension .................. ok
+  * rt18199_ovc_order_comments ............................... ok
+  * rt6438_planned_billing_date .............................. ok
+  * rt18194_ovc_open_orders .................................. ok
+  * rt17952_ovc_allow_undef_prices ........................... ok
+  * rt18210_ovc_statistics_billed_prices ..................... ok
+  * rt7561_unique_search_phrases ............................. ok
+  * rt14621_discount_periodic_rethink ........................ ok
+  * rt14590_knowledge_graph .................................. ok
+  * rt15002_remove_domain_pages_column ....................... ok
+  * rt14901_retry_socialmedia_posts .......................... ok
+  * rt16216_ovc_steuernews_info .............................. ok
+  * rt7275_external_postings ................................. ok
+  * rt16949_list_view_optimizations_SMM ...................... ok
+  * rt1255_regular_grm_reports ............................... ok
+  * rt18395_ovc_appointment_list ............................. ok
+  * rt16386_webmaster ........................................ ok
+  * rt16054_export_data_to_fibu .............................. ok
+  * rt16748_sales_employee_responsible_for_payment_reminder .. ok
+  * rt18912_ovc_activation ................................... ok
+  * rt19619_mail_import ...................................... ok
+  * rt19620_callcenter_schema ................................ ok
+  * rt17667_infolinks_quantity ............................... ok
+  * rt19633_callcenter ....................................... ok
+  * rt20138_keep_used_customer_numbers ....................... ok
+  * rt20932_contact_notes .................................... ok
+  * rt20332_omit_sales_calls_in_appointment_statistics ....... ok
+  * rt20631_order_articles_fixes ............................. ok
+  * rt20768_dsgvo_tasklist ................................... ok
+  * rt20826_statistics_fixes ................................. ok
+  * rt19136_geo_coding ....................................... ok
+  * activate_iw_tasklists .................................... ok
+  * rt21107_lohnzettel_per_email ............................. ok
+  * dsgvo_article_key ........................................ ok
+  * rt20598_use_billed_values ................................ ok
+  * rt20458_offer_articles_update_on_cancellation ............ ok
+  * rt20413_ovc_data_event_update ............................ ok
+  * rt21107_employee_company_id .............................. ok
+  * rt22262_tasklist_facebook ................................ ok
+  * rt22505_fix_discount_sign_out ............................ ok
+  * rt19634_callcenter_tasks_for_employees ................... ok
+  * rt19636_act_prototype_calender ........................... ok
+  * rt18012_video_products ................................... ok
+  * rt22569_quantity_unit_hour ............................... ok
+  * rt22608_legacy_steuernews_in_video_panel ................. ok
+  * active_new_tasklists ..................................... ok
+  * rt22606_calendar_send_mail ............................... ok
+  * rt22628_magic_order_replication .......................... ok
+  * rt19620_act_database ..................................... ok
+  * rt22660_missing_signouts ................................. ok
+  * rt22807_main_contact ..................................... ok
+  * rt22750_callcenter_admin_current_contact ................. ok
+  * rt23020_merge_contacts_and_histories ..................... ok
+  * rt19621_further_adaptions ................................ ok
+  * rt22993_data_cleaning_groups ............................. ok
+  * rt22817_fix_update_invoice_details ....................... ok
+  * rt23046_task_priority .................................... ok
+  * rt22846_some_tasklist .................................... ok
+  * rt12508_optimize_queue ................................... ok
+  * rt23424_remove_interests ................................. ok
+  * rt21266_google_and_facebook_ads .......................... ok
+  * rt19621_more_adaptions ................................... ok
+  * rt23700_remove_epoch ..................................... ok
+  * rt23700_remove_epoch_fix ................................. ok
+  * rt22459_cancelled_orders_in_done_appointments ............ ok
+  * rt22779_appointment_main_product ......................... ok
+  * rt23464_additional_sales_statistics ...................... ok
+  * rt23819_multiple_calendars ............................... ok
+  * rt20794_workflow_selfassigment ........................... ok
+  * rt23432_task_group_sorting ............................... ok
+  * hours_calc ............................................... ok
+  * rt22649_task_group_ready ................................. ok
+  * rt23948_due_date_filter .................................. ok
+  * rt22995_contact_duplicates_interface ..................... ok
+  * rt23913_set_main_contact_trigger ......................... ok
+  * rt22641_calendar_notifications ........................... ok
+  * rt4542_remove_infomail ................................... ok
+  * rt24095_appointment_icals_enhanced ....................... ok
+  * rt24686_contact_required_fields .......................... ok
+  * rt24791_stash_bug ........................................ ok
+  * rt21342_batch_save_events ................................ ok
+  * rt19869_enable_377_as_feature ............................ ok
+  * rt25400_assign_error ..................................... ok
+  * rt25509_analytics_api .................................... ok
+  * rt25651_tasklist_google_ads2go ........................... ok
+  * rt25475_unsupported_quantity_unit ........................ ok
+  * rt25691_rename_tasklist .................................. ok
+  * rt24214_finish_invoice_validate_customer_number .......... ok
+  * rt25826_atikon_holding_entries ........................... ok
+  * rt25765_disempower_mail_archiver ......................... ok
+  * rt25769_titles ........................................... ok
+  * act_cleanup .............................................. ok
+  * rt25981_earliest_invoice_for_revenue ..................... ok
+  * fix_statistics_sales_billed_amounts ...................... ok
+  * contact_website_to_customer .............................. ok
+  * rt26561_close_predecessor_task ........................... ok
+  * rt26564_sales_employee_customer .......................... ok
+  * rt25509_default .......................................... ok
+  * rt26681_invoice_products_totals .......................... ok
+  * rt27013_missing_db_fj_despite_issues_per_year ............ ok
+  * google_ads_campaign ...................................... ok
+  * rt27207_google_ads_campaign .............................. ok
+  * rt27291_special_print_children_times_issues .............. ok
+  * rt27384_ust_reporting .................................... ok
+  * rt25330_optimize_to_time_range ........................... ok
+  * rt27669_invoice_products_quantities_prices ............... ok
+  * rt23840_billinglist_ungroup .............................. ok
+  * rt27874_my_business ...................................... ok
+  * rt27905_28109_generator_ftp_adaptions .................... ok
+  * rt28179_individual_solution_ovc .......................... ok
+  * rt28079_tma_statistics_adaption .......................... ok
+  * rt28508_title_mba ........................................ ok
+  * rt28921_deactive_checklist ............................... ok
+  * rt29116_goodbye_tj ....................................... ok
+  * rt29266_karrierepaket .................................... ok
+  * rt29147_mein_atikon_schema ............................... ok
+  * rt29063_domain_sales ..................................... ok
+  * rt28646_create_customer_folder_on_customer_creation ...... ok
+  * rt29507_fix_invoice_typo ................................. ok
+  * rt29527_tasklist ......................................... ok
+  * rt29884_identify_products_in_view ........................ ok
+  * rt20470_remove_pagerank .................................. ok
+  * rt19499_grm_imports ...................................... ok
+  * rt30053_mein-metadata_storage ............................ ok
+  * rt30231_seo_dashboard .................................... ok
+  * rt26564_sales_employee_customer_relaunch ................. ok
+  * rt19404_post_videos ...................................... ok
+  * rt21365_account_adaptions ................................ ok
+  * rt30514_imprint .......................................... ok
+  * rt30216_steuerinfo_first_edition_selector ................ ok
+  * rt31101_relevant_for_grm ................................. ok
+  * socialmedia_feed_cached_shorturls ........................ ok
+  * rt30922_imprint_at ....................................... ok
+  * rt30781_mein_atikon_session .............................. ok
+  * rt30796_refactor_atikonapi ............................... ok
+  * rt31173_meinatikon_newsletter ............................ ok
+  * rt30973_design_feedback_loop ............................. ok
+  * rt31167_atikon_contacts .................................. ok
+  * rt31166_finalize_onboarding .............................. ok
+  * rt31172_socialmedia ...................................... ok
+  * rt31199_general_price_increases .......................... ok
+  * rt31503_contact_update ................................... ok
+  * rt31502_preview .......................................... ok
+  * rt31506_mein_atikon_mails ................................ ok
+  * rt31282_customer_login ................................... ok
+  * rt31730_missing_steuernews_customers ..................... ok
+  * rt31282_login_details .................................... ok
+  * rt31053_controlling_fields ............................... ok
+  * rt32275_confetti ......................................... ok
+  * rt32282_add_location_name ................................ ok
+  * rt32387_digitalisierungspaket ............................ ok
+  * rt32324_krypto_package_in_ovc ............................ ok
+  * rt31897_offer_sums ....................................... ok
+  * rt29520_product_change_orders ............................ ok
+  * rt32748_text_template .................................... ok
+  * rt32647_mein_atikon_data_takeover ........................ ok
+  * rt33023_imprint_professions .............................. ok
+  * rt33103_mark_for_deletion ................................ ok
+  * rt17747_validate_invoice_fields .......................... ok
+  * rt33235_takover_adaptation ............................... ok
+  * rt33319_no_extension ..................................... ok
+  * rt32967_digitalisierung_automation ....................... ok
+  * rt33546_mein_atikon_seo_contract ......................... ok
+  * rt33463_mining_interface ................................. ok
+  * rt31956_import_postings .................................. ok
+  * rt34120_optional_photos .................................. ok
+  * rt34129_feedback_mails ................................... ok
+  * rt34388_smm_facebook_log ................................. ok
+  * rt36118_marketing_paket_features ......................... ok
+  * rt36167_restrict_invoice_deletion ........................ ok
+  * rt36517_report_last_visit ................................ ok
+  * rt35450_posting_check .................................... ok
+  * radicale_curtification ................................... ok
+  * rt36879_cookie_banner .................................... ok
+  * rt36961_new_sector_bilanzbuchhalter ...................... ok
+  * rt33583_text_settings .................................... ok
+  * rt35940_record_customer_locations_and_employeee_numbers .. ok
+  * rt33953_meinatikon_notifications ......................... ok
+  * rt36294_homepage_changes ................................. ok
+  * rt37867_new_articles_as_ovc_hp_features .................. ok
+  * rt37867_quick_vlog ....................................... ok
+  * rt38087_remove_mein_atikon_sessions ...................... ok
+  * rt38163_add_edited_by_customer_column .................... ok
+  * rt38534_some_drafts ...................................... ok
+  * rt36085_available_flag_for_absence ....................... ok
+  * rt36373_paid_out_overtime ................................ ok
+  * rt38565_make_newsletter_timemngt_independent ............. ok
+  * rt37867_karrierepakete ................................... ok
+  * rt37808_fixed_postings ................................... ok
+  * rt38910_new_some_packages ................................ ok
+  * rt38565_remove_opt_html_from_timemngt .................... ok
+  * rt39212_processing_state ................................. ok
+  * rt39260_treat_some_products_as_some_products ............. ok
+  * rt39365_some_flex_package ................................ ok
+  * rt39261_some_checklist_articles .......................... ok
+  * rt39098_add_copyright_to_impressum ....................... ok
+  * rt39774_ovc_video_appointment ............................ ok
+  * rt39414_video_automation_flag ............................ ok
+  * rt39414_video_automation_flag_default_false .............. ok
+  * rt40064_database_structure ............................... ok
+  * rt40042_social_media_posting_template .................... ok
+  * rt36689 .................................................. ok
+  * rt40324_new_product_intranet ............................. ok
+  * rt36676_tmg_responsibility ............................... ok
+  * rt40668_changelog_queue .................................. ok
+  * rt36675_streitverfahren_to_imprint ....................... ok
+  * rt40659_chefinfo_db_schema ............................... ok
+  * rt40663_chefinfo_charts .................................. ok
+  * cancel_order_article ..................................... ok
+  * rt40658_homeoffice_performance ........................... ok
+  * rt40250_cancel_order_article_no_on_order_list ............ ok
+  * rt40972_tasklists_customer_intranet ...................... ok
+  * rt41607_personas ......................................... ok
+  * rt33452_sign_out_article_change_changes .................. ok
+  * rt38074_release_textnote ................................. ok
+  * rt40447_imprint_DSGVO .................................... ok
+  * rt40998_empty_module_intranet ............................ ok
+  * rt41864_add_tma .......................................... ok
+  * rt41901_new_product_boxit ................................ ok
+  * rt39417_new_contacts_role ................................ ok
+  * rt40472_tracking_setting ................................. ok
+  * ABLRT-12_jira_performance ................................ ok
+  * master_fix_articles_billing_overview ..................... ok
+  * INT-918_statistics_breakdown ............................. ok
+  * INT-722_undo_idiotic_requirements ........................ Verify script verify/INT-722_undo_idiotic_requirements.sql does not exist
+ok
+  * rt31199_old_prices ....................................... ok
+  * KPT-194_nothing_to_do__budgets ........................... ok
+  * smm_plan_builder ......................................... ok
+  * SMM-190 .................................................. ok
+  * INT-4363_goodbye_twitter ................................. ok
+  * SMM-186 .................................................. ok
+  * KPT-205_karrierepaket_20_tasklist ........................ ok
+  * INT-4398 ................................................. ok
+  * int-4374_git_commit_hardening ............................ ok
+  * B20-320_ovc3000 .......................................... ok
+  * INT-4382_bill_date_fj .................................... ok
+  * INT-4387_views_use_new_bill_date ......................... ok
+  * INT-4424_adapt_buyer_personas ............................ ok
+  * ma-565_eigenwartung_standalone ........................... ok
+  * int-4497_cleanup_eigenwartung_in_newsletter_metadata ..... Verify script verify/int-4497_cleanup_eigenwartung_in_newsletter_metadata.sql does not exist
+ok
+  * NLU-40 ................................................... ok
+  * ma-868_impressum_unternehmer ............................. ok
+  * smm-210_posting_problems ................................. ok
+  * SMM-211_no_pictures_in_linkedin_postings ................. ok
+  * B20-609_content_id_administration_page_count ............. ok
+Verify successful
++ /bin/bash /opt/atikon/jenkins/onlinetools/import_onlinetools_jenkins.sh
++ set -e
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''onlinetools_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''onlinetools_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists onlinetools_jenkins
++ createdb onlinetools_jenkins
++ psql onlinetools_jenkins -c 'drop schema if exists public'
+DROP SCHEMA
++ psql onlinetools_jenkins -c 'create language plperlu'
+CREATE EXTENSION
++ pg_restore -d onlinetools_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/onlinetools/onlinetools_schema.sql
++ pg_restore -d onlinetools_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/onlinetools/onlinetools_sqitch.sql
++ pg_restore -d onlinetools_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/onlinetools/onlinetools_data.sql
++ psql onlinetools_jenkins -c 'create extension pgcrypto'
+CREATE EXTENSION
++ ./sqitcher onlinetools deploy
+Deploying changes to db:pg:onlinetools_jenkins
+  + rt31209_email_envelope ................. ok
+  + rt34216_corona_stresstest .............. ok
+  + rt34686_at_corona ...................... ok
+  + rt33378_rtr ............................ ok
+  + rt33718_dkim_for_newsletters ........... ok
+  + rt36179_automatic_newsletter ........... ok
+  + rt37468_travelcost_bmd_export .......... ok
+  + rt36602_digital_fitness_check .......... ok
+  + rt37769_on_the_fly_special_news ........ ok
+  + rt37952_enhance_bounce_handling ........ ok
+  + rt38784_olv_text_color ................. ok
+  + rt24030_export_cha_first_blood ......... ok
+  + rt38741_ch_onlinetools ................. ok
+  + rt39174_olv_custom_header_fonts ........ ok
+  + bounce_parser_dsn ...................... ok
+  + bounce_last_updated .................... ok
+  + rt40041_dfc_at_de ...................... ok
+  + rt40134_newsletter_dsgvo_adaptions ..... ok
+  + rt40539_newsletter_historical_groups ... ok
+  + rt40550_active_flag_templates .......... ok
+  + rt41264_linked_designs_not_deleteable .. ok
+  + rt24967_hide_newsletter_design ......... ok
+  + rt41426_remove_dkim .................... ok
+  + rt3425_revisited_2021 .................. ok
+  + rt30765_revisted_2021 .................. ok
+  + rt41110_newsletter_message_limits ...... ok
+  + rt41200_speed_up_lists ................. ok
+  + rt42210_arbeitnehmernews_de ............ ok
+  + rt41031_anonymize_blacklist ............ ok
+  + OLT-1671 ............................... ok
+  + OLT-1680 ............................... ok
+  + ORZOS-1 ................................ ok
+  + NLU-88 ................................. ok
+  + OLT-1749_remove_doctor_reminder_tool ... ok
+  + OLT-1657_database_sessions ............. ok
++ ./sqitcher onlinetools verify
+Verifying db:pg:onlinetools_jenkins
+  * rt15366_sqitch ................................ ok
+  * rt16231_short_urls ............................ ok
+  * rt15805_nls_subscription_mail_correction ...... ok
+  * rt_10982_newsletter_news ...................... ok
+  * newsletter_responsive_since ................... ok
+  * rt19221 ....................................... ok
+  * rt19268_reisekosten ........................... ok
+  * rt19529_smtp_port ............................. ok
+  * rt19529_smtp_starttls ......................... ok
+  * rt22215_dsgvo_link ............................ ok
+  * rt19571_standard_introduction ................. ok
+  * rt22138_hide_blacklist ........................ ok
+  * newsletter_next_level ......................... ok
+  * rt27697_sorting_journeys_list ................. ok
+  * rt27849_categories_of_expenses ................ ok
+  * rt28255_travelcost_teams ...................... ok
+  * rt28015_travelcost_receipt_upload ............. ok
+  * rt27582_uid_tool .............................. ok
+  * rt28283_travelcost_teamup ..................... ok
+  * rt6401_newsletter_data_migration .............. ok
+  * rt28454_import_travel_data .................... ok
+  * rt6401_data_takeover .......................... ok
+  * rt28639_mark_journey_as_settled ............... ok
+  * rt29098_remove_message_limitation ............. ok
+  * rt27692_shorturl_customer_tool ................ ok
+  * rt29225_keep_calculated_data_for_journey ...... ok
+  * rt29513_default_departure ..................... ok
+  * rt28655_export_travelcost_receipts_for_DATEV .. ok
+  * rt29515_add_breakfast_expenses ................ ok
+  * rt6401_fixing_another_constraint .............. ok
+  * rt6401_keep_archive ........................... ok
+  * rt30805_newsletter_subscription_log ........... ok
+  * rt24030_olv_update ............................ ok
+  * rt31209_email_envelope ........................ ok
+  * rt34216_corona_stresstest ..................... ok
+  * rt34686_at_corona ............................. ok
+  * rt33378_rtr ................................... ok
+  * rt33718_dkim_for_newsletters .................. ok
+  * rt36179_automatic_newsletter .................. ok
+  * rt37468_travelcost_bmd_export ................. ok
+  * rt36602_digital_fitness_check ................. ok
+  * rt37769_on_the_fly_special_news ............... ok
+  * rt37952_enhance_bounce_handling ............... ok
+  * rt38784_olv_text_color ........................ ok
+  * rt24030_export_cha_first_blood ................ ok
+  * rt38741_ch_onlinetools ........................ ok
+  * rt39174_olv_custom_header_fonts ............... ok
+  * bounce_parser_dsn ............................. ok
+  * bounce_last_updated ........................... ok
+  * rt40041_dfc_at_de ............................. ok
+  * rt40134_newsletter_dsgvo_adaptions ............ ok
+  * rt40539_newsletter_historical_groups .......... ok
+  * rt40550_active_flag_templates ................. ok
+  * rt41264_linked_designs_not_deleteable ......... ok
+  * rt24967_hide_newsletter_design ................ ok
+  * rt41426_remove_dkim ........................... ok
+  * rt3425_revisited_2021 ......................... ok
+  * rt30765_revisted_2021 ......................... ok
+  * rt41110_newsletter_message_limits ............. ok
+  * rt41200_speed_up_lists ........................ ok
+  * rt42210_arbeitnehmernews_de ................... ok
+  * rt41031_anonymize_blacklist ................... ok
+  * OLT-1671 ...................................... ok
+  * OLT-1680 ...................................... ok
+  * ORZOS-1 ....................................... ok
+  * NLU-88 ........................................ ok
+  * OLT-1749_remove_doctor_reminder_tool .......... ok
+  * OLT-1657_database_sessions .................... ok
+Verify successful
++ /bin/bash /opt/atikon/jenkins/zms/import_zms_jenkins.sh
++ set -e
++ create_zms_db zms
++ db_name=zms
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''zms_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''zms_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists zms_jenkins
++ createdb zms_jenkins
++ psql zms_jenkins -c 'drop schema if exists public'
+DROP SCHEMA
++ psql zms_jenkins -c 'create language plperlu'
+CREATE EXTENSION
++ pg_restore -d zms_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_schema.sql
++ pg_restore -d zms_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_sqitch.sql
++ pg_restore -d zms_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_features_newssystem.sql
++ pg_restore -d zms_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_features_listen.sql
++ psql zms_jenkins -c 'create extension pg_trgm'
+CREATE EXTENSION
++ psql zms_jenkins -c 'create extension if not exists cube'
+CREATE EXTENSION
++ psql zms_jenkins -c 'create extension if not exists earthdistance'
+CREATE EXTENSION
++ psql zms_jenkins -c 'create extension if not exists pgcrypto'
+CREATE EXTENSION
++ psql zms_jenkins -c 'insert into zms_user (id, password, roles) VALUES('\''test'\'', '\''9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'\'', '\''Manager'\'');'
+INSERT 0 1
++ create_zms_db zms_online
++ db_name=zms_online
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''zms_online_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''zms_online_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists zms_online_jenkins
++ createdb zms_online_jenkins
++ psql zms_online_jenkins -c 'drop schema if exists public'
+DROP SCHEMA
++ psql zms_online_jenkins -c 'create language plperlu'
+CREATE EXTENSION
++ pg_restore -d zms_online_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_schema.sql
++ pg_restore -d zms_online_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_sqitch.sql
++ pg_restore -d zms_online_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_features_newssystem.sql
++ pg_restore -d zms_online_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_features_listen.sql
++ psql zms_online_jenkins -c 'create extension pg_trgm'
+CREATE EXTENSION
++ psql zms_online_jenkins -c 'create extension if not exists cube'
+CREATE EXTENSION
++ psql zms_online_jenkins -c 'create extension if not exists earthdistance'
+CREATE EXTENSION
++ psql zms_online_jenkins -c 'create extension if not exists pgcrypto'
+CREATE EXTENSION
++ psql zms_online_jenkins -c 'insert into zms_user (id, password, roles) VALUES('\''test'\'', '\''9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'\'', '\''Manager'\'');'
+INSERT 0 1
++ ./sqitcher mailer deploy
+Deploying changes to db:pg:zms_jenkins
+  + rt33107_cms_backup_queue ......... ok
+  + rt38154_management_locked ........ ok
+  + rt29946_restore_backup_via_cron .. ok
+  + rt38563_sync_queue ............... ok
+  + rt40754_id ....................... ok
+  + KIT-241_password_reset ........... ok
+  + B20_jsonb_support ................ ok
++ ./sqitcher mailer verify
+Verifying db:pg:zms_jenkins
+  * intial_deploy .................... ok
+  * rt16842_log_mail_ip_address ...... ok
+  * dbic_session_store ............... ok
+  * fix_public_zms_user .............. ok
+  * rt33107_cms_backup_queue ......... ok
+  * rt38154_management_locked ........ ok
+  * rt29946_restore_backup_via_cron .. ok
+  * rt38563_sync_queue ............... ok
+  * rt40754_id ....................... ok
+  * KIT-241_password_reset ........... ok
+  * B20_jsonb_support ................ ok
+Verify successful
++ ./sqitcher mailer_online deploy
+Deploying changes to db:pg:zms_online_jenkins
+  + rt33107_cms_backup_queue ......... ok
+  + rt38154_management_locked ........ ok
+  + rt29946_restore_backup_via_cron .. ok
+  + rt38563_sync_queue ............... ok
+  + rt40754_id ....................... ok
+  + KIT-241_password_reset ........... ok
+  + B20_jsonb_support ................ ok
++ ./sqitcher mailer_online verify
+Verifying db:pg:zms_online_jenkins
+  * intial_deploy .................... ok
+  * rt16842_log_mail_ip_address ...... ok
+  * dbic_session_store ............... ok
+  * fix_public_zms_user .............. ok
+  * rt33107_cms_backup_queue ......... ok
+  * rt38154_management_locked ........ ok
+  * rt29946_restore_backup_via_cron .. ok
+  * rt38563_sync_queue ............... ok
+  * rt40754_id ....................... ok
+  * KIT-241_password_reset ........... ok
+  * B20_jsonb_support ................ ok
+Verify successful
++ /bin/bash /opt/atikon/jenkins/meinatikon/import_meinatikon_jenkins.sh
++ set -e
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''meinatikon_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''meinatikon_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists meinatikon_jenkins
++ createdb --lc-collate=en_US.UTF-8 meinatikon_jenkins
++ ./sqitcher meinatikon deploy
+Adding registry tables to db:pg:meinatikon_jenkins
+Deploying changes to db:pg:meinatikon_jenkins
+  + rt37779_mein_atikon_local_session_storage ...... ok
+  + rt39587_expire_later ........................... ok
+  + rt39801_last_authenticated_at_null_by_default .. ok
++ ./sqitcher meinatikon verify
+Verifying db:pg:meinatikon_jenkins
+  * rt37779_mein_atikon_local_session_storage ...... ok
+  * rt39587_expire_later ........................... ok
+  * rt39801_last_authenticated_at_null_by_default .. ok
+Verify successful
++ /bin/bash /opt/atikon/jenkins/rt4/import_rt4_jenkins.sh
++ set -e
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''rt4'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''rt4'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists rt4
++ createdb rt4
++ psql rt4 -c 'drop schema if exists public'
+DROP SCHEMA
++ pg_restore -d rt4 --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/rt4/rt4_schema.sql
++ psql rt4 -c 'insert into tickets (id, subject) values (1, '\''test'\'')'
+INSERT 0 1
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''virtual_mail_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''virtual_mail_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists virtual_mail_jenkins
++ createdb virtual_mail_jenkins
++ popd
+/var/jenkins/workspace/Atikon-API/repo/Atikon-API
++ psql timemngt_jenkins -c 'alter table customers disable trigger user'
+ALTER TABLE
++ psql timemngt_jenkins -c 'SELECT pg_catalog.setval(pg_get_serial_sequence('\''checklist_entries'\'', '\''id'\''), MAX(id)) FROM checklist_entries'
+ setval  
+---------
+ 2097844
+(1 row)
+
++ pkill -u jenkins dbus-daemon
++ true
++ rakudo -Ilib -e 'use API;'
++ prove6 -l -j4
+t/UnitTests/Model/ChefInfo/base.t6 ........................... ok
+t/UnitTests/Model/Account/rt36389.t6 ......................... ok
+t/UnitTests/Model/ChecklistEntries/base.t6 ................... ok
+t/UnitTests/Model/Account/base.t6 ............................ ok
+t/UnitTests/Model/Contact/rt31503.t6 ......................... ok
+t/UnitTests/Model/Contact/rt33103.t6 ......................... ok
+t/UnitTests/Model/Contact/base.t6 ............................ ok
+t/UnitTests/Model/Customer/base.t6 ........................... ok
+t/UnitTests/Model/Employee/base.t6 ........................... ok
+t/UnitTests/Model/Customer/rt36836_active_homepage.t6 ........ ok
+t/UnitTests/Model/FeedbackRequests/rt36214.t6 ................ ok
+t/UnitTests/Model/FeedbackRequests/base.t6 ................... ok
+t/UnitTests/Model/Files/base.t6 .............................. ok
+t/UnitTests/Model/Homepage/eigenwartung.t6 ................... ok
+t/UnitTests/Model/Homepage/add_homepage_change.t6 ............ ok
+t/UnitTests/Model/Homepage/base.t6 ........................... ok
+t/UnitTests/Model/Homepage/rt31502.t6 ........................ ok
+t/UnitTests/Model/Homepage/rt31506.t6 ........................ ok
+t/UnitTests/Model/Homepage/rt32748_service_text_template.t6 .. ok
+t/UnitTests/Model/Homepage/rt34129_feedback_mails.t6 ......... ok
+t/UnitTests/Model/Homepage/rt35890_customer_info.t6 .......... ok
+t/UnitTests/Model/Homepage/rt36294.t6 ........................ ok
+t/UnitTests/Model/Imprint/base.t6 ............................ ok
+t/UnitTests/Model/Homepage/rt40695_product_overview.t6 ....... ok
+t/UnitTests/Model/MeinAtikonChangeLog/base.t6 ................ ok
+t/UnitTests/Model/Notification/base.t6 ....................... ok
+t/UnitTests/Model/OpeningTime/base.t6 ........................ ok
+t/UnitTests/Model/Product/base.t6 ............................ ok
+t/code-line_length.t6 ........................................ ok
+t/code-method_names.t6 ....................................... ok
+t/code-white_space.t6 ........................................ ok
+t/code_variable-names.t6 ..................................... ok
+t/load.t6 .................................................... ok
+t/UnitTests/schema_connector.t6 .............................. ok
+t/UnitTests/Model/SocialMediaTemplates/base.t6 ............... ok
+t/UnitTests/Model/SocialMedia/base.t6 ........................ ok
+All tests successful.
+Files=36, Tests=126,  85 wallclock secs
+Result: PASS
+[Current build status] check if current [SUCCESS] is worse or equals then [SUCCESS] and better or equals then [SUCCESS]
+Run condition [Current build status] enabling perform for step [Execute shell]
+[Atikon-API] $ /bin/sh -xe /tmp/jenkins7124123946567079024.sh
++ cd /var/jenkins/workspace/Atikon-API/repo/Atikon-API
++ branch=master
++ [[ -n master ]]
++ branch=master
++ '[' master == master ']'
++ git push git@bitbucket.org:atikon/atikon-api.git HEAD:production
+Everything up-to-date
++ git push ssh://svc-jenkins-1@git.atikon.io/srv/git/Atikon-API.git HEAD:production
+Everything up-to-date
+[WARN] Not a WorkflowRun, onCompleted won't be propagated to listeners
+Finished: SUCCESS

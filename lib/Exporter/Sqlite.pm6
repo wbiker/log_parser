@@ -16,21 +16,34 @@ method drop-table() {
     $.dbh.execute(q:to/STATEMENT/);
         DROP TABLE IF EXISTS test_numbers;
         STATEMENT
+
+    $.dbh.execute(q:to/STATEMENT/);
+        DROP TABLE IF EXISTS projects;
+        STATEMENT
 }
 
 method create-table() {
     $.dbh.execute(q:to/STATEMENT/);
+    CREATE TABLE IF NOT EXISTS projects (
+        id INTEGER PRIMARY KEY,
+        name TEXT
+    );
+    STATEMENT
+
+    $.dbh.execute(q:to/STATEMENT/);
     CREATE TABLE IF NOT EXISTS builds (
         id INTEGER PRIMARY KEY,
         number INTEGER,
-        status TEXT
+        status TEXT,
+        project_id INTEGER
     );
     STATEMENT
 
     $.dbh.execute(q:to/STATEMENT/);
     CREATE TABLE IF NOT EXISTS test_files (
         id INTEGER PRIMARY KEY,
-        name TEXT
+        name TEXT,
+        project_id INTEGER
     );
     STATEMENT
 
@@ -45,8 +58,28 @@ method create-table() {
     STATEMENT
 }
 
-method get-builds() {
-    my $sth = $.dbh.execute('SELECT * FROM builds');
+method get-project-id($project) {
+    my $sth = $.dbh.execute('SELECT id FROM projects where name = ?', $project);
+
+    my %project = $sth.row(:hash);
+    return %project<id> if %project.elems;
+
+    return Nil;
+}
+
+method find-or-create-project-id($project) {
+    my $sth = $.dbh.execute('SELECT id FROM projects where name = ?', $project);
+
+    my %project = $sth.row(:hash);
+    return %project<id> if %project.elems;
+
+    $.dbh.execute('INSERT INTO projects (name) VALUES (?)', $project);
+
+    return $.dbh.execute('SELECT id FROM projects where name = ?', $project).row[0];
+}
+
+method get-builds(Int $project_id) {
+    my $sth = $.dbh.execute('SELECT * FROM builds where project_id = ?', $project_id);
 
     my @builds = $sth.allrows(:array-of-hash);
     $sth.dispose;
@@ -54,40 +87,53 @@ method get-builds() {
     return @builds;
 }
 
-method get-build(Int $number) {
-    my $sth = $.dbh.execute('SELECT * from builds where number = ?', $number);
-    my %build = $sth.row(:hash);
+method get-build(Int $number, Int $project_id) {
+    my $sth = $.dbh.execute('SELECT * from builds where number = ? and project_id = ?', $number, $project_id);
+
+    # Suppress 'SQLite rows() result may not be accurate. See SQLite rows section of README for details.'
+    CONTROL {
+        when CX::Warn {
+            when .message.starts-with('SQLite rows()') { .resume }
+            default { .rethrow }
+        }
+    }
+
+    my %build;
+    if my $row = $sth.row(:hash) {
+       %build = $row.Hash; 
+    }
+
     $sth.dispose;
 
     return %build;
 }
 
-method store-build(Int $number, Str $status) {
-    $.dbh.execute('INSERT INTO builds (number, status) VALUES (?, ?)', $number, $status);
+method store-build(Int $number, Str $status, Int $project_id) {
+    $.dbh.execute('INSERT INTO builds (number, status, project_id) VALUES (?, ?, ?)', $number, $status, $project_id);
 
-    return self.get-build($number)<id>;
+    return self.get-build($number, $project_id)<id>;
 }
 
-method get-test-file-id(Str $name) {
-    my $sth = $.dbh.execute('SELECT id FROM test_files where name = ?', $name);
+method get-test-file-id(Str $name, Int $project_id) {
+    my $sth = $.dbh.execute('SELECT id FROM test_files where name = ? and project_id = ?', $name, $project_id);
     my %test-file = $sth.row(:hash);
     return %test-file<id> if %test-file.elems;
 
-    $.dbh.execute('INSERT INTO test_files (name) VALUES (?)', $name);
+    $.dbh.execute('INSERT INTO test_files (name, project_id) VALUES (?, ?)', $name, $project_id);
 
-    return $.dbh.execute('SELECT id FROM test_files where name = ?', $name).row[0];
+    return $.dbh.execute('SELECT id FROM test_files where name = ? and project_id = ?', $name, $project_id).row[0];
 }
 
 method store-test-number(Int $build_id, Int $test_file_id, Int $number, Int $date) {
    $.dbh.execute('INSERT INTO test_numbers (build_id, test_id, number, date) VALUES (?, ?, ?, ?)', $build_id, $test_file_id, $number, $date);
 }
 
-method get-tests($startdate, $name, $build) {
+method get-tests($startdate, $name, $build, Int $project_id) {
     my @tests;
     if $name {
-       @tests = $.dbh.execute('SELECT * from test_files where name = ?', $name).allrows(:array-of-hash)
+       @tests = $.dbh.execute('SELECT * from test_files where name = ? and project_id = ?', $name, $project_id).allrows(:array-of-hash)
     } elsif $build {
-        my $build_info = $.dbh.execute('SELECT id from builds where number = ?', $build.Int);
+        my $build_info = $.dbh.execute('SELECT id from builds where number = ? and project_id = ?', $build.Int, $project_id);
         $build_info = $build_info.row(:hash);
         return unless $build_info.elems;
 
@@ -103,7 +149,7 @@ method get-tests($startdate, $name, $build) {
 
         return @all_data;
     } else {
-        @tests = $.dbh.execute('SELECT * from test_files order by name').allrows(:array-of-hash)
+        @tests = $.dbh.execute('SELECT * from test_files where project_id =? order by name', $project_id).allrows(:array-of-hash)
     }
 
     my $epoch = 0;
@@ -111,10 +157,10 @@ method get-tests($startdate, $name, $build) {
         $epoch = DateTime.new($startdate ~ 'T00:00:00Z').posix;
     }
 
-    my $sth = $.dbh.prepare('SELECT num.number, num.date, build.number as build FROM test_numbers as num JOIN builds as build On build.id = num.build_id where test_id = ? and date >= ? order by num.number ASC, num.date DESC, build.number DESC');
+    my $sth = $.dbh.prepare('SELECT num.number, num.date, build.number as build FROM test_numbers as num JOIN builds as build On build.id = num.build_id where test_id = ? and date >= ? and project_id = ? order by num.number ASC, num.date DESC, build.number DESC');
     my @all_data;
     for @tests -> %test_file {
-        my @test_numbers = $sth.execute(%test_file<id>, $epoch).allrows(:array-of-hash);
+        my @test_numbers = $sth.execute(%test_file<id>, $epoch, $project_id).allrows(:array-of-hash);
         if @test_numbers {
             my %test_number;
             for @test_numbers -> $number {

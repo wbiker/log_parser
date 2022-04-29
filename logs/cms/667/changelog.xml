@@ -1,0 +1,10 @@
+commit 950e86b71290533190b742e9a4281d400a7b00f8
+tree 7ad4ba19dce482700bd3b57531e8328e2fc0f8a2
+parent d58fd8e0e0fe2c86584e5ef981f57aead1236e6a
+author André Pedersen <andre.pedersen@atikon.com> 2022-04-25 10:01:25 +0200
+committer André Pedersen <andre.pedersen@atikon.com> 2022-04-27 08:19:06 +0200
+
+    B20-658: improve content tree name handling
+
+
+:100755 100755 55adabbf98157f6b77b73043b1fcfe16eafadd10 c3102c45f3c584f9f741a3aea9ae7a2d3a5ad567 M	lib/ZMS/Instance/ContentTree.pm

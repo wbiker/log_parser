@@ -1,0 +1,22 @@
+commit 16a70c9582b8016c50a2d314218177f22f3fb794
+tree a34aca3a61b89deef828778be346593334c31b84
+parent 3100b56c91979eba858f43c197ae6cf4afea61e7
+author Mathias Reitinger <mathias.reitinger@atikon.com> 2022-04-28 10:22:15 +0200
+committer Mathias Reitinger <mathias.reitinger@atikon.com> 2022-04-28 10:37:12 +0200
+
+    TT-1429: add active flag to homepage information
+
+
+:100644 100644 6245bde59b51b345911b5bf4298183b880f6688a 3cd9f12fd0d8f43bdd251e93171e345934014a44 M	lib/API/v1/Model/Homepage.pm6
+commit 3100b56c91979eba858f43c197ae6cf4afea61e7
+tree 05242b4c859063c090b42d62a8b337504592106a
+parent 071cbb423f374ad995b766a90ccc194927b93d6f
+author Mathias Reitinger <mathias.reitinger@atikon.com> 2022-04-28 10:21:53 +0200
+committer Mathias Reitinger <mathias.reitinger@atikon.com> 2022-04-28 10:37:12 +0200
+
+    TT-1429: add support for fetching homepage by domain name
+
+
+:100644 100644 30c1668932c43bf5c127676a3dfb4f081f760d5f 6245bde59b51b345911b5bf4298183b880f6688a M	lib/API/v1/Model/Homepage.pm6
+:100644 100644 cd5893386a0378f2872d68644e695a2cffbdee1e 1d1b3f98249c527d0807714fe27dba36fbf6510c M	lib/API/v1/Routes/Homepage.pm6
+:100644 100644 da35e44654808aeedd1f306d461d56aa7e0ba8ff c5ebf5b02fdfe017d7ecb70cab74b48e3f02c4ca M	t/UnitTests/Model/Homepage/base.t6

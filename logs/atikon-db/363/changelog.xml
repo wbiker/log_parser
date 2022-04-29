@@ -1,0 +1,14 @@
+commit 22966ab535ad1d9524df2f406ea588bc93e8dde6
+tree 9f88f84b16ef4fb219b7771ebdf7437afc667115
+parent a4ab669c3da190aed15721f2ef3fa22fd25cccd3
+author rd <rd@heps-beta-2.atikon.io> 2022-04-28 10:54:44 +0200
+committer rd <rd@heps-beta-2.atikon.io> 2022-04-28 10:56:13 +0200
+
+    INT-4444 : Hide the truth.
+    
+    there are no open orders in atikon.
+
+
+:000000 100644 0000000000000000000000000000000000000000 b084bb783750ac74ffa6399a259ee2e20b26d42b A	DB/Timemngt/deploy/INT-4444_hide_the_truth.sql
+:000000 100644 0000000000000000000000000000000000000000 906f93ea2cf2d13140eb0ed723f1c1753734b50d A	DB/Timemngt/revert/INT-4444_hide_the_truth.sql
+:100644 100644 034675b1a66cd93380043f1e3a87d36528558404 025e7875a880a0871dec3a2ce24d9c61e526341a M	DB/Timemngt/sqitch.plan

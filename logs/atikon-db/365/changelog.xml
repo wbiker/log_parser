@@ -1,0 +1,10 @@
+commit f2c6c8a3c75d4a7215694ce31e150b74c0e25024
+tree 3303a302cfc951f184639867756217556b03df2c
+parent ee79386d9b07fe3966c073742f9472bf6b95fd69
+author rd <rd@heps-beta-2.atikon.io> 2022-04-28 10:59:43 +0200
+committer rd <rd@heps-beta-2.atikon.io> 2022-04-28 10:59:43 +0200
+
+    INT-4444 : revert : adapt previous verify while function does not exist.
+
+
+:100644 100644 64b509939d0523f772eeaa0024d524c990ad724b 5ae13d622c9edda725e2e31a5893f09b8a8bad3f M	DB/Timemngt/verify/INT-4444_properly_check_bill_dates.sql

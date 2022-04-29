@@ -1,0 +1,12 @@
+commit 79f2be67d5760ea4c0266311bd7eb065c743dee1
+tree 7389fe9a96381af723fa3590a841fc294659e10b
+parent 0219fdd0415c1abbdca6451e10b4f1857d90a88d
+author Philipp Voglhofer <pv@atikon.com> 2022-04-28 07:28:40 +0200
+committer Philipp Voglhofer <pv@atikon.com> 2022-04-28 07:29:09 +0200
+
+    ORZOS-58: remove default value 0 for avab kids input again, messes up validation
+    
+    But leave 0 as min, because it is a valid input.
+
+
+:100755 100755 964da320ed62411ebcccb2ebdefb650521bdd929 79e9c8b1d9c981ca5a947d9a09f5589116ac3899 M	root/templates/compat/layout_2014/at/oeamtc/oekosozialreform/form.zpt

@@ -3,6 +3,8 @@ unit class SimpleLogParser;
 method parse(@lines) {
     my $tests = False;
     my $error_found = False;
+    my @errors;
+    my $current_error = "";
 
     for @lines -> $line {
         if $line.contains('prove -l -I../lib') {
@@ -12,20 +14,21 @@ method parse(@lines) {
 
         next unless $tests;
 
-        next if $line ~~ /\s 'ok' $/;
-
-        if $line ~~ /'#' \s+ 'Failed test'/ {
-            $error_found = True;
-            say $line;
-            next;
+        if $line ~~ /'Test Summary Report'/ {
+            $tests = False;
+            last;
         }
 
-        if $line ~~ /'...' \s* $/ {
-            $error_found = False;
-            say $line;
-            next;
+        if not $line.starts-with("t/") {
+            $current_error ~= $line ~ "\n";
         }
 
-        say $line if $error_found;
+        if $line.starts-with("t/") and $current_error {
+            @errors.push: $current_error;
+            $current_error = "";
+            next;
+        }
     }
+
+    .say for @errors;
 }

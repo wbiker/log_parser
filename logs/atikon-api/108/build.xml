@@ -1,0 +1,850 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <com.cloudbees.jenkins.plugins.BitBucketPushCause plugin="bitbucket@223.vd12f2bca5430">
+            <pushedBy>Mathias Reitinger</pushedBy>
+          </com.cloudbees.jenkins.plugins.BitBucketPushCause>
+          <int>4</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <hudson.triggers.SCMTrigger_-BuildAction/>
+    <com.cloudbees.jenkins.plugins.BitBucketPayload plugin="bitbucket@223.vd12f2bca5430">
+      <payload>{&quot;push&quot;:{&quot;changes&quot;:[{&quot;forced&quot;:false,&quot;old&quot;:{&quot;name&quot;:&quot;master&quot;,&quot;links&quot;:{&quot;commits&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commits/master&quot;},&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/refs/branches/master&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api/branch/master&quot;}},&quot;default_merge_strategy&quot;:&quot;merge_commit&quot;,&quot;merge_strategies&quot;:[&quot;merge_commit&quot;,&quot;squash&quot;,&quot;fast_forward&quot;],&quot;type&quot;:&quot;branch&quot;,&quot;target&quot;:{&quot;rendered&quot;:{},&quot;hash&quot;:&quot;071cbb423f374ad995b766a90ccc194927b93d6f&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/071cbb423f374ad995b766a90ccc194927b93d6f&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api/commits/071cbb423f374ad995b766a90ccc194927b93d6f&quot;}},&quot;author&quot;:{&quot;raw&quot;:&quot;Philipp Voglhofer &lt;pv@atikon.com&gt;&quot;,&quot;type&quot;:&quot;author&quot;},&quot;summary&quot;:{&quot;raw&quot;:&quot;MA-915: fix account-name determination logic for domains with 2 country-codes\n\nThe logic stripping away subdomains to handle relaunch domains\n(i.e.2022.domain.at) was too aggressive.\nIf we only limit that to numbers, we can also get rid of the\nspecial handling for karriere and jobs sub-domains.\n&quot;,&quot;markup&quot;:&quot;markdown&quot;,&quot;html&quot;:&quot;&lt;pre class=\&quot;plaintext\&quot;&gt;MA-915: fix account-name determination logic for domains with 2 country-codes\n\nThe logic stripping away subdomains to handle relaunch domains\n(i.e.2022.domain.at) was too aggressive.\nIf we only limit that to numbers, we can also get rid of the\nspecial handling for karriere and jobs sub-domains.\n&lt;\/pre&gt;&quot;,&quot;type&quot;:&quot;rendered&quot;},&quot;parents&quot;:[{&quot;hash&quot;:&quot;188dac0fefe4eeed72e15aaddc1ca7117f86efa9&quot;,&quot;type&quot;:&quot;commit&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/188dac0fefe4eeed72e15aaddc1ca7117f86efa9&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api/commits/188dac0fefe4eeed72e15aaddc1ca7117f86efa9&quot;}}}],&quot;date&quot;:&quot;2022-04-22T09:06:23+00:00&quot;,&quot;message&quot;:&quot;MA-915: fix account-name determination logic for domains with 2 country-codes\n\nThe logic stripping away subdomains to handle relaunch domains\n(i.e.2022.domain.at) was too aggressive.\nIf we only limit that to numbers, we can also get rid of the\nspecial handling for karriere and jobs sub-domains.\n&quot;,&quot;type&quot;:&quot;commit&quot;,&quot;properties&quot;:{}}},&quot;links&quot;:{&quot;commits&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commits?include=16a70c9582b8016c50a2d314218177f22f3fb794&amp;exclude=071cbb423f374ad995b766a90ccc194927b93d6f&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api/branches/compare/16a70c9582b8016c50a2d314218177f22f3fb794..071cbb423f374ad995b766a90ccc194927b93d6f&quot;},&quot;diff&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/diff/16a70c9582b8016c50a2d314218177f22f3fb794..071cbb423f374ad995b766a90ccc194927b93d6f&quot;}},&quot;created&quot;:false,&quot;commits&quot;:[{&quot;rendered&quot;:{},&quot;hash&quot;:&quot;16a70c9582b8016c50a2d314218177f22f3fb794&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/16a70c9582b8016c50a2d314218177f22f3fb794&quot;},&quot;comments&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/16a70c9582b8016c50a2d314218177f22f3fb794/comments&quot;},&quot;patch&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/patch/16a70c9582b8016c50a2d314218177f22f3fb794&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api/commits/16a70c9582b8016c50a2d314218177f22f3fb794&quot;},&quot;diff&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/diff/16a70c9582b8016c50a2d314218177f22f3fb794&quot;},&quot;approve&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/16a70c9582b8016c50a2d314218177f22f3fb794/approve&quot;},&quot;statuses&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/16a70c9582b8016c50a2d314218177f22f3fb794/statuses&quot;}},&quot;author&quot;:{&quot;raw&quot;:&quot;Mathias Reitinger &lt;mathias.reitinger@atikon.com&gt;&quot;,&quot;type&quot;:&quot;author&quot;,&quot;user&quot;:{&quot;display_name&quot;:&quot;Mathias Reitinger&quot;,&quot;uuid&quot;:&quot;{3c358f83-e31f-48ea-8b07-30294c06aaed}&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/users/%7B3c358f83-e31f-48ea-8b07-30294c06aaed%7D&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/%7B3c358f83-e31f-48ea-8b07-30294c06aaed%7D/&quot;},&quot;avatar&quot;:{&quot;href&quot;:&quot;https://secure.gravatar.com/avatar/2f403b59cc96b885aee409ccac0bd336?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMR-2.png&quot;}},&quot;type&quot;:&quot;user&quot;,&quot;nickname&quot;:&quot;Mathias Reitinger&quot;,&quot;account_id&quot;:&quot;60c23a7594692800700a5fcb&quot;}},&quot;summary&quot;:{&quot;raw&quot;:&quot;TT-1429: add active flag to homepage information\n&quot;,&quot;markup&quot;:&quot;markdown&quot;,&quot;html&quot;:&quot;&lt;pre class=\&quot;plaintext\&quot;&gt;TT-1429: add active flag to homepage information\n&lt;\/pre&gt;&quot;,&quot;type&quot;:&quot;rendered&quot;},&quot;parents&quot;:[{&quot;hash&quot;:&quot;3100b56c91979eba858f43c197ae6cf4afea61e7&quot;,&quot;type&quot;:&quot;commit&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/3100b56c91979eba858f43c197ae6cf4afea61e7&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api/commits/3100b56c91979eba858f43c197ae6cf4afea61e7&quot;}}}],&quot;date&quot;:&quot;2022-04-28T08:37:12+00:00&quot;,&quot;message&quot;:&quot;TT-1429: add active flag to homepage information\n&quot;,&quot;type&quot;:&quot;commit&quot;,&quot;properties&quot;:{}},{&quot;rendered&quot;:{},&quot;hash&quot;:&quot;3100b56c91979eba858f43c197ae6cf4afea61e7&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/3100b56c91979eba858f43c197ae6cf4afea61e7&quot;},&quot;comments&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/3100b56c91979eba858f43c197ae6cf4afea61e7/comments&quot;},&quot;patch&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/patch/3100b56c91979eba858f43c197ae6cf4afea61e7&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api/commits/3100b56c91979eba858f43c197ae6cf4afea61e7&quot;},&quot;diff&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/diff/3100b56c91979eba858f43c197ae6cf4afea61e7&quot;},&quot;approve&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/3100b56c91979eba858f43c197ae6cf4afea61e7/approve&quot;},&quot;statuses&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/3100b56c91979eba858f43c197ae6cf4afea61e7/statuses&quot;}},&quot;author&quot;:{&quot;raw&quot;:&quot;Mathias Reitinger &lt;mathias.reitinger@atikon.com&gt;&quot;,&quot;type&quot;:&quot;author&quot;,&quot;user&quot;:{&quot;display_name&quot;:&quot;Mathias Reitinger&quot;,&quot;uuid&quot;:&quot;{3c358f83-e31f-48ea-8b07-30294c06aaed}&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/users/%7B3c358f83-e31f-48ea-8b07-30294c06aaed%7D&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/%7B3c358f83-e31f-48ea-8b07-30294c06aaed%7D/&quot;},&quot;avatar&quot;:{&quot;href&quot;:&quot;https://secure.gravatar.com/avatar/2f403b59cc96b885aee409ccac0bd336?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMR-2.png&quot;}},&quot;type&quot;:&quot;user&quot;,&quot;nickname&quot;:&quot;Mathias Reitinger&quot;,&quot;account_id&quot;:&quot;60c23a7594692800700a5fcb&quot;}},&quot;summary&quot;:{&quot;raw&quot;:&quot;TT-1429: add support for fetching homepage by domain name\n&quot;,&quot;markup&quot;:&quot;markdown&quot;,&quot;html&quot;:&quot;&lt;pre class=\&quot;plaintext\&quot;&gt;TT-1429: add support for fetching homepage by domain name\n&lt;\/pre&gt;&quot;,&quot;type&quot;:&quot;rendered&quot;},&quot;parents&quot;:[{&quot;hash&quot;:&quot;071cbb423f374ad995b766a90ccc194927b93d6f&quot;,&quot;type&quot;:&quot;commit&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/071cbb423f374ad995b766a90ccc194927b93d6f&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api/commits/071cbb423f374ad995b766a90ccc194927b93d6f&quot;}}}],&quot;date&quot;:&quot;2022-04-28T08:37:12+00:00&quot;,&quot;message&quot;:&quot;TT-1429: add support for fetching homepage by domain name\n&quot;,&quot;type&quot;:&quot;commit&quot;,&quot;properties&quot;:{}}],&quot;truncated&quot;:false,&quot;closed&quot;:false,&quot;new&quot;:{&quot;name&quot;:&quot;master&quot;,&quot;links&quot;:{&quot;commits&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commits/master&quot;},&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/refs/branches/master&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api/branch/master&quot;}},&quot;default_merge_strategy&quot;:&quot;merge_commit&quot;,&quot;merge_strategies&quot;:[&quot;merge_commit&quot;,&quot;squash&quot;,&quot;fast_forward&quot;],&quot;type&quot;:&quot;branch&quot;,&quot;target&quot;:{&quot;rendered&quot;:{},&quot;hash&quot;:&quot;16a70c9582b8016c50a2d314218177f22f3fb794&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/16a70c9582b8016c50a2d314218177f22f3fb794&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api/commits/16a70c9582b8016c50a2d314218177f22f3fb794&quot;}},&quot;author&quot;:{&quot;raw&quot;:&quot;Mathias Reitinger &lt;mathias.reitinger@atikon.com&gt;&quot;,&quot;type&quot;:&quot;author&quot;,&quot;user&quot;:{&quot;display_name&quot;:&quot;Mathias Reitinger&quot;,&quot;uuid&quot;:&quot;{3c358f83-e31f-48ea-8b07-30294c06aaed}&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/users/%7B3c358f83-e31f-48ea-8b07-30294c06aaed%7D&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/%7B3c358f83-e31f-48ea-8b07-30294c06aaed%7D/&quot;},&quot;avatar&quot;:{&quot;href&quot;:&quot;https://secure.gravatar.com/avatar/2f403b59cc96b885aee409ccac0bd336?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMR-2.png&quot;}},&quot;type&quot;:&quot;user&quot;,&quot;nickname&quot;:&quot;Mathias Reitinger&quot;,&quot;account_id&quot;:&quot;60c23a7594692800700a5fcb&quot;}},&quot;summary&quot;:{&quot;raw&quot;:&quot;TT-1429: add active flag to homepage information\n&quot;,&quot;markup&quot;:&quot;markdown&quot;,&quot;html&quot;:&quot;&lt;pre class=\&quot;plaintext\&quot;&gt;TT-1429: add active flag to homepage information\n&lt;\/pre&gt;&quot;,&quot;type&quot;:&quot;rendered&quot;},&quot;parents&quot;:[{&quot;hash&quot;:&quot;3100b56c91979eba858f43c197ae6cf4afea61e7&quot;,&quot;type&quot;:&quot;commit&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api/commit/3100b56c91979eba858f43c197ae6cf4afea61e7&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api/commits/3100b56c91979eba858f43c197ae6cf4afea61e7&quot;}}}],&quot;date&quot;:&quot;2022-04-28T08:37:12+00:00&quot;,&quot;message&quot;:&quot;TT-1429: add active flag to homepage information\n&quot;,&quot;type&quot;:&quot;commit&quot;,&quot;properties&quot;:{}}}}]},&quot;actor&quot;:{&quot;display_name&quot;:&quot;Mathias Reitinger&quot;,&quot;uuid&quot;:&quot;{3c358f83-e31f-48ea-8b07-30294c06aaed}&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/users/%7B3c358f83-e31f-48ea-8b07-30294c06aaed%7D&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/%7B3c358f83-e31f-48ea-8b07-30294c06aaed%7D/&quot;},&quot;avatar&quot;:{&quot;href&quot;:&quot;https://secure.gravatar.com/avatar/2f403b59cc96b885aee409ccac0bd336?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMR-2.png&quot;}},&quot;type&quot;:&quot;user&quot;,&quot;nickname&quot;:&quot;Mathias Reitinger&quot;,&quot;account_id&quot;:&quot;60c23a7594692800700a5fcb&quot;},&quot;repository&quot;:{&quot;scm&quot;:&quot;git&quot;,&quot;website&quot;:null,&quot;uuid&quot;:&quot;{07d2aac1-b397-4f84-891d-67db16eff77d}&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/repositories/atikon/atikon-api&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/atikon-api&quot;},&quot;avatar&quot;:{&quot;href&quot;:&quot;https://bytebucket.org/ravatar/%7B07d2aac1-b397-4f84-891d-67db16eff77d%7D?ts=default&quot;}},&quot;project&quot;:{&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/workspaces/atikon/projects/ATIKONAPI&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/workspace/projects/ATIKONAPI&quot;},&quot;avatar&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/account/user/atikon/projects/ATIKONAPI/avatar/32?ts=1647426244&quot;}},&quot;type&quot;:&quot;project&quot;,&quot;name&quot;:&quot;Atikon-API&quot;,&quot;key&quot;:&quot;ATIKONAPI&quot;,&quot;uuid&quot;:&quot;{ab40636c-7ec9-4fb6-b386-1e5e043365cd}&quot;},&quot;full_name&quot;:&quot;atikon/atikon-api&quot;,&quot;owner&quot;:{&quot;username&quot;:&quot;atikon&quot;,&quot;display_name&quot;:&quot;atikon&quot;,&quot;type&quot;:&quot;team&quot;,&quot;uuid&quot;:&quot;{ca82c427-a3f4-442b-b45a-c866812b011b}&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/workspaces/%7Bca82c427-a3f4-442b-b45a-c866812b011b%7D&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/%7Bca82c427-a3f4-442b-b45a-c866812b011b%7D/&quot;},&quot;avatar&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/account/atikon/avatar/&quot;}}},&quot;workspace&quot;:{&quot;slug&quot;:&quot;atikon&quot;,&quot;type&quot;:&quot;workspace&quot;,&quot;name&quot;:&quot;atikon&quot;,&quot;links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;https://api.bitbucket.org/2.0/workspaces/atikon&quot;},&quot;html&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/atikon/&quot;},&quot;avatar&quot;:{&quot;href&quot;:&quot;https://bitbucket.org/workspaces/atikon/avatar/?ts=1648038986&quot;}},&quot;uuid&quot;:&quot;{ca82c427-a3f4-442b-b45a-c866812b011b}&quot;},&quot;type&quot;:&quot;repository&quot;,&quot;is_private&quot;:true,&quot;name&quot;:&quot;Atikon-API&quot;}}</payload>
+    </com.cloudbees.jenkins.plugins.BitBucketPayload>
+    <hudson.model.ParametersAction>
+      <safeParameters class="sorted-set"/>
+      <parameters>
+        <hudson.model.StringParameterValue>
+          <name>branch_name</name>
+          <description>The branch to checkout and start the tests on.</description>
+          <value>master</value>
+        </hudson.model.StringParameterValue>
+      </parameters>
+      <parameterDefinitionNames>
+        <string>branch_name</string>
+      </parameterDefinitionNames>
+    </hudson.model.ParametersAction>
+    <hudson.plugins.git.util.BuildData plugin="git@4.10.3">
+      <buildsByBranchName>
+        <entry>
+          <string>origin/master</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>bee40a442e1864f34789b9de9a8f29ecb8a1fb87</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/production_test</name>
+                </hudson.plugins.git.Branch>
+                <hudson.plugins.git.Branch>
+                  <sha1>bee40a442e1864f34789b9de9a8f29ecb8a1fb87</sha1>
+                  <name>origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch[2]"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>88</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt36836_otrs_automation</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>03037c3478e79ad02ad4a112c2f6009fc6f7d545</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt36836_otrs_automation</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>18</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt40042_some_templates</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>424b2ad2fbdf403a6874be4693a7f0a5dc6e3e1b</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt40042_some_templates</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>23</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt40695_product_overview_check</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>6a499d861ba8ad1d9bb7eac2216215559c7d1584</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt40695_product_overview_check</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>26</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt30162_ldap_authentication</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>6883f8fa72a95515626bee2c835edc09719d0a0a</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt30781_mein_atikon_session</name>
+                </hudson.plugins.git.Branch>
+                <hudson.plugins.git.Branch>
+                  <sha1>6883f8fa72a95515626bee2c835edc09719d0a0a</sha1>
+                  <name>origin/rt30162_ldap_authentication</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch[2]"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>8</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt29149_cha_rd</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>43181435eeeb3ce535a00205b4b51dfbfe19179b</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt29149_cha_rd</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>7</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt32512_less_noisy_role_crud</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>a6822927af70e718ce9eb95a7ea3d372f708b285</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt32512_less_noisy_role_crud</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>11</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/bitbucket_test</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>75eef788aa6cd04076a99f8b0a825ed02121c6e2</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/bitbucket_test</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>6</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt36380_access_of_ticketsystem</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>44d58ea8341f1b45ed665406772a80ef30e9c982</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt36380_access_of_ticketsystem</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>17</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt38619_change_kontakter_mails</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>175370a09c290e59ebcef5f7cc03a51029bc7b53</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt38619_change_kontakter_mails</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>20</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt37555_create_posting</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>413e269816434d7c0036ac83b7ad2eddfd8faf58</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt37555_create_posting</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>19</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt40733_matikon_login_token</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>a753e923d06c7b4133eb19388e3da51b52004572</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt40733_matikon_login_token</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>30</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt36294_homepage_changes</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>181ea9289c34939b48dd0be355c07c3ff7005643</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt36294_homepage_changes</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>65</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/sec_jenkinstest</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>3156f124589bab1f041e05c5726ff99d4c1abdf8</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/sec_jenkinstest</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>62</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt40145_add_license_to_newsletter_panel</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>8b27bb2f66882c36c426ae30ddfbff27f8c507ca</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt40145_add_license_to_newsletter_panel</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>24</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt31504_customer_folder_sync</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>12657ab64c62c3113516d5af2df5c89ea08fd283</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt31504_customer_folder_sync</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>10</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/one_request_for_dashboard</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>56d8b3932d3889028b04d059fd3cb9f2c5666523</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/one_request_for_dashboard</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>33</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt33045_remove_from_website</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>ac6332f791ded81edbaaae8abec4d1d5e4206aec</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt33045_remove_from_website</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>14</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/product_is_active</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>2317cc024312574e0f2f141e80e448f3537afcef</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/product_is_active</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>15</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/jenkinstests</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>29d731f05afbe85d8026199edaa3ea2de1cbfd8e</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/jenkinstests</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>64</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt34552_no_times_for_locations</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>8afbb51ac7ef4421725123a5c80b29eb6843979a</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt34552_no_times_for_locations</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>16</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt33039_update_contact_location</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>66152070cce4c44ef53793df3f18f2fa117f01f2</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt33039_update_contact_location</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>13</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt36675_streitverfahren_to_imprint</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>f36215feaebbbe36cd780d9b89da93abc19f9e59</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt36675_streitverfahren_to_imprint</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>25</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt40663_chefinfo_chart</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>1ddbdbfe6c8f1cb1ff9710125d6ab0bec9e2c4b4</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt40663_chefinfo_chart</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>27</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt41376_order_postings</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>8c59eb343e5430b8c189b58324ffd817215ddc9d</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt41376_order_postings</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>31</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/test_hardening</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>37ff0c672093d4beacc528bca19d4f728817edd1</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/test_hardening</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>35</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/NLU-115_remove_nl_password</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>c38e25aed9831fdfca349eb275189d6d5ae1209b</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/NLU-115_remove_nl_password</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>50</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt40392_use_cro_client</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>724cb50832078599026c2fa0ba760d303084e0cb</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt40392_use_cro_client</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>28</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/bring_api_to_the_limit</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>25604bafc699f92b4cd634b3263e01a2fcbe72f9</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/bring_api_to_the_limit</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>32</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt32748_text_template</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>3658861a2180e7cd69bc6c58a1afa6750c9a0213</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt32748_text_template</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>12</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/production_test</string>
+          <hudson.plugins.git.util.Build reference="../../entry/hudson.plugins.git.util.Build"/>
+        </entry>
+        <entry>
+          <string>origin/ma-908_login_failed_for_jobs_subdomains</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>c5095f4d7264e1272e9b0d4f0a724fca37916dbb</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/ma-908_login_failed_for_jobs_subdomains</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>1</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt40663_chefinfo_charts</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>fee0a2ae3bc6f1c334d8722bfc4c9aadb35f4505</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt40663_chefinfo_charts</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>29</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/ma-860_defined_check</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>da6386b0be69e8e91c72369783d65307e7d7e3d4</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/ma-860_defined_check</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>34</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/otrs_api_bug</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>fd75faf1c452982977a4dff518e71225a47d1047</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/otrs_api_bug</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>21</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt31804_mein_atikon_ssl</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>de22aa5915da0f70de4b044a406eea3a8255b276</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt31804_mein_atikon_ssl</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>9</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt39098_add_copyright_to_impressum</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>a640b9859b27261e27190e0351ac20a3de8d1280</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/rt39098_add_copyright_to_impressum</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@3.11.0">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>22</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/rt30781_mein_atikon_session</string>
+          <hudson.plugins.git.util.Build reference="../../entry[5]/hudson.plugins.git.util.Build"/>
+        </entry>
+        <entry>
+          <string>refs/remotes/origin/master</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@3.11.0">
+              <sha1>16a70c9582b8016c50a2d314218177f22f3fb794</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>refs/remotes/origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision reference="../marked"/>
+            <hudsonBuildNumber>108</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+      </buildsByBranchName>
+      <lastBuild reference="../buildsByBranchName/entry[39]/hudson.plugins.git.util.Build"/>
+      <remoteUrls>
+        <string>git@bitbucket.org:atikon/atikon-api.git</string>
+      </remoteUrls>
+    </hudson.plugins.git.util.BuildData>
+    <hudson.scm.SCMRevisionState_-None/>
+  </actions>
+  <queueId>5929</queueId>
+  <timestamp>1651135873342</timestamp>
+  <startTime>1651135873344</startTime>
+  <result>SUCCESS</result>
+  <duration>294602</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn>hqpc-jenkins-2</builtOn>
+  <workspace>/var/jenkins/workspace/Atikon-API</workspace>
+  <hudsonVersion>2.332.2</hudsonVersion>
+  <scm class="hudson.plugins.git.GitChangeLogParser" plugin="git@4.10.3">
+    <authorOrCommitter>false</authorOrCommitter>
+    <showEntireCommitSummaryInChanges>true</showEntireCommitSummaryInChanges>
+  </scm>
+  <culprits class="java.util.Collections$UnmodifiableSet">
+    <c class="sorted-set">
+      <string>mathias.reitinger</string>
+    </c>
+  </culprits>
+</build>

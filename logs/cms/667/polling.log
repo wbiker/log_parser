@@ -1,0 +1,12 @@
+Started on Apr 27, 2022, 8:44:34 AM
+Using strategy: Default
+[poll] Last Built Revision: Revision d58fd8e0e0fe2c86584e5ef981f57aead1236e6a (refs/remotes/origin/master)
+The recommended git tool is: NONE
+No credentials specified
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git ls-remote -h -- git@bitbucket.org:atikon/cms.git # timeout=10
+Found 920 remote heads on git@bitbucket.org:atikon/cms.git
+[poll] Latest remote head revision on refs/heads/master is: 950e86b71290533190b742e9a4281d400a7b00f8
+Done. Took 2.2 sec
+Changes found

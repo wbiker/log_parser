@@ -1,0 +1,171 @@
+Started by timer
+Running as SYSTEM
+[WARN] Not a WorkflowRun, automatic builds and deployments won't work.
+Building remotely on [8mha:////4OwSVIE6neGQU37EcAmxalRUWStdT78aQil7szBzlswNAAAApB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy+EgYJ/eT83ILSktQi/YzCgmTdrNS87My8Yl1DAJQA/onNAAAA[0mhqpc-jenkins-1 in workspace /var/jenkins/workspace/mein-Atikon
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] Done
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository git@bitbucket.org:atikon/meinatikon.git
+ > git init /var/jenkins/workspace/mein-Atikon/repo/mein-Atikon # timeout=10
+Fetching upstream changes from git@bitbucket.org:atikon/meinatikon.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git fetch --tags --force --progress -- git@bitbucket.org:atikon/meinatikon.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url git@bitbucket.org:atikon/meinatikon.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+JENKINS-19022: warning: possible memory leak due to Git plugin usage; see: https://plugins.jenkins.io/git/#remove-git-plugin-buildsbybranch-builddata-script
+Checking out Revision 959a4b3f1a405dc3064e477cbc592c924f5550c0 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 959a4b3f1a405dc3064e477cbc592c924f5550c0 # timeout=10
+Commit message: "MA-913: Use AT imprint data for Swiss customers"
+ > git rev-list --no-walk 959a4b3f1a405dc3064e477cbc592c924f5550c0 # timeout=10
+Run condition [Current build status] enabling prebuild for step [Execute shell]
+[mein-Atikon] $ /bin/sh -xe /tmp/jenkins8199669030707849538.sh
++ cd /var/jenkins/workspace/mein-Atikon/repo/mein-Atikon
++ export USER=jenkins
++ USER=jenkins
++ export HOME=/var/lib/jenkins
++ HOME=/var/lib/jenkins
++ export PATH=/usr/share/perl6/vendor/bin:/opt/atikon/perl-local-lib/bin:/usr/local/bin:/opt/atikon/perl-local-lib/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/opt/puppetlabs/bin
++ PATH=/usr/share/perl6/vendor/bin:/opt/atikon/perl-local-lib/bin:/usr/local/bin:/opt/atikon/perl-local-lib/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/opt/puppetlabs/bin
++ [[ -n master ]]
++ git checkout master
+Switched to a new branch 'master'
+Branch 'master' set up to track remote branch 'master' from 'origin'.
++ export PERL5LIB=/opt/atikon/perl-local-lib/lib/perl5
++ PERL5LIB=/opt/atikon/perl-local-lib/lib/perl5
++ pkill -u jenkins dbus-daemon
++ true
+++ cat
++ config='{
+    "name": "meinAtikon",
+    "debug": 1,
+    "api_endpoint": "http://www.atikon.com",
+    "otrs_api_endpoint": "https://otrs.atikon.at/otrs/nph-genericinterface.pl",
+    "otrs_api_user": "svc-matikon-1",
+    "otrs_api_pass": "notinuse",
+    "storage_base_path": "storage/customer_folders",
+    "ldap_server": "ldaps://hqvm-dc-1.atikon.io",
+    "ldap_member_filter": "memberOf:1.2.840.113556.1.4.1941:=CN=a_app_mein_atikon,OU=Applications,OU=IT,OU=Groups,DC=atikon,DC=io",
+    "company_telephone": "+43 (732) 611 266",
+    "log_path": "/var/jenkins/workspace/mein-Atikon/log",
+    "session_cookie": "_mein-Atikon_session_v2",
+    "db_name": "meinatikon_jenkins",
+    "db_user": "",
+    "db_pass": "",
+    "db_host": ""
+}'
++ mkdir /var/jenkins/workspace/mein-Atikon/log
++ echo '{' '"name":' '"meinAtikon",' '"debug":' 1, '"api_endpoint":' '"http://www.atikon.com",' '"otrs_api_endpoint":' '"https://otrs.atikon.at/otrs/nph-genericinterface.pl",' '"otrs_api_user":' '"svc-matikon-1",' '"otrs_api_pass":' '"notinuse",' '"storage_base_path":' '"storage/customer_folders",' '"ldap_server":' '"ldaps://hqvm-dc-1.atikon.io",' '"ldap_member_filter":' '"memberOf:1.2.840.113556.1.4.1941:=CN=a_app_mein_atikon,OU=Applications,OU=IT,OU=Groups,DC=atikon,DC=io",' '"company_telephone":' '"+43' '(732)' 611 '266",' '"log_path":' '"/var/jenkins/workspace/mein-Atikon/log",' '"session_cookie":' '"_mein-Atikon_session_v2",' '"db_name":' '"meinatikon_jenkins",' '"db_user":' '"",' '"db_pass":' '"",' '"db_host":' '""' '}'
++ prove6 -l -j 4
+t/UnitTests/Authentication/user.t6 .............................. ok
+ack: No regular expression found.
+t/UnitTests/Chefinfo/business-logic.t6 .......................... ok
+t/UnitTests/Contacts/business-logic.t6 .......................... ok
+t/UnitTests/Dashboard/Design/business-logic.t6 .................. ok
+t/UnitTests/Authentication/business-logic.t6 .................... ok
+t/UnitTests/Contacts/view.t6 .................................... ok
+t/UnitTests/AutomatedMails/business-logic.t6 .................... ok
+t/UnitTests/Dashboard/Homepage/business-logic.t6 ................ ok
+t/UnitTests/Dashboard/Newsletter/business-logic.t6 .............. ok
+t/UnitTests/Dashboard/Homepage/view.t6 .......................... ok
+t/UnitTests/Dashboard/Preview/business-logic.t6 ................. ok
+t/UnitTests/Dashboard/Homepage/integration.t6 ................... ok
+t/UnitTests/Dashboard/Newsletter/view.t6 ........................ ok
+t/UnitTests/Dashboard/Preview/view.t6 ........................... ok
+t/UnitTests/Dashboard/SEO/business-logic.t6 ..................... ok
+t/UnitTests/Dashboard/Design/view.t6 ............................ ok
+t/UnitTests/Dashboard/business-logic.t6 ......................... ok
+t/UnitTests/Dashboard/Socialmedia/business-logic.t6 ............. ok
+t/UnitTests/Dashboard/SEO/view.t6 ............................... ok
+t/UnitTests/Domain/Check/form.t6 ................................ ok
+t/UnitTests/Domain/Check/business-logic.t6 ...................... ok
+t/UnitTests/Dashboard/Socialmedia/view.t6 ....................... ok
+t/UnitTests/Domain/Index/business-logic.t6 ...................... ok
+t/UnitTests/Domain/Preparation/business-logic.t6 ................ ok
+t/UnitTests/Domain/Preparation/form.t6 .......................... ok
+t/UnitTests/Domain/Check/view.t6 ................................ ok
+t/UnitTests/Domain/Index/view.t6 ................................ ok
+t/UnitTests/FileStorage/business-logic.t6 ....................... ok
+t/UnitTests/Dashboard/view.t6 ................................... ok
+t/UnitTests/Element/Select/view.t6 .............................. ok
+t/UnitTests/Form/RequiredInformation/Imprint.t6 ................. ok
+t/UnitTests/Domain/Preparation/view.t6 .......................... ok
+t/UnitTests/Mail/SocialmediaOnline/businesslogic.t6 ............. ok
+t/UnitTests/Mail/Mail/unittests.t6 .............................. ok
+t/UnitTests/Mail/email-sending.t6 ............................... ok
+t/UnitTests/Mail/Online/businesslogic.t6 ........................ ok
+t/UnitTests/MeinAtikon/Roles/hashable.t6 ........................ ok
+t/UnitTests/Mail/SocialmediaOnline/view.t6 ...................... ok
+t/UnitTests/MeinAtikon/Roles/customer-file-access.t6 ............ ok
+t/UnitTests/Mail/Online/view.t6 ................................. ok
+t/UnitTests/MeinAtikon/Roles/metadata-processor.t6 .............. ok
+t/UnitTests/Model/AtikonAPI/location.t6 ......................... ok
+t/UnitTests/Model/Contact.t6 .................................... ok
+t/UnitTests/Model/OTRSAPI/base.t6 ............................... ok
+t/UnitTests/Middelware/ReAuthCheck.rakutest ..................... ok
+t/UnitTests/Model/AtikonAPI/base.t6 ............................. ok
+t/UnitTests/Model/WebcontentAPI/base.t6 ......................... ok
+t/UnitTests/Onboarding/business-logic.t6 ........................ ok
+t/UnitTests/OTRS/business-logic.t6 .............................. ok
+t/UnitTests/Products/HomepageChange/business-logic.t6 ........... ok
+t/UnitTests/Model/database.t6 ................................... ok
+t/UnitTests/MeinAtikon/Roles/thumbnail.t6 ....................... ok
+t/UnitTests/Onboarding/view.t6 .................................. ok
+t/UnitTests/Products/Socialmedia/business-logic.t6 .............. ok
+t/UnitTests/RequiredInformation/Employees/business-logic.t6 ..... ok
+t/UnitTests/RequiredInformation/Employees/form.t6 ............... ok
+t/UnitTests/Products/Socialmedia/template_view.t6 ............... ok
+t/UnitTests/RequiredInformation/Employees/view.t6 ............... ok
+t/UnitTests/Products/Socialmedia/view.t6 ........................ ok
+t/UnitTests/RequiredInformation/Imprint/base.t6 ................. ok
+t/UnitTests/RequiredInformation/Imprint/business-logic.t6 ....... ok
+t/UnitTests/Products/HomepageChange/view.t6 ..................... ok
+t/UnitTests/RequiredInformation/Imprint/form.t6 ................. ok
+t/UnitTests/RequiredInformation/Index/business-logic.t6 ......... ok
+t/UnitTests/RequiredInformation/OpeningTimes/business-logic.t6 .. ok
+t/UnitTests/RequiredInformation/OpeningTimes/form.t6 ............ ok
+t/UnitTests/RequiredInformation/Photos/business-logic.t6 ........ ok
+t/UnitTests/RequiredInformation/Index/view.t6 ................... ok
+t/UnitTests/RequiredInformation/SoMe/business-logic.t6 .......... ok
+t/UnitTests/RequiredInformation/OpeningTimes/view.t6 ............ ok
+t/UnitTests/RequiredInformation/Photos/view.t6 .................. ok
+t/UnitTests/RequiredInformation/Texts/business-logic.t6 ......... ok
+t/UnitTests/RequiredInformation/Texts/form.t6 ................... ok
+t/UnitTests/Role/DateFormatter.t6 ............................... ok
+t/UnitTests/RequiredInformation/SoMe/view.t6 .................... ok
+t/UnitTests/RequiredInformation/Imprint/view.t6 ................. ok
+t/UnitTests/Tracking/business-logic.t6 .......................... ok
+t/UnitTests/RequiredInformation/Texts/view.t6 ................... ok
+t/UnitTests/businesslogic.t6 .................................... ok
+t/code-file_extension.t6 ........................................ ok
+t/code-line_length.t6 ........................................... ok
+t/code-method_names.t6 .......................................... ok
+t/code-white_space.t6 ........................................... ok
+t/code-style.t6 ................................................. ok
+t/UnitTests/Webcontent/business-logic.t6 ........................ ok
+t/code_variable-names.t6 ........................................ ok
+t/load.t6 ....................................................... ok
+t/UnitTests/Webcontent/view.t6 .................................. ok
+All tests successful.
+Files=88, Tests=464,  155 wallclock secs
+Result: PASS
+[Current build status] check if current [SUCCESS] is worse or equals then [SUCCESS] and better or equals then [SUCCESS]
+Run condition [Current build status] enabling perform for step [Execute shell]
+[mein-Atikon] $ /bin/sh -xe /tmp/jenkins13392415706769024672.sh
++ cd /var/jenkins/workspace/mein-Atikon/repo/mein-Atikon
++ branch=master
++ [[ -n master ]]
++ branch=master
++ '[' master == master ']'
++ git push git@bitbucket.org:atikon/meinatikon.git HEAD:production
+Everything up-to-date
++ git push ssh://svc-jenkins-1@git.atikon.io/srv/git/mein-Atikon.git HEAD:production
+Everything up-to-date
+[WARN] Not a WorkflowRun, onCompleted won't be propagated to listeners
+Finished: SUCCESS
