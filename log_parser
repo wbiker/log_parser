@@ -5,12 +5,8 @@ use JSON::Fast;
 use Exporter::Sqlite;
 use FailedTests;
 use JenkinsLog;
-use TestSearch;
 use JenkinsTest;
 
-#my $log_dir = '/home/wb/Dokumente/jenkins/intranet/builds'.IO;
-#my $log_dir = '/home/wb/Dokumente/jenkins/mein-atikon/builds'.IO;
-#my $log_dir = '/home/wb/log/jenkins'.IO;
 my $log_dir = '/home/wb/tools/log_parser/logs/'.IO;
 
 my $db = Exporter::Sqlite.new;
@@ -33,7 +29,7 @@ multi sub MAIN('refresh', Bool :$drop-table) {
             total => 0,
         ;
 
-        say "Check project {%project<name>}";
+        say "Check project {%project<name>.uc}";
         %project<id> = $db.find-or-create-project-id(%project<name>);
         say "Look for log files";
         my @log_files = find-files(%project<path>, %project<id>);
@@ -49,7 +45,7 @@ multi sub MAIN('refresh', Bool :$drop-table) {
                     when 'success' { ++%total_status<passed> }
                     when 'aborted' { ++%total_status<aborted> }
                 }
-                say "Build ", %build<number>, " already parsed - ", %build<status>;
+                # say "Build ", %build<number>, " already parsed - ", %build<status>;
                 next;
             }
 
@@ -145,68 +141,6 @@ multi sub MAIN(:$count = 0, :$startdate, :$name, :$build, :$project = 'intranet'
             put "\t", $number;
         }
     }
-}
-
-sub create-test-objects(%tests) {
-    my @tests;
-    for %tests -> $test {
-        @tests.push: JenkinsTest.new(test => $test.value);
-    }
-
-    return @tests;
-}
-
-sub filter-test-count($count, @tests) {
-    return @tests if $count == 0;
-
-    my $count-search = TestCount.new(threshold => $count);
-    return $count-search.check(@tests);
-}
-
-sub filter-date($startdate, @tests) {
-    return @tests unless $startdate;
-
-    if $startdate ~~ /(\d ** 4) '-' (\d ** 2) '-' (\d ** 2)/ {
-        my $year = $0.Int;
-        my $month = $1.Int;
-        my $day = $2.Int;
-
-        my $date-search = TestStarttime.new(starttime => DateTime.new(year => $year, month => $month, day => $day));
-        return  $date-search.check(@tests);
-    }
-
-    note "Could not find date in '$startdate'. Expect pattern 'YYYY-MM-DD'" and exit;
-}
-
-sub filter-name($name, @tests) {
-    return @tests unless $name;
-
-    my $name-search = TestName.new(name => $name);
-    return $name-search.check(@tests);
-}
-
-sub filter-tests-without-errors(@tests) {
-    my $filter = TestWithoutErrors.new;
-    return $filter.check(@tests);
-}
-
-sub parse-failed-tests($test) {
-    my BagHash $tn .= new;
-    for $test.errors -> $error {
-        my $m = FailedTests.subparse($error, :actions(Action::FailedTests.new));
-
-        if $m {
-            for $m.made -> $n {
-                for $n.flat {
-                   $tn.add($_);
-                }
-            }
-        } else {
-            note "Nothing found for test {$test.name} in error {$error}";
-        }
-    }
-
-    $test.failed_test_numbers = $tn;
 }
 
 sub find-projects($dir) {
