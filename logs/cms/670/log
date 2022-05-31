@@ -1,0 +1,2058 @@
+Started by BitBucket push by Philipp Lehner
+Started by BitBucket push by Philipp Lehner
+Running as SYSTEM
+[WARN] Not a WorkflowRun, automatic builds and deployments won't work.
+Building remotely on [8mha:////4OwSVIE6neGQU37EcAmxalRUWStdT78aQil7szBzlswNAAAApB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy+EgYJ/eT83ILSktQi/YzCgmTdrNS87My8Yl1DAJQA/onNAAAA[0mhqpc-jenkins-1 in workspace /var/jenkins/workspace/CMS
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] Done
+The recommended git tool is: NONE
+No credentials specified
+Wiping out workspace first.
+Cloning the remote Git repository
+Cloning repository git@bitbucket.org:atikon/cms.git
+ > git init /var/jenkins/workspace/CMS/repo/ZMS # timeout=10
+Fetching upstream changes from git@bitbucket.org:atikon/cms.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git fetch --tags --force --progress -- git@bitbucket.org:atikon/cms.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url git@bitbucket.org:atikon/cms.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+JENKINS-19022: warning: possible memory leak due to Git plugin usage; see: https://plugins.jenkins.io/git/#remove-git-plugin-buildsbybranch-builddata-script
+Checking out Revision 6fd9c761ff4a358aa7e40e74a27a5ae5f4c0c7e6 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 6fd9c761ff4a358aa7e40e74a27a5ae5f4c0c7e6 # timeout=10
+Commit message: "SeminarOberlaa: Update key for klarna payment system"
+ > git rev-list --no-walk 85065311835d819a26e7d879427b26b35c3faa44 # timeout=10
+Run condition [Current build status] enabling prebuild for step [Execute shell]
+[CMS] $ /bin/sh -xe /tmp/jenkins1061366112715627224.sh
++ set +e
++ cd /var/jenkins/workspace/CMS/repo/ZMS
++ export USER=jenkins
++ USER=jenkins
++ export DBNAME_SUFFIX=_jenkins
++ DBNAME_SUFFIX=_jenkins
++ export HOME=/var/lib/jenkins
++ HOME=/var/lib/jenkins
+++ dbus-launch
++ export DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-QbcVzjYQtd,guid=97b151e48035800d09a5e08c626a3b11 DBUS_SESSION_BUS_PID=24185
++ DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-QbcVzjYQtd,guid=97b151e48035800d09a5e08c626a3b11
++ DBUS_SESSION_BUS_PID=24185
++ export DISPLAY=:0
++ DISPLAY=:0
++ export NO_AT_BRIDGE=1
++ NO_AT_BRIDGE=1
++ export GSETTINGS_BACKEND=memory
++ GSETTINGS_BACKEND=memory
++ export COLUMNS=80
++ COLUMNS=80
++ unset XDG_RUNTIME_DIR
++ export DBIC_DT_SEARCH_OK=1
++ DBIC_DT_SEARCH_OK=1
++ export CATALYST_NOWARN_DEPRECATE=1
++ CATALYST_NOWARN_DEPRECATE=1
++ export PATH=/opt/atikon/perl-local-lib/bin:/usr/local/bin:/opt/atikon/perl-local-lib/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/opt/puppetlabs/bin:/var/lib/jenkins/.fzf/bin
++ PATH=/opt/atikon/perl-local-lib/bin:/usr/local/bin:/opt/atikon/perl-local-lib/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/opt/puppetlabs/bin:/var/lib/jenkins/.fzf/bin
++ bitbucket_db_repo_url=git@bitbucket.org:atikon/atikon-db.git
++ branch=master
++ [[ -n master ]]
++ branch=master
++ git checkout master
+Switched to a new branch 'master'
+Branch 'master' set up to track remote branch 'master' from 'origin'.
++ git ls-remote --exit-code --heads git@bitbucket.org:atikon/atikon-db.git master
+2b7db0b76af549a042854279c804425a7fadde3d	refs/heads/master
++ ec=0
++ db_branch_name=master
++ '[' 0 -eq 0 ']'
++ db_branch_name=master
++ git clone --single-branch --branch master git@bitbucket.org:atikon/atikon-db.git /var/jenkins/workspace/CMS/repo/Atikon
+Cloning into '/var/jenkins/workspace/CMS/repo/Atikon'...
++ cp /srv/www/cgi-bin/ZMS/log4perl.conf /var/jenkins/workspace/CMS/repo/ZMS/log4perl.conf
++ touch /var/jenkins/workspace/CMS/repo/ZMS/zms_local.yml
++ mkdir -p /tmp/zms
++ rm -rf /var/jenkins/workspace/CMS/local-lib
++ mkdir -p /var/jenkins/workspace/CMS/local-lib
++ export PERL5LIB=/var/jenkins/workspace/CMS/repo:/var/jenkins/workspace/CMS/local-lib/lib/perl5:/opt/atikon/perl-local-lib/lib/perl5
++ PERL5LIB=/var/jenkins/workspace/CMS/repo:/var/jenkins/workspace/CMS/local-lib/lib/perl5:/opt/atikon/perl-local-lib/lib/perl5
++ /opt/atikon/bin/atikon-xvfb-run /usr/bin/cpanm -v --auto-cleanup 1 -l /var/jenkins/workspace/CMS/local-lib --mirror http://cpan.atikon.io:3111/stacks/master --mirror-only --installdeps /var/jenkins/workspace/CMS/repo/Atikon
+cpanm (App::cpanminus) 1.7045 on perl 5.026001 built for x86_64-linux-thread-multi
+Work directory is /var/lib/jenkins/.cpanm/work/1651129114.24237
+You have make /usr/bin/make
+You have LWP 6.58
+You have /usr/bin/tar: tar (GNU tar) 1.30
+Copyright (C) 2017 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by John Gilmore and Jay Fenlason.
+You have /usr/bin/unzip
+Entering /var/jenkins/workspace/CMS/repo/Atikon
+Running Makefile.PL
+--> Working on /var/jenkins/workspace/CMS/repo/Atikon
+Configuring /var/jenkins/workspace/CMS/repo/Atikon ... include /var/jenkins/workspace/CMS/repo/Atikon/inc/Module/Install.pm
+include inc/Module/Install/Metadata.pm
+include inc/Module/Install/Base.pm
+include inc/Module/Install/AutoInstall.pm
+include inc/Module/Install/Include.pm
+include inc/Module/AutoInstall.pm
+*** Module::AutoInstall version 1.19
+*** Checking for Perl dependencies...
+*** Since we're running under cpanminus, I'll just let it take care
+    of the dependency's installation later.
+[Core Features]
+- AnyEvent                          ...loaded. (7.17)
+- AnyEvent::Worker::Pool            ...loaded. (undef)
+- App::Sqitch                       ...loaded. (v1.1.0 >= 0.9999)
+- Array::Compare                    ...loaded. (3.0.8)
+- Authen::Simple::Password          ...loaded. (undef)
+- Bytes::Random::Secure             ...loaded. (0.29)
+- Cache::File                       ...loaded. (2.11)
+- Capture::Tiny                     ...loaded. (0.48)
+- Catalyst                          ...loaded. (5.90128)
+- Catalyst::EngineLoader            ...loaded. (undef)
+- common::sense                     ...loaded. (3.75)
+- Clone                             ...loaded. (0.45)
+- Config::Any                       ...loaded. (0.32)
+- Config::General                   ...loaded. (2.63)
+- Convert::ASCII::Armour            ...loaded. (1.4)
+- Crypt::CBC                        ...loaded. (3.04)
+- Crypt::OpenPGP                    ...loaded. (1.12)
+- Crypt::OpenPGP::Certificate       ...loaded. (undef)
+- Crypt::OpenPGP::Key               ...loaded. (undef)
+- Crypt::OpenPGP::KeyBlock          ...loaded. (undef)
+- Crypt::OpenPGP::Signature         ...loaded. (undef)
+- Crypt::OpenPGP::UserID            ...loaded. (undef)
+- Crypt::Primes                     ...loaded. (0.50)
+- Crypt::Random                     ...loaded. (1.54)
+- Crypt::RSA                        ...loaded. (1.99)
+- Crypt::RSA::DataFormat            ...loaded. (undef)
+- Crypt::RSA::Debug                 ...loaded. (undef)
+- Crypt::RSA::Key                   ...loaded. (1.99)
+- Crypt::RSA::Key::Private          ...loaded. (1.99)
+- Crypt::RSA::Key::Public           ...loaded. (1.99)
+- Crypt::RSA::Primitives            ...loaded. (undef)
+- Crypt::OpenSSL::RSA               ...loaded. (0.32)
+- Data::Buffer                      ...loaded. (0.04)
+- Data::ICal                        ...loaded. (0.24)
+- Data::ICal::DateTime              ...loaded. (0.82)
+- Data::ICal::Entry::Event          ...loaded. (undef)
+- Data::ICal::Entry::Alarm::Display ...loaded. (undef)
+- Data::FormValidator               ...loaded. (4.88)
+- Data::Validate::Domain            ...loaded. (0.15)
+- Date::Manip                       ...loaded. (6.86)
+- DateTime                          ...loaded. (1.57)
+- Date::ICal                        ...loaded. (2.678)
+- Date::Parse                       ...loaded. (2.33)
+- DateTime::Format::DateParse       ...loaded. (0.05)
+- DateTime::Format::Flexible        ...loaded. (0.34 >= 0.34)
+- DateTime::Format::Pg              ...loaded. (0.16014)
+- DBI                               ...loaded. (1.643)
+- DBIx::Class                       ...loaded. (0.082842)
+- DBIx::Class::AuditLog             ...loaded. (0.6.4)
+- Digest::MD2                       ...loaded. (2.04)
+- Digest::SHA                       ...loaded. (5.96)
+- Digest::SHA1                      ...loaded. (2.13)
+- Email::Address                    ...loaded. (1.912)
+- Email::MessageID                  ...loaded. (1.406)
+- Email::MIME                       ...loaded. (1.949)
+- Email::MIME::CreateHTML           ...loaded. (1.042 >= 1.041)
+- Email::Sender::Simple             ...loaded. (2.500)
+- Email::Stuffer                    ...loaded. (0.018)
+- Email::Valid                      ...loaded. (1.202)
+- File::Copy::Recursive             ...loaded. (0.45)
+- File::Find                        ...loaded. (1.34)
+- File::Find::Rule                  ...loaded. (0.34)
+- File::Flock                       ...loaded. (2014.01)
+- File::MimeInfo                    ...loaded. (0.30)
+- File::Slurp                       ...loaded. (9999.32)
+- File::Slurper                     ...loaded. (0.012)
+- GeoIP2::Database::Reader          ...loaded. (2.006002)
+- Gtk3                              ...loaded. (0.038)
+- Gtk3::WebKit2                     ...loaded. (0.013)
+- HTML::Entities                    ...loaded. (3.78)
+- HTML::Parser                      ...loaded. (3.78)
+- HTML::Strip                       ...loaded. (2.10)
+- HTML::TokeParser                  ...loaded. (3.78)
+- HTML::TreeBuilder                 ...loaded. (5.07)
+- HTML::TreeBuilder::XPath          ...loaded. (0.14)
+- HTTP::Request::Common             ...loaded. (6.35)
+- HTTP::Response                    ...loaded. (6.35)
+- HTTP::Status                      ...loaded. (6.35)
+- HTML::Strip                       ...loaded. (2.10)
+- Inline                            ...loaded. (0.86)
+- Inline::C                         ...loaded. (0.81 >= 0.76)
+- IO::Select                        ...loaded. (1.22)
+- IO::String                        ...loaded. (1.08)
+- IO::Stringy                       ...loaded. (2.113)
+- IO::Socket::SSL                   ...loaded. (2.074 >= 2.044)
+- JSON                              ...loaded. (4.03)
+- List::MoreUtils                   ...loaded. (0.430)
+- List::UtilsBy                     ...loaded. (0.11)
+- Log::Log4perl                     ...loaded. (1.54)
+- LWP::Simple                       ...loaded. (6.58)
+- LWP::ConnCache                    ...loaded. (6.58)
+- LWP::UserAgent                    ...loaded. (6.58 >= 6.33)
+- Math::Pari                        ...loaded. (2.030518)
+- MIME::Parser                      ...loaded. (5.509)
+- MIME::Words                       ...loaded. (5.509)
+- Module::Install::Base             ...loaded. (1.19)
+- Moose                             ...loaded. (2.2201)
+- Moose::Role                       ...loaded. (2.2201)
+- Moose::Util                       ...loaded. (2.2201)
+- MooseX::MarkAsMethods             ...loaded. (0.15)
+- MooseX::NonMoose                  ...loaded. (0.26)
+- namespace::autoclean              ...loaded. (0.29)
+- Net::FTP                          ...loaded. (3.10)
+- Net::FTP::Mock                    ...loaded. (0.103300)
+- Net::SFTP::Foreign                ...loaded. (1.93)
+- Net::IDN::Encode                  ...loaded. (2.500)
+- Net::LDAP                         ...loaded. (0.68)
+- Net::IP                           ...loaded. (1.26)
+- Net::DNS                          ...loaded. (1.33)
+- Net::Whois::Raw                   ...loaded. (2.99032)
+- Number::Format                    ...loaded. (1.75)
+- Number::Phone                     ...loaded. (3.8001)
+- Number::Phone::Normalize          ...loaded. (0.220)
+- Parse::BBCode                     ...loaded. (0.15)
+- Path::Class                       ...loaded. (0.37)
+- PDF::API2                         ...loaded. (2.042)
+- PPI                               ...loaded. (1.270)
+- Export::Attrs                     ...loaded. (v0.1.0)
+- Petal                             ...loaded. (2.26)
+- Regexp::Common                    ...loaded. (2017060201)
+- Set::Scalar                       ...loaded. (1.29)
+- SOAP::Lite                        ...loaded. (1.27)
+- Sort::Versions                    ...loaded. (1.62)
+- String::MkPasswd                  ...loaded. (0.05)
+- String::ShellQuote                ...loaded. (1.04)
+- String::Util                      ...loaded. (1.32)
+- Sys::Hostname::FQDN               ...loaded. (0.12)
+- Sys::Hostname::Long               ...loaded. (1.5)
+- Template                          ...loaded. (3.009)
+- Tie::EncryptedHash                ...loaded. (1.8)
+- Term::UI                          ...loaded. (0.50)
+- Test::WWW::Mechanize::Catalyst    ...loaded. (0.62)
+- Test::WWW::WebKit2::Catalyst      ...loaded. (0.1)
+- Text::CSV::Encoded                ...loaded. (0.25)
+- Text::Iconv                       ...loaded. (1.7)
+- Time::Duration                    ...loaded. (1.21)
+- Travel::Routing::DE::EFA          ...loaded. (2.19)
+- Try::Tiny                         ...loaded. (0.31)
+- UUID                              ...loaded. (0.28)
+- URI                               ...loaded. (5.10 >= 1.71)
+- URI::Escape                       ...loaded. (5.10)
+- URI::Find                         ...loaded. (20160806)
+- v6                                ...loaded. (0.047)
+- WWW::Mechanize                    ...loaded. (2.06)
+- WWW::Curl::Easy                   ...loaded. (4.17)
+- WWW::WebKit2                      ...loaded. (0.132 >= 0.125)
+- XML::LibXML                       ...loaded. (2.0207 >= 2.0132)
+- Math::Round                       ...loaded. (0.07)
+- Net::LDAP::Server::Test           ...loaded. (0.22 >= 0.15)
+- Selenium::Remote::WDKeys          ...loaded. (1.45)
+- App::Sqitch                       ...loaded. (v1.1.0)
+- MooseX::ClassAttribute            ...loaded. (0.29)
+- URI::Encode                       ...loaded. (1.1.1)
+- DBIx::Class::Schema::Loader       ...loaded. (0.07049 >= 0.07046)
+- Perl::Tidy                        ...loaded. (20220217 >= 20160302)
+*** Module::AutoInstall configuration finished.
+include inc/Module/Install/Makefile.pm
+include inc/Module/Install/WriteAll.pm
+include inc/Module/Install/Win32.pm
+include inc/Module/Install/Can.pm
+include inc/Module/Install/Fetch.pm
+No license specified, setting license = 'unknown'
+Generating a Unix-style Makefile
+Writing Makefile for Atikon
+Writing MYMETA.yml and MYMETA.json
+Writing META.yml
+Checking dependencies from MYMETA.json ...
+Checking if you have Net::SFTP::Foreign 0 ... Yes (1.93)
+Checking if you have MooseX::ClassAttribute 0 ... Yes (0.29)
+Checking if you have JSON 0 ... Yes (4.03)
+Checking if you have Digest::SHA1 0 ... Yes (2.13)
+Checking if you have URI::Encode 0 ... Yes (1.1.1)
+Checking if you have Email::Valid 0 ... Yes (1.202)
+Checking if you have HTTP::Response 0 ... Yes (6.35)
+Checking if you have File::Slurper 0 ... Yes (0.012)
+Checking if you have HTTP::Request::Common 0 ... Yes (6.35)
+Checking if you have PPI 0 ... Yes (1.270)
+Checking if you have Crypt::OpenSSL::RSA 0 ... Yes (0.32)
+Checking if you have DBIx::Class 0 ... Yes (0.082842)
+Checking if you have Crypt::RSA 0 ... Yes (1.99)
+Checking if you have IO::Stringy 0 ... Yes (2.113)
+Checking if you have Selenium::Remote::WDKeys 0 ... Yes (1.45)
+Checking if you have Bytes::Random::Secure 0 ... Yes (0.29)
+Checking if you have Number::Phone 0 ... Yes (3.8001)
+Checking if you have File::MimeInfo 0 ... Yes (0.30)
+Checking if you have Crypt::OpenPGP::KeyBlock 0 ... Yes (undef)
+Checking if you have DBIx::Class::Schema::Loader 0.07046 ... Yes (0.07049)
+Checking if you have Term::UI 0 ... Yes (0.50)
+Checking if you have MooseX::NonMoose 0 ... Yes (0.26)
+Checking if you have Config::General 0 ... Yes (2.63)
+Checking if you have HTML::TreeBuilder 0 ... Yes (5.07)
+Checking if you have v6 0 ... Yes (0.047)
+Checking if you have Crypt::Random 0 ... Yes (1.54)
+Checking if you have HTML::TokeParser 0 ... Yes (3.78)
+Checking if you have PDF::API2 0 ... Yes (2.042)
+Checking if you have Net::FTP::Mock 0 ... Yes (0.103300)
+Checking if you have Set::Scalar 0 ... Yes (1.29)
+Checking if you have Text::Iconv 0 ... Yes (1.7)
+Checking if you have URI::Find 0 ... Yes (20160806)
+Checking if you have DBI 0 ... Yes (1.643)
+Checking if you have File::Find 0 ... Yes (1.34)
+Checking if you have Clone 0 ... Yes (0.45)
+Checking if you have DBIx::Class::AuditLog 0 ... Yes (0.6.4)
+Checking if you have Crypt::OpenPGP::Key 0 ... Yes (undef)
+Checking if you have Try::Tiny 0 ... Yes (0.31)
+Checking if you have File::Slurp 0 ... Yes (9999.32)
+Checking if you have Data::ICal::Entry::Alarm::Display 0 ... Yes (undef)
+Checking if you have Parse::BBCode 0 ... Yes (0.15)
+Checking if you have Capture::Tiny 0 ... Yes (0.48)
+Checking if you have MIME::Parser 0 ... Yes (5.509)
+Checking if you have Gtk3 0 ... Yes (0.038)
+Checking if you have Data::ICal::Entry::Event 0 ... Yes (undef)
+Checking if you have AnyEvent 0 ... Yes (7.17)
+Checking if you have List::UtilsBy 0 ... Yes (0.11)
+Checking if you have Module::Install::Base 0 ... Yes (1.19)
+Checking if you have File::Find::Rule 0 ... Yes (0.34)
+Checking if you have HTML::TreeBuilder::XPath 0 ... Yes (0.14)
+Checking if you have Crypt::OpenPGP::Signature 0 ... Yes (undef)
+Checking if you have Net::IDN::Encode 0 ... Yes (2.500)
+Checking if you have Math::Pari 0 ... Yes (2.030518)
+Checking if you have Email::MIME 0 ... Yes (1.949)
+Checking if you have UUID 0 ... Yes (0.28)
+Checking if you have File::Flock 0 ... Yes (2014.01)
+Checking if you have URI::Escape 0 ... Yes (5.10)
+Checking if you have Inline::C 0.76 ... Yes (0.81)
+Checking if you have HTTP::Status 0 ... Yes (6.35)
+Checking if you have Log::Log4perl 0 ... Yes (1.54)
+Checking if you have Digest::MD2 0 ... Yes (2.04)
+Checking if you have IO::Select 0 ... Yes (1.22)
+Checking if you have Text::CSV::Encoded 0 ... Yes (0.25)
+Checking if you have Net::DNS 0 ... Yes (1.33)
+Checking if you have Travel::Routing::DE::EFA 0 ... Yes (2.19)
+Checking if you have Date::Manip 0 ... Yes (6.86)
+Checking if you have Authen::Simple::Password 0 ... Yes (undef)
+Checking if you have Catalyst 0 ... Yes (5.90128)
+Checking if you have Cache::File 0 ... Yes (2.11)
+Checking if you have List::MoreUtils 0 ... Yes (0.430)
+Checking if you have MIME::Words 0 ... Yes (5.509)
+Checking if you have Regexp::Common 0 ... Yes (2017060201)
+Checking if you have HTML::Parser 0 ... Yes (3.78)
+Checking if you have Array::Compare 0 ... Yes (3.0.8)
+Checking if you have Crypt::OpenPGP 0 ... Yes (1.12)
+Checking if you have Tie::EncryptedHash 0 ... Yes (1.8)
+Checking if you have IO::String 0 ... Yes (1.08)
+Checking if you have Time::Duration 0 ... Yes (1.21)
+Checking if you have MooseX::MarkAsMethods 0 ... Yes (0.15)
+Checking if you have HTML::Entities 0 ... Yes (3.78)
+Checking if you have Path::Class 0 ... Yes (0.37)
+Checking if you have IO::Socket::SSL 2.044 ... Yes (2.074)
+Checking if you have Crypt::RSA::Key::Public 0 ... Yes (1.99)
+Checking if you have Date::ICal 0 ... Yes (2.678)
+Checking if you have Net::Whois::Raw 0 ... Yes (2.99032)
+Checking if you have Sort::Versions 0 ... Yes (1.62)
+Checking if you have Perl::Tidy 20160302 ... Yes (20220217)
+Checking if you have Number::Phone::Normalize 0 ... Yes (0.220)
+Checking if you have Moose::Util 0 ... Yes (2.2201)
+Checking if you have Email::Stuffer 0 ... Yes (0.018)
+Checking if you have Sys::Hostname::Long 0 ... Yes (1.5)
+Checking if you have Crypt::CBC 0 ... Yes (3.04)
+Checking if you have Math::Round 0 ... Yes (0.07)
+Checking if you have Net::LDAP::Server::Test 0.15 ... Yes (0.22)
+Checking if you have String::MkPasswd 0 ... Yes (0.05)
+Checking if you have AnyEvent::Worker::Pool 0 ... Yes (undef)
+Checking if you have String::Util 0 ... Yes (1.32)
+Checking if you have File::Copy::Recursive 0 ... Yes (0.45)
+Checking if you have Crypt::RSA::Primitives 0 ... Yes (undef)
+Checking if you have Gtk3::WebKit2 0 ... Yes (0.013)
+Checking if you have Crypt::OpenPGP::Certificate 0 ... Yes (undef)
+Checking if you have Email::MessageID 0 ... Yes (1.406)
+Checking if you have Sys::Hostname::FQDN 0 ... Yes (0.12)
+Checking if you have Net::FTP 0 ... Yes (3.10)
+Checking if you have App::Sqitch 0 ... Yes (v1.1.0)
+Checking if you have Convert::ASCII::Armour 0 ... Yes (1.4)
+Checking if you have Digest::SHA 0 ... Yes (5.96)
+Checking if you have Data::Buffer 0 ... Yes (0.04)
+Checking if you have Export::Attrs 0 ... Yes (v0.1.0)
+Checking if you have Inline 0 ... Yes (0.86)
+Checking if you have Data::ICal::DateTime 0 ... Yes (0.82)
+Checking if you have Catalyst::EngineLoader 0 ... Yes (undef)
+Checking if you have Moose::Role 0 ... Yes (2.2201)
+Checking if you have Email::Address 0 ... Yes (1.912)
+Checking if you have Net::IP 0 ... Yes (1.26)
+Checking if you have String::ShellQuote 0 ... Yes (1.04)
+Checking if you have LWP::Simple 0 ... Yes (6.58)
+Checking if you have DateTime::Format::Flexible 0.34 ... Yes (0.34)
+Checking if you have GeoIP2::Database::Reader 0 ... Yes (2.006002)
+Checking if you have Crypt::Primes 0 ... Yes (0.50)
+Checking if you have Crypt::RSA::Key 0 ... Yes (1.99)
+Checking if you have Net::LDAP 0 ... Yes (0.68)
+Checking if you have Data::Validate::Domain 0 ... Yes (0.15)
+Checking if you have XML::LibXML 2.0132 ... Yes (2.0207)
+Checking if you have Email::MIME::CreateHTML 1.041 ... Yes (1.042)
+Checking if you have WWW::Mechanize 0 ... Yes (2.06)
+Checking if you have Test::WWW::Mechanize::Catalyst 0 ... Yes (0.62)
+Checking if you have Config::Any 0 ... Yes (0.32)
+Checking if you have LWP::UserAgent 6.33 ... Yes (6.58)
+Checking if you have URI 1.71 ... Yes (5.10)
+Checking if you have ExtUtils::MakeMaker 0 ... Yes (7.64)
+Checking if you have common::sense 0 ... Yes (3.75)
+Checking if you have DateTime::Format::DateParse 0 ... Yes (0.05)
+Checking if you have Test::WWW::WebKit2::Catalyst 0 ... Yes (0.1)
+Checking if you have Number::Format 0 ... Yes (1.75)
+Checking if you have Crypt::OpenPGP::UserID 0 ... Yes (undef)
+Checking if you have Data::FormValidator 0 ... Yes (4.88)
+Checking if you have WWW::WebKit2 0.125 ... Yes (0.132)
+Checking if you have Template 0 ... Yes (3.009)
+Checking if you have Date::Parse 0 ... Yes (2.33)
+Checking if you have DateTime::Format::Pg 0 ... Yes (0.16014)
+Checking if you have Data::ICal 0 ... Yes (0.24)
+Checking if you have Crypt::RSA::Debug 0 ... Yes (undef)
+Checking if you have Moose 0 ... Yes (2.2201)
+Checking if you have Crypt::RSA::Key::Private 0 ... Yes (1.99)
+Checking if you have Email::Sender::Simple 0 ... Yes (2.500)
+Checking if you have LWP::ConnCache 0 ... Yes (6.58)
+Checking if you have HTML::Strip 0 ... Yes (2.10)
+Checking if you have WWW::Curl::Easy 0 ... Yes (4.17)
+Checking if you have Petal 0 ... Yes (2.26)
+Checking if you have DateTime 0 ... Yes (1.57)
+Checking if you have Crypt::RSA::DataFormat 0 ... Yes (undef)
+Checking if you have SOAP::Lite 0 ... Yes (1.27)
+Checking if you have namespace::autoclean 0 ... Yes (0.29)
+Expiring 2 work directories.
+OK
+<== Installed dependencies for /var/jenkins/workspace/CMS/repo/Atikon. Finishing.
++ /opt/atikon/bin/atikon-xvfb-run /usr/bin/cpanm -v --auto-cleanup 1 -l /var/jenkins/workspace/CMS/local-lib --mirror http://cpan.atikon.io:3111/stacks/master --mirror-only --installdeps /var/jenkins/workspace/CMS/repo/ZMS
+cpanm (App::cpanminus) 1.7045 on perl 5.026001 built for x86_64-linux-thread-multi
+Work directory is /var/lib/jenkins/.cpanm/work/1651129118.24265
+You have make /usr/bin/make
+You have LWP 6.58
+You have /usr/bin/tar: tar (GNU tar) 1.30
+Copyright (C) 2017 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by John Gilmore and Jay Fenlason.
+You have /usr/bin/unzip
+Entering /var/jenkins/workspace/CMS/repo/ZMS
+Running Makefile.PL
+--> Working on /var/jenkins/workspace/CMS/repo/ZMS
+Configuring /var/jenkins/workspace/CMS/repo/ZMS ... Cannot determine perl version info from lib/ZMS.pm
+include /var/jenkins/workspace/CMS/repo/ZMS/inc/Module/Install.pm
+include inc/Module/Install/Metadata.pm
+include inc/Module/Install/Base.pm
+include inc/Module/Install/Makefile.pm
+include inc/Module/Install/Catalyst.pm
+include inc/Module/Install/Include.pm
+include inc/File/Copy/Recursive.pm
+*** Module::Install::Catalyst
+*** Module::Install::Catalyst finished.
+include inc/Module/Install/Scripts.pm
+include inc/Module/Install/AutoInstall.pm
+include inc/Module/AutoInstall.pm
+*** Module::AutoInstall version 1.19
+*** Checking for Perl dependencies...
+*** Since we're running under cpanminus, I'll just let it take care
+    of the dependency's installation later.
+[Core Features]
+- Selenium::PhantomJS                                    ...loaded. (1.45)
+- Test::WWW::WebKit2                                     ...loaded. (0.113 >= 0.113)
+- Time::Fake                                             ...loaded. (0.11)
+- Algorithm::Numerical::Shuffle                          ...loaded. (2009110301)
+- Archive::Zip                                           ...loaded. (1.68)
+- Authen::NTLM                                           ...loaded. (1.09)
+- Barcode::Code128                                       ...loaded. (2.21)
+- Business::IBAN::Validator                              ...loaded. (0.06)
+- CGI                                                    ...loaded. (4.54 >= 4.36)
+- CGI::Simple                                            ...loaded. (1.25 >= 1.25)
+- common::sense                                          ...loaded. (3.75)
+- CSS::Inliner                                           ...loaded. (4008)
+- Cache::FileCache                                       ...loaded. (undef)
+- Cache::Memcached::Fast                                 ...loaded. (0.27)
+- Captcha::reCAPTCHA::V2                                 ...loaded. (0.3)
+- Carp                                                   ...loaded. (1.42)
+- Catalyst                                               ...loaded. (5.90128)
+- Catalyst::Action::RenderView                           ...loaded. (0.16)
+- Catalyst::Authentication::Credential::Facebook::OAuth2 ...loaded. (0.02)
+- Catalyst::Authentication::Store::DBIx::Class           ...loaded. (0.1506)
+- Catalyst::Authentication::Store::LDAP                  ...loaded. (1.017)
+- Catalyst::DispatchType::Regex                          ...loaded. (5.90035)
+- Catalyst::Exception::Detach                            ...loaded. (undef)
+- Catalyst::Model::DBI                                   ...loaded. (0.32)
+- Catalyst::Model::DBIC::Schema                          ...loaded. (0.65)
+- Catalyst::Model::DBIC::Schema                          ...loaded. (0.65)
+- Catalyst::Plugin::Authentication                       ...loaded. (0.10023)
+- Catalyst::Plugin::ConfigLoader                         ...loaded. (0.35)
+- Catalyst::Plugin::FormValidator                        ...loaded. (0.094)
+- Catalyst::Plugin::Session::State::Cookie               ...loaded. (0.18 >= 0.18)
+- Catalyst::Plugin::Session::Store::DBIC                 ...loaded. (0.14)
+- Catalyst::Plugin::Static::Simple                       ...loaded. (0.37 >= 0.31)
+- Catalyst::Plugin::Unicode                              ...loaded. (0.93)
+- Catalyst::Plugin::SubRequest                           ...loaded. (0.21)
+- Catalyst::Runtime                                      ...loaded. (5.90128 >= 5.90082)
+- Catalyst::ScriptRunner                                 ...loaded. (undef)
+- Catalyst::View::JSON                                   ...loaded. (0.37)
+- Catalyst::View::Petal                                  ...loaded. (0.03)
+- Chart::Clicker                                         ...loaded. (2.90)
+- Chart::Clicker::Axis::DateTime                         ...loaded. (2.90)
+- Clone                                                  ...loaded. (0.45)
+- Config::Any                                            ...loaded. (0.32)
+- Config::Merged                                         ...loaded. (0.05)
+- Convert::Scalar                                        ...loaded. (1.12)
+- Crypt::CBC                                             ...loaded. (3.04)
+- Crypt::RandPasswd                                      ...loaded. (0.07)
+- Crypt::SaltedHash                                      ...loaded. (0.09)
+- Crypt::Simple                                          ...loaded. (0.06)
+- Date::Gregorian                                        ...loaded. (0.13)
+- Date::Language                                         ...loaded. (1.10)
+- DBD::Pg                                                ...loaded. (3.15.1)
+- DBD::mysql                                             ...loaded. (4.050)
+- DBD::SQLite::Constants                                 ...loaded. (undef)
+- DBI                                                    ...loaded. (1.643)
+- DBIx::Connector                                        ...loaded. (0.57)
+- Data::Dumper                                           ...loaded. (2.167)
+- Data::Dumper::Concise                                  ...loaded. (2.023)
+- Data::FormValidator                                    ...loaded. (4.88)
+- Data::FormValidator::Constraints                       ...loaded. (4.88)
+- Data::FormValidator::Constraints::MethodsFactory       ...loaded. (0.03)
+- Data::FormValidator::Filters                           ...loaded. (4.88)
+- Data::Pageset                                          ...loaded. (1.06)
+- Data::Printer                                          ...loaded. (1.000004)
+- Data::Validate::IP                                     ...loaded. (0.30)
+- Data::Validate::URI                                    ...loaded. (0.07)
+- Data::Validate::UUID                                   ...loaded. (0.1.1)
+- Date::Calc                                             ...loaded. (6.4)
+- Date::Gregorian::Business                              ...loaded. (0.13)
+- DateTime                                               ...loaded. (1.57)
+- DateTime::Format::DateParse                            ...loaded. (0.05)
+- DateTime::Format::Flexible                             ...loaded. (0.34)
+- DateTime::Format::ISO8601                              ...loaded. (0.16)
+- DateTime::Format::Pg                                   ...loaded. (0.16014)
+- DateTime::Format::Strptime                             ...loaded. (1.79)
+- Digest::MD5                                            ...loaded. (2.55)
+- Email::Address                                         ...loaded. (1.912)
+- Email::Sender::Simple                                  ...loaded. (2.500)
+- Email::Sender::Transport::SMTP                         ...loaded. (2.500)
+- Email::Stuffer                                         ...loaded. (0.018)
+- Email::Valid                                           ...loaded. (1.202)
+- Encode::MIME::Header                                   ...loaded. (2.28 >= 2.24)
+- Export::Attrs                                          ...loaded. (v0.1.0)
+- Facebook::OpenGraph                                    ...loaded. (1.31 >= 1.25)
+- File::Copy                                             ...loaded. (2.32)
+- File::Remove                                           ...loaded. (1.60)
+- File::Copy::Recursive                                  ...loaded. (0.45)
+- File::Find::Rule                                       ...loaded. (0.34)
+- File::Glob                                             ...loaded. (1.28)
+- File::Inplace                                          ...loaded. (0.20)
+- File::MimeInfo                                         ...loaded. (0.30 >= 0.26)
+- File::Path                                             ...loaded. (2.12_01 >= 2.07)
+- File::Slurp                                            ...loaded. (9999.32)
+- File::Slurper                                          ...loaded. (0.012)
+- File::Util                                             ...loaded. (4.201720)
+- File::Symlink::Relative                                ...loaded. (0.005)
+- GD                                                     ...loaded. (2.73)
+- GD::Image                                              ...loaded. (2.73)
+- Geo::Coder::OSM                                        ...loaded. (0.03)
+- Geo::Ellipsoid                                         ...loaded. (1.15)
+- Getopt::Long                                           ...loaded. (2.49)
+- Graph                                                  ...loaded. (0.9725)
+- Graphics::ColorNames::HTML                             ...loaded. (v3.3.1)
+- HTML::BBCode                                           ...loaded. (2.07)
+- HTML::Entities                                         ...loaded. (3.78)
+- HTML::Escape                                           ...loaded. (1.11)
+- HTML::Form                                             ...loaded. (6.07)
+- HTML::Laundry                                          ...loaded. (0.0107)
+- HTML::Parser                                           ...loaded. (3.78)
+- HTML::Scrubber                                         ...loaded. (0.19)
+- HTML::TokeParser::Simple                               ...loaded. (3.16)
+- HTML::TreeBuilder::XPath                               ...loaded. (0.14)
+- HTTP::Headers                                          ...loaded. (6.35)
+- HTTP::Request                                          ...loaded. (6.35)
+- HTTP::Request::Common                                  ...loaded. (6.35)
+- HtDig::Config                                          ...loaded. (1.02 >= 1.02)
+- HtDig::Site                                            ...loaded. (1.02 >= 1.02)
+- I18N::LangTags::Detect                                 ...loaded. (1.06)
+- IO::Socket::SSL                                        ...loaded. (2.074)
+- IO::String                                             ...loaded. (1.08)
+- Image::Compare                                         ...loaded. (1.03)
+- Image::EXIF                                            ...loaded. (2.01)
+- Image::Imlib2                                          ...loaded. (2.03)
+- Image::PNG::QRCode                                     ...loaded. (0.10)
+- Image::Size                                            ...loaded. (3.300)
+- Imager                                                 ...loaded. (1.012)
+- Inline                                                 ...loaded. (0.86)
+- Inline::Python                                         ...loaded. (0.56 >= 0.53)
+- JSON                                                   ...loaded. (4.03)
+- JSON::XS                                               ...loaded. (4.03)
+- JSON::Schema::Modern                                   ...loaded. (0.542)
+- LWP                                                    ...loaded. (6.58)
+- LWP::Protocol::https                                   ...loaded. (6.10)
+- LWP::Simple                                            ...loaded. (6.58)
+- LWP::UserAgent                                         ...loaded. (6.58)
+- LWP::ConsoleLogger::Easy                               ...loaded. (0.000043)
+- List::Compare                                          ...loaded. (0.55)
+- List::MoreUtils                                        ...loaded. (0.430)
+- List::Util                                             ...loaded. (1.60 >= 1.38)
+- List::UtilsBy                                          ...loaded. (0.11)
+- Locale::Codes::Constants                               ...loaded. (3.42)
+- Locale::Language                                       ...loaded. (3.42 >= 3.18)
+- Log::Log4perl                                          ...loaded. (1.54)
+- Log::Log4perl::Catalyst                                ...loaded. (1.53)
+- Log::Log4perl::Filter::CallerMatch                     ...loaded. (1.200)
+- Lucy                                                   ...loaded. (0.006002)
+- Lucy::Analysis::PolyAnalyzer                           ...loaded. (0.006002)
+- Lucy::Highlight::Highlighter                           ...loaded. (0.006002)
+- Lucy::Index::Indexer                                   ...loaded. (0.006002)
+- Lucy::Plan::FullTextType                               ...loaded. (0.006002)
+- Lucy::Plan::Schema                                     ...loaded. (0.006002)
+- Lucy::Search::ANDQuery                                 ...loaded. (0.006002)
+- Lucy::Search::QueryParser                              ...loaded. (0.006002)
+- Lucy::Search::TermQuery                                ...loaded. (0.006002)
+- LucyX::Search::WildcardQuery                           ...loaded. (0.06)
+- MIME::Lite                                             ...loaded. (3.033)
+- MIME::Type                                             ...loaded. (2.22)
+- MIME::Types                                            ...loaded. (2.22)
+- MIME::Words                                            ...loaded. (5.509)
+- Mail::VRFY                                             ...loaded. (1.01)
+- Marpa::R2                                              ...loaded. (8.000000)
+- Math::Polygon::Tree                                    ...loaded. (0.08)
+- Math::Round                                            ...loaded. (0.07)
+- Module::Find                                           ...loaded. (0.15)
+- Module::Pluggable                                      ...loaded. (5.2)
+- Moo                                                    ...loaded. (2.005004)
+- Moose                                                  ...loaded. (2.2201)
+- Moose::Exporter                                        ...loaded. (2.2201)
+- Moose::Role                                            ...loaded. (2.2201)
+- Moose::Util                                            ...loaded. (2.2201)
+- Moose::Util::TypeConstraints                           ...loaded. (2.2201)
+- MooseX::Aliases                                        ...loaded. (0.11)
+- MooseX::MarkAsMethods                                  ...loaded. (0.15)
+- MooseX::MethodAttributes::Role                         ...loaded. (0.32)
+- MooseX::NonMoose                                       ...loaded. (0.26)
+- namespace::autoclean                                   ...loaded. (0.29)
+- Net::FTP                                               ...loaded. (3.10 >= 3.10)
+- Net::LDAP                                              ...loaded. (0.68)
+- Net::Netmask                                           ...loaded. (2.0001)
+- Net::OpenSSH                                           ...loaded. (0.80)
+- Net::OAuth2::Profile::WebServer                        ...loaded. (0.67)
+- Number::Bytes::Human                                   ...loaded. (0.11)
+- Number::Format                                         ...loaded. (1.75)
+- Number::Phone                                          ...loaded. (3.8001)
+- Path::Class::Dir                                       ...loaded. (0.37)
+- PDF::API2                                              ...loaded. (2.042)
+- parent                                                 ...loaded. (0.236)
+- Parallel::ForkManager                                  ...loaded. (2.02)
+- Path::Class                                            ...loaded. (0.37)
+- Perl6::Slurp                                           ...loaded. (0.051005)
+- Petal                                                  ...loaded. (2.26)
+- Petal::Utils                                           ...loaded. (0.06)
+- Ref::Util                                              ...loaded. (0.204)
+- Regexp::Common                                         ...loaded. (2017060201)
+- Regexp::Common::Email::Address                         ...loaded. (1.01)
+- RPM4::Header                                           ...loaded. (undef)
+- SOAP::Lite                                             ...loaded. (1.27)
+- SOAP::Lite                                             ...loaded. (1.27)
+- Scalar::Util                                           ...loaded. (1.60)
+- Scalar::Util::Numeric                                  ...loaded. (0.40)
+- Search::Tokenizer                                      ...loaded. (1.03)
+- SemanticWeb::Schema                                    ...loaded. (v13.0.0 >= 11.1.1)
+- SemanticWeb::Schema::AccountingService                 ...loaded. (v13.0.0)
+- SemanticWeb::Schema::Answer                            ...loaded. (v13.0.0)
+- SemanticWeb::Schema::BreadcrumbList                    ...loaded. (v13.0.0)
+- SemanticWeb::Schema::BusinessEvent                     ...loaded. (v13.0.0)
+- SemanticWeb::Schema::Dentist                           ...loaded. (v13.0.0)
+- SemanticWeb::Schema::EducationEvent                    ...loaded. (v13.0.0)
+- SemanticWeb::Schema::Event                             ...loaded. (v13.0.0)
+- SemanticWeb::Schema::FAQPage                           ...loaded. (v13.0.0)
+- SemanticWeb::Schema::GeoCoordinates                    ...loaded. (v13.0.0)
+- SemanticWeb::Schema::ImageObject                       ...loaded. (v13.0.0)
+- SemanticWeb::Schema::JobPosting                        ...loaded. (v13.0.0)
+- SemanticWeb::Schema::LegalService                      ...loaded. (v13.0.0)
+- SemanticWeb::Schema::ListItem                          ...loaded. (v13.0.0)
+- SemanticWeb::Schema::LocalBusiness                     ...loaded. (v13.0.0)
+- SemanticWeb::Schema::MonetaryAmount                    ...loaded. (v13.0.0)
+- SemanticWeb::Schema::NewsArticle                       ...loaded. (v13.0.0)
+- SemanticWeb::Schema::OpeningHoursSpecification         ...loaded. (v13.0.0)
+- SemanticWeb::Schema::Organization                      ...loaded. (v13.0.0)
+- SemanticWeb::Schema::Person                            ...loaded. (v13.0.0)
+- SemanticWeb::Schema::Physician                         ...loaded. (v13.0.0)
+- SemanticWeb::Schema::Place                             ...loaded. (v13.0.0)
+- SemanticWeb::Schema::PostalAddress                     ...loaded. (v13.0.0)
+- SemanticWeb::Schema::QuantitativeValue                 ...loaded. (v13.0.0)
+- SemanticWeb::Schema::Question                          ...loaded. (v13.0.0)
+- SemanticWeb::Schema::SocialEvent                       ...loaded. (v13.0.0)
+- SemanticWeb::Schema::VideoObject                       ...loaded. (v13.0.0)
+- SEPA                                                   ...loaded. (2.21)
+- Session::Token                                         ...loaded. (1.503)
+- Set::Scalar                                            ...loaded. (1.29)
+- SMS::Send                                              ...loaded. (1.06)
+- SMS::Send::AT::SmsAt                                   ...loaded. (0.0.5)
+- Spreadsheet::ParseExcel                                ...loaded. (0.65)
+- SQL::Translator                                        ...loaded. (1.62)
+- String::MkPasswd                                       ...loaded. (0.05)
+- String::Util                                           ...loaded. (1.32)
+- Sys::RunAlone                                          ...loaded. (0.13)
+- Sub::Override                                          ...loaded. (0.09)
+- Template                                               ...loaded. (3.009)
+- Term::ANSIColor::Simple                                ...loaded. (0.10)
+- Test::EOL                                              ...loaded. (2.02)
+- Test::Deep                                             ...loaded. (1.130)
+- Test::Differences                                      ...loaded. (0.68)
+- Test::Exception                                        ...loaded. (0.43)
+- Test::Mock::Net::FTP                                   ...loaded. (0.04)
+- Test::MockModule                                       ...loaded. (0.177.0)
+- Test::MockObject                                       ...loaded. (1.20200122)
+- Test::MockObject::Extends                              ...loaded. (1.20200122)
+- Text::Aspell                                           ...loaded. (0.09)
+- Text::Diff                                             ...loaded. (1.45)
+- Text::CSV                                              ...loaded. (2.01)
+- Text::CSV::Encoded                                     ...loaded. (0.25 >= 0.22)
+- Text::CSV_XS                                           ...loaded. (1.47 >= 1.32)
+- Text::vCard::Addressbook                               ...loaded. (3.09)
+- Time::Piece                                            ...loaded. (1.3401 >= 1.34)
+- Tree::Simple                                           ...loaded. (1.34)
+- Try::Tiny                                              ...loaded. (0.31)
+- URI                                                    ...loaded. (5.10)
+- URI::Encode                                            ...loaded. (1.1.1)
+- URI::Escape                                            ...loaded. (5.10)
+- URI::Find                                              ...loaded. (20160806)
+- URI::QueryParam                                        ...loaded. (5.10)
+- URI::URL                                               ...loaded. (5.10)
+- UUID                                                   ...loaded. (0.28 >= 0.27)
+- vCard                                                  ...loaded. (3.09)
+- WWW::Mechanize                                         ...loaded. (2.06)
+- WWW::Mechanize::Firefox                                ...loaded. (0.80)
+- WWW::Mechanize::TreeBuilder                            ...loaded. (1.20000)
+- XML::Compile::SOAP11                                   ...loaded. (3.27)
+- XML::Compile::SOAP11                                   ...loaded. (3.27)
+- XML::Compile::Schema                                   ...loaded. (1.63)
+- XML::Compile::Transport::SOAPHTTP                      ...loaded. (3.27)
+- XML::Compile::Transport::SOAPHTTP                      ...loaded. (3.27)
+- XML::Compile::WSDL11                                   ...loaded. (3.08)
+- XML::Compile::WSDL11                                   ...loaded. (3.08)
+- XML::Dumper                                            ...loaded. (0.81)
+- XML::Feed                                              ...loaded. (0.63)
+- XML::Generator                                         ...loaded. (1.04)
+- XML::LibXML                                            ...loaded. (2.0207)
+- XML::LibXML::PrettyPrint                               ...loaded. (0.006)
+- XML::LibXML::XPathContext                              ...loaded. (2.0207)
+- XML::Parser                                            ...loaded. (2.46)
+- XML::Simple                                            ...loaded. (2.25)
+- XML::XPath                                             ...loaded. (1.44)
+- XML::XPath::XMLParser                                  ...loaded. (1.44)
+- YAML                                                   ...loaded. (1.30)
+- YAML::Tiny                                             ...loaded. (1.73)
+- YAML::XS                                               ...loaded. (0.83)
+*** Module::AutoInstall configuration finished.
+include inc/Module/Install/WriteAll.pm
+include inc/Module/Install/Win32.pm
+include inc/Module/Install/Can.pm
+include inc/Module/Install/Fetch.pm
+Generating a Unix-style Makefile
+Writing Makefile for ZMS
+Writing MYMETA.yml and MYMETA.json
+Writing META.yml
+Checking dependencies from MYMETA.json ...
+Checking if you have Graph 0 ... Yes (0.9725)
+Checking if you have Email::Valid 0 ... Yes (1.202)
+Checking if you have DateTime::Format::Pg 0 ... Yes (0.16014)
+Checking if you have YAML 0 ... Yes (1.30)
+Checking if you have Crypt::SaltedHash 0 ... Yes (0.09)
+Checking if you have File::Copy 0 ... Yes (2.32)
+Checking if you have Ref::Util 0 ... Yes (0.204)
+Checking if you have Catalyst::Plugin::ConfigLoader 0 ... Yes (0.35)
+Checking if you have Scalar::Util 0 ... Yes (1.60)
+Checking if you have Digest::MD5 0 ... Yes (2.55)
+Checking if you have Parallel::ForkManager 0 ... Yes (2.02)
+Checking if you have Petal::Utils 0 ... Yes (0.06)
+Checking if you have HTTP::Request::Common 0 ... Yes (6.35)
+Checking if you have HTML::TokeParser::Simple 0 ... Yes (3.16)
+Checking if you have I18N::LangTags::Detect 0 ... Yes (1.06)
+Checking if you have Email::Sender::Transport::SMTP 0 ... Yes (2.500)
+Checking if you have XML::Simple 0 ... Yes (2.25)
+Checking if you have DateTime::Format::Strptime 0 ... Yes (1.79)
+Checking if you have SMS::Send 0 ... Yes (1.06)
+Checking if you have Moo 0 ... Yes (2.005004)
+Checking if you have Catalyst::Plugin::Session::Store::DBIC 0 ... Yes (0.14)
+Checking if you have SemanticWeb::Schema::EducationEvent 0 ... Yes (v13.0.0)
+Checking if you have SemanticWeb::Schema::Place 0 ... Yes (v13.0.0)
+Checking if you have SemanticWeb::Schema::FAQPage 0 ... Yes (v13.0.0)
+Checking if you have Business::IBAN::Validator 0 ... Yes (0.06)
+Checking if you have Crypt::CBC 0 ... Yes (3.04)
+Checking if you have DateTime::Format::DateParse 0 ... Yes (0.05)
+Checking if you have XML::LibXML 0 ... Yes (2.0207)
+Checking if you have Number::Bytes::Human 0 ... Yes (0.11)
+Checking if you have String::Util 0 ... Yes (1.32)
+Checking if you have Math::Round 0 ... Yes (0.07)
+Checking if you have Data::FormValidator::Filters 0 ... Yes (4.88)
+Checking if you have MIME::Lite 0 ... Yes (3.033)
+Checking if you have DBD::Pg 0 ... Yes (3.15.1)
+Checking if you have Lucy 0 ... Yes (0.006002)
+Checking if you have Catalyst::Model::DBIC::Schema 0 ... Yes (0.65)
+Checking if you have Regexp::Common 0 ... Yes (2017060201)
+Checking if you have Locale::Codes::Constants 0 ... Yes (3.42)
+Checking if you have Catalyst::Model::DBI 0 ... Yes (0.32)
+Checking if you have CSS::Inliner 0 ... Yes (4008)
+Checking if you have String::MkPasswd 0 ... Yes (0.05)
+Checking if you have Data::Pageset 0 ... Yes (1.06)
+Checking if you have Catalyst::Plugin::Authentication 0 ... Yes (0.10023)
+Checking if you have URI::Encode 0 ... Yes (1.1.1)
+Checking if you have Test::Differences 0 ... Yes (0.68)
+Checking if you have Email::Sender::Simple 0 ... Yes (2.500)
+Checking if you have Moose::Exporter 0 ... Yes (2.2201)
+Checking if you have common::sense 0 ... Yes (3.75)
+Checking if you have Spreadsheet::ParseExcel 0 ... Yes (0.65)
+Checking if you have File::Glob 0 ... Yes (1.28)
+Checking if you have Template 0 ... Yes (3.009)
+Checking if you have XML::XPath::XMLParser 0 ... Yes (1.44)
+Checking if you have HTTP::Headers 0 ... Yes (6.35)
+Checking if you have WWW::Mechanize::Firefox 0 ... Yes (0.80)
+Checking if you have Image::Size 0 ... Yes (3.300)
+Checking if you have Selenium::PhantomJS 0 ... Yes (1.45)
+Checking if you have URI::QueryParam 0 ... Yes (5.10)
+Checking if you have Text::CSV::Encoded 0.22 ... Yes (0.25)
+Checking if you have File::Slurp 0 ... Yes (9999.32)
+Checking if you have Lucy::Search::TermQuery 0 ... Yes (0.006002)
+Checking if you have HTML::Scrubber 0 ... Yes (0.19)
+Checking if you have HTML::Form 0 ... Yes (6.07)
+Checking if you have Authen::NTLM 0 ... Yes (1.09)
+Checking if you have SemanticWeb::Schema v11.1.1 ... Yes (v13.0.0)
+Checking if you have SemanticWeb::Schema::AccountingService 0 ... Yes (v13.0.0)
+Checking if you have Catalyst::Action::RenderView 0 ... Yes (0.16)
+Checking if you have XML::Compile::Transport::SOAPHTTP 0 ... Yes (3.27)
+Checking if you have Facebook::OpenGraph 1.25 ... Yes (1.31)
+Checking if you have Catalyst::Runtime 5.90082 ... Yes (5.90128)
+Checking if you have GD::Image 0 ... Yes (2.73)
+Checking if you have Catalyst::Plugin::FormValidator 0 ... Yes (0.094)
+Checking if you have Time::Fake 0 ... Yes (0.11)
+Checking if you have Data::Dumper 0 ... Yes (2.167)
+Checking if you have Moose::Role 0 ... Yes (2.2201)
+Checking if you have SemanticWeb::Schema::BreadcrumbList 0 ... Yes (v13.0.0)
+Checking if you have IO::String 0 ... Yes (1.08)
+Checking if you have Data::FormValidator 0 ... Yes (4.88)
+Checking if you have XML::Compile::Schema 0 ... Yes (1.63)
+Checking if you have Catalyst::Authentication::Credential::Facebook::OAuth2 0 ... Yes (0.02)
+Checking if you have SemanticWeb::Schema::BusinessEvent 0 ... Yes (v13.0.0)
+Checking if you have Image::Compare 0 ... Yes (1.03)
+Checking if you have HTML::BBCode 0 ... Yes (2.07)
+Checking if you have UUID 0.27 ... Yes (0.28)
+Checking if you have Term::ANSIColor::Simple 0 ... Yes (0.10)
+Checking if you have Text::vCard::Addressbook 0 ... Yes (3.09)
+Checking if you have SemanticWeb::Schema::Organization 0 ... Yes (v13.0.0)
+Checking if you have Image::EXIF 0 ... Yes (2.01)
+Checking if you have Captcha::reCAPTCHA::V2 0 ... Yes (0.3)
+Checking if you have Test::Mock::Net::FTP 0 ... Yes (0.04)
+Checking if you have Module::Pluggable 0 ... Yes (5.2)
+Checking if you have SOAP::Lite 0 ... Yes (1.27)
+Checking if you have List::Util 1.38 ... Yes (1.60)
+Checking if you have File::Remove 0 ... Yes (1.60)
+Checking if you have XML::LibXML::XPathContext 0 ... Yes (2.0207)
+Checking if you have Marpa::R2 0 ... Yes (8.000000)
+Checking if you have vCard 0 ... Yes (3.09)
+Checking if you have Lucy::Plan::FullTextType 0 ... Yes (0.006002)
+Checking if you have MooseX::MarkAsMethods 0 ... Yes (0.15)
+Checking if you have LWP::Simple 0 ... Yes (6.58)
+Checking if you have File::Slurper 0 ... Yes (0.012)
+Checking if you have DateTime 0 ... Yes (1.57)
+Checking if you have URI::Find 0 ... Yes (20160806)
+Checking if you have Cache::Memcached::Fast 0 ... Yes (0.27)
+Checking if you have SemanticWeb::Schema::SocialEvent 0 ... Yes (v13.0.0)
+Checking if you have DBI 0 ... Yes (1.643)
+Checking if you have YAML::XS 0 ... Yes (0.83)
+Checking if you have DBD::mysql 0 ... Yes (4.050)
+Checking if you have ExtUtils::MakeMaker 0 ... Yes (7.64)
+Checking if you have Catalyst::Authentication::Store::LDAP 0 ... Yes (1.017)
+Checking if you have Graphics::ColorNames::HTML 0 ... Yes (v3.3.1)
+Checking if you have CGI 4.36 ... Yes (4.54)
+Checking if you have MooseX::MethodAttributes::Role 0 ... Yes (0.32)
+Checking if you have Geo::Ellipsoid 0 ... Yes (1.15)
+Checking if you have Catalyst::ScriptRunner 0 ... Yes (undef)
+Checking if you have Email::Stuffer 0 ... Yes (0.018)
+Checking if you have XML::Generator 0 ... Yes (1.04)
+Checking if you have LWP::ConsoleLogger::Easy 0 ... Yes (0.000043)
+Checking if you have MIME::Type 0 ... Yes (2.22)
+Checking if you have XML::Compile::WSDL11 0 ... Yes (3.08)
+Checking if you have Data::Validate::UUID 0 ... Yes (0.1.1)
+Checking if you have Locale::Language 3.18 ... Yes (3.42)
+Checking if you have Scalar::Util::Numeric 0 ... Yes (0.40)
+Checking if you have DBD::SQLite::Constants 0 ... Yes (undef)
+Checking if you have Data::Validate::URI 0 ... Yes (0.07)
+Checking if you have Geo::Coder::OSM 0 ... Yes (0.03)
+Checking if you have SemanticWeb::Schema::GeoCoordinates 0 ... Yes (v13.0.0)
+Checking if you have Catalyst::Plugin::Unicode 0 ... Yes (0.93)
+Checking if you have File::MimeInfo 0.26 ... Yes (0.30)
+Checking if you have Catalyst 0 ... Yes (5.90128)
+Checking if you have DateTime::Format::Flexible 0 ... Yes (0.34)
+Checking if you have Catalyst::DispatchType::Regex 0 ... Yes (5.90035)
+Checking if you have JSON::XS 0 ... Yes (4.03)
+Checking if you have Carp 0 ... Yes (1.42)
+Checking if you have HtDig::Site 1.02 ... Yes (1.02)
+Checking if you have Moose 0 ... Yes (2.2201)
+Checking if you have Convert::Scalar 0 ... Yes (1.12)
+Checking if you have Test::WWW::WebKit2 0.113 ... Yes (0.113)
+Checking if you have Moose::Util 0 ... Yes (2.2201)
+Checking if you have Test::EOL 0 ... Yes (2.02)
+Checking if you have Chart::Clicker 0 ... Yes (2.90)
+Checking if you have Getopt::Long 0 ... Yes (2.49)
+Checking if you have Path::Class 0 ... Yes (0.37)
+Checking if you have SQL::Translator 0 ... Yes (1.62)
+Checking if you have Data::FormValidator::Constraints 0 ... Yes (4.88)
+Checking if you have Catalyst::Plugin::Static::Simple 0.31 ... Yes (0.37)
+Checking if you have GD 0 ... Yes (2.73)
+Checking if you have Archive::Zip 0 ... Yes (1.68)
+Checking if you have HTML::Entities 0 ... Yes (3.78)
+Checking if you have YAML::Tiny 0 ... Yes (1.73)
+Checking if you have Encode::MIME::Header 2.24 ... Yes (2.28)
+Checking if you have List::Compare 0 ... Yes (0.55)
+Checking if you have Date::Calc 0 ... Yes (6.4)
+Checking if you have URI::Escape 0 ... Yes (5.10)
+Checking if you have Barcode::Code128 0 ... Yes (2.21)
+Checking if you have URI::URL 0 ... Yes (5.10)
+Checking if you have Export::Attrs 0 ... Yes (v0.1.0)
+Checking if you have XML::Dumper 0 ... Yes (0.81)
+Checking if you have XML::Compile::SOAP11 0 ... Yes (3.27)
+Checking if you have MooseX::Aliases 0 ... Yes (0.11)
+Checking if you have Log::Log4perl::Filter::CallerMatch 0 ... Yes (1.200)
+Checking if you have Cache::FileCache 0 ... Yes (undef)
+Checking if you have Date::Gregorian 0 ... Yes (0.13)
+Checking if you have PDF::API2 0 ... Yes (2.042)
+Checking if you have Data::Dumper::Concise 0 ... Yes (2.023)
+Checking if you have Data::Validate::IP 0 ... Yes (0.30)
+Checking if you have Mail::VRFY 0 ... Yes (1.01)
+Checking if you have Moose::Util::TypeConstraints 0 ... Yes (2.2201)
+Checking if you have SemanticWeb::Schema::LocalBusiness 0 ... Yes (v13.0.0)
+Checking if you have List::MoreUtils 0 ... Yes (0.430)
+Checking if you have SEPA 0 ... Yes (2.21)
+Checking if you have SemanticWeb::Schema::ListItem 0 ... Yes (v13.0.0)
+Checking if you have Session::Token 0 ... Yes (1.503)
+Checking if you have Lucy::Search::ANDQuery 0 ... Yes (0.006002)
+Checking if you have URI 0 ... Yes (5.10)
+Checking if you have Net::Netmask 0 ... Yes (2.0001)
+Checking if you have Test::Deep 0 ... Yes (1.130)
+Checking if you have Net::OpenSSH 0 ... Yes (0.80)
+Checking if you have Inline::Python 0.53 ... Yes (0.56)
+Checking if you have Lucy::Index::Indexer 0 ... Yes (0.006002)
+Checking if you have parent 0 ... Yes (0.236)
+Checking if you have Module::Find 0 ... Yes (0.15)
+Checking if you have Regexp::Common::Email::Address 0 ... Yes (1.01)
+Checking if you have HtDig::Config 1.02 ... Yes (1.02)
+Checking if you have Try::Tiny 0 ... Yes (0.31)
+Checking if you have File::Inplace 0 ... Yes (0.20)
+Checking if you have RPM4::Header 0 ... Yes (undef)
+Checking if you have Date::Language 0 ... Yes (1.10)
+Checking if you have SemanticWeb::Schema::NewsArticle 0 ... Yes (v13.0.0)
+Checking if you have Set::Scalar 0 ... Yes (1.29)
+Checking if you have Lucy::Highlight::Highlighter 0 ... Yes (0.006002)
+Checking if you have SemanticWeb::Schema::OpeningHoursSpecification 0 ... Yes (v13.0.0)
+Checking if you have Sys::RunAlone 0 ... Yes (0.13)
+Checking if you have HTML::TreeBuilder::XPath 0 ... Yes (0.14)
+Checking if you have JSON::Schema::Modern 0 ... Yes (0.542)
+Checking if you have SemanticWeb::Schema::ImageObject 0 ... Yes (v13.0.0)
+Checking if you have Net::OAuth2::Profile::WebServer 0 ... Yes (0.67)
+Checking if you have Search::Tokenizer 0 ... Yes (1.03)
+Checking if you have Algorithm::Numerical::Shuffle 0 ... Yes (2009110301)
+Checking if you have File::Copy::Recursive 0 ... Yes (0.45)
+Checking if you have Test::MockObject 0 ... Yes (1.20200122)
+Checking if you have SemanticWeb::Schema::VideoObject 0 ... Yes (v13.0.0)
+Checking if you have HTTP::Request 0 ... Yes (6.35)
+Checking if you have SMS::Send::AT::SmsAt 0 ... Yes (0.0.5)
+Checking if you have Number::Format 0 ... Yes (1.75)
+Checking if you have JSON 0 ... Yes (4.03)
+Checking if you have SemanticWeb::Schema::Event 0 ... Yes (v13.0.0)
+Checking if you have SemanticWeb::Schema::Answer 0 ... Yes (v13.0.0)
+Checking if you have HTML::Parser 0 ... Yes (3.78)
+Checking if you have XML::LibXML::PrettyPrint 0 ... Yes (0.006)
+Checking if you have SemanticWeb::Schema::Physician 0 ... Yes (v13.0.0)
+Checking if you have MIME::Words 0 ... Yes (5.509)
+Checking if you have Catalyst::View::JSON 0 ... Yes (0.37)
+Checking if you have Time::Piece 1.34 ... Yes (1.3401)
+Checking if you have Crypt::RandPasswd 0 ... Yes (0.07)
+Checking if you have Net::LDAP 0 ... Yes (0.68)
+Checking if you have Lucy::Plan::Schema 0 ... Yes (0.006002)
+Checking if you have SemanticWeb::Schema::Person 0 ... Yes (v13.0.0)
+Checking if you have Number::Phone 0 ... Yes (3.8001)
+Checking if you have LWP::UserAgent 0 ... Yes (6.58)
+Checking if you have Log::Log4perl::Catalyst 0 ... Yes (1.53)
+Checking if you have Inline 0 ... Yes (0.86)
+Checking if you have Config::Any 0 ... Yes (0.32)
+Checking if you have Email::Address 0 ... Yes (1.912)
+Checking if you have SemanticWeb::Schema::PostalAddress 0 ... Yes (v13.0.0)
+Checking if you have Text::CSV 0 ... Yes (2.01)
+Checking if you have Config::Merged 0 ... Yes (0.05)
+Checking if you have HTML::Escape 0 ... Yes (1.11)
+Checking if you have WWW::Mechanize 0 ... Yes (2.06)
+Checking if you have Data::Printer 0 ... Yes (1.000004)
+Checking if you have WWW::Mechanize::TreeBuilder 0 ... Yes (1.20000)
+Checking if you have SemanticWeb::Schema::JobPosting 0 ... Yes (v13.0.0)
+Checking if you have Perl6::Slurp 0 ... Yes (0.051005)
+Checking if you have File::Path 2.07 ... Yes (2.12_01)
+Checking if you have File::Util 0 ... Yes (4.201720)
+Checking if you have Text::Aspell 0 ... Yes (0.09)
+Checking if you have DBIx::Connector 0 ... Yes (0.57)
+Checking if you have HTML::Laundry 0 ... Yes (0.0107)
+Checking if you have Catalyst::Plugin::SubRequest 0 ... Yes (0.21)
+Checking if you have Chart::Clicker::Axis::DateTime 0 ... Yes (2.90)
+Checking if you have Crypt::Simple 0 ... Yes (0.06)
+Checking if you have Data::FormValidator::Constraints::MethodsFactory 0 ... Yes (0.03)
+Checking if you have Clone 0 ... Yes (0.45)
+Checking if you have Text::Diff 0 ... Yes (1.45)
+Checking if you have Image::Imlib2 0 ... Yes (2.03)
+Checking if you have SemanticWeb::Schema::QuantitativeValue 0 ... Yes (v13.0.0)
+Checking if you have MooseX::NonMoose 0 ... Yes (0.26)
+Checking if you have DateTime::Format::ISO8601 0 ... Yes (0.16)
+Checking if you have LucyX::Search::WildcardQuery 0 ... Yes (0.06)
+Checking if you have XML::Feed 0 ... Yes (0.63)
+Checking if you have Text::CSV_XS 1.32 ... Yes (1.47)
+Checking if you have SemanticWeb::Schema::Dentist 0 ... Yes (v13.0.0)
+Checking if you have XML::XPath 0 ... Yes (1.44)
+Checking if you have IO::Socket::SSL 0 ... Yes (2.074)
+Checking if you have SemanticWeb::Schema::LegalService 0 ... Yes (v13.0.0)
+Checking if you have CGI::Simple 1.25 ... Yes (1.25)
+Checking if you have LWP 0 ... Yes (6.58)
+Checking if you have Test::MockModule 0 ... Yes (0.177.0)
+Checking if you have Lucy::Analysis::PolyAnalyzer 0 ... Yes (0.006002)
+Checking if you have Test::Exception 0 ... Yes (0.43)
+Checking if you have Sub::Override 0 ... Yes (0.09)
+Checking if you have SemanticWeb::Schema::MonetaryAmount 0 ... Yes (v13.0.0)
+Checking if you have LWP::Protocol::https 0 ... Yes (6.10)
+Checking if you have Net::FTP 3.10 ... Yes (3.10)
+Checking if you have Lucy::Search::QueryParser 0 ... Yes (0.006002)
+Checking if you have Math::Polygon::Tree 0 ... Yes (0.08)
+Checking if you have Log::Log4perl 0 ... Yes (1.54)
+Checking if you have Tree::Simple 0 ... Yes (1.34)
+Checking if you have Catalyst::Exception::Detach 0 ... Yes (undef)
+Checking if you have List::UtilsBy 0 ... Yes (0.11)
+Checking if you have Path::Class::Dir 0 ... Yes (0.37)
+Checking if you have XML::Parser 0 ... Yes (2.46)
+Checking if you have Test::MockObject::Extends 0 ... Yes (1.20200122)
+Checking if you have Catalyst::Plugin::Session::State::Cookie 0.18 ... Yes (0.18)
+Checking if you have Imager 0 ... Yes (1.012)
+Checking if you have File::Find::Rule 0 ... Yes (0.34)
+Checking if you have File::Symlink::Relative 0 ... Yes (0.005)
+Checking if you have SemanticWeb::Schema::Question 0 ... Yes (v13.0.0)
+Checking if you have Petal 0 ... Yes (2.26)
+Checking if you have Catalyst::View::Petal 0 ... Yes (0.03)
+Checking if you have Catalyst::Authentication::Store::DBIx::Class 0 ... Yes (0.1506)
+Checking if you have MIME::Types 0 ... Yes (2.22)
+Checking if you have namespace::autoclean 0 ... Yes (0.29)
+Checking if you have Date::Gregorian::Business 0 ... Yes (0.13)
+Checking if you have Image::PNG::QRCode 0 ... Yes (0.10)
+OK
+<== Installed dependencies for /var/jenkins/workspace/CMS/repo/ZMS. Finishing.
++ /bin/bash /opt/atikon/jenkins/deploy_and_verify_all.sh
++ pushd /var/jenkins/workspace/CMS/repo/Atikon
+/var/jenkins/workspace/CMS/repo/Atikon /var/jenkins/workspace/CMS/repo/ZMS
++ /bin/bash /opt/atikon/jenkins/timemngt/import_timemngt_jenkins.sh
++ set -e
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''timemngt_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''timemngt_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists timemngt_jenkins
++ createdb --lc-collate=en_US.UTF-8 timemngt_jenkins
++ psql timemngt_jenkins -c 'drop schema if exists public'
+DROP SCHEMA
++ psql timemngt_jenkins -c 'create language plperlu'
+CREATE EXTENSION
++ pg_restore -d timemngt_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/timemngt/timemngt_schema.sql
++ pg_restore -d timemngt_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/timemngt/timemngt_data.sql
++ psql timemngt_jenkins -c 'COPY checklist_entries FROM '\''/opt/atikon/jenkins/timemngt/timemngt_checklist_data.sql'\'''
+COPY 2660
++ pg_restore -d timemngt_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/timemngt/timemngt_sqitch.sql
++ psql timemngt_jenkins -c 'create extension pg_trgm'
+CREATE EXTENSION
++ ./sqitcher timemngt deploy
+Deploying changes to db:pg:timemngt_jenkins
+  + KPT-194_nothing_to_do__budgets ........................ ok
+  + smm_plan_builder ...................................... ok
+  + SMM-190 ............................................... ok
+  + INT-4363_goodbye_twitter .............................. ok
+  + SMM-186 ............................................... ok
+  + KPT-205_karrierepaket_20_tasklist ..................... ok
+  + INT-4398 .............................................. ok
+  + int-4374_git_commit_hardening ......................... ok
+  + B20-320_ovc3000 ....................................... ok
+  + INT-4382_bill_date_fj ................................. ok
+  + INT-4387_views_use_new_bill_date ...................... ok
+  + INT-4424_adapt_buyer_personas ......................... ok
+  + ma-565_eigenwartung_standalone ........................ ok
+  + int-4497_cleanup_eigenwartung_in_newsletter_metadata .. ok
+  + NLU-40 ................................................ ok
+  + ma-868_impressum_unternehmer .......................... ok
+  + smm-210_posting_problems .............................. ok
+  + SMM-211_no_pictures_in_linkedin_postings .............. ok
+  + B20-609_content_id_administration_page_count .......... ok
+  + INT-4531_better_kpt_ad_articles ....................... ok
+  + INT-4444_properly_check_bill_dates .................... psql:deploy/INT-4444_properly_check_bill_dates.sql:68: NOTICE:  drop cascades to view combined_order_root_articles
+ok
++ ./sqitcher timemngt verify
+Verifying db:pg:timemngt_jenkins
+  * rt15366_sqitch ........................................... ok
+  * rt15678_statistics_data .................................. ok
+  * rt15678_statistics_data_fixes ............................ ok
+  * rt14328_eigenwartung ..................................... ok
+  * rt16140_uidnr_validation_level_2 ......................... ok
+  * rt8900_quarterly_billing_of_monthly_news ................. ok
+  * rt13556_remove_top_keywords .............................. ok
+  * rt16626_add_article_to_steuernews_monthly ................ ok
+  * rt13506_my_business ...................................... ok
+  * rt16154_online_checklist_aliquotation .................... ok
+  * rt16694_adaptions ........................................ ok
+  * rt15431_posting_categories ............................... ok
+  * rt16208_additional_article_info .......................... ok
+  * rt16208_remove_constraint ................................ ok
+  * rt15442_socialmedia_exclusion ............................ ok
+  * rt16140_uidnr_validation_level_2_additional .............. ok
+  * rt14209_grm_webkit ....................................... ok
+  * rt16520_call_reports ..................................... ok
+  * rt14631_orders ........................................... ok
+  * rt17326_quantity_unit_null ............................... ok
+  * rt17240_report_pending ................................... ok
+  * rt16520_call_reports_schema_change ....................... ok
+  * rt17429_versioned_js_files ............................... ok
+  * rt14630_process_events ................................... ok
+  * rt17578_steuernews_customer_create_fix ................... ok
+  * rt17596_fix_release_names ................................ ok
+  * rt17424_save_userid_for_events ........................... ok
+  * rt17616_fix_steuernews_invoice_headline .................. ok
+  * rt17472_ovc_singularity .................................. ok
+  * rt17723_event_states_for_named ........................... ok
+  * rt6437_offer_statistics .................................. ok
+  * rt3966_rechnungsempfaenger_ui_extension .................. ok
+  * rt18199_ovc_order_comments ............................... ok
+  * rt6438_planned_billing_date .............................. ok
+  * rt18194_ovc_open_orders .................................. ok
+  * rt17952_ovc_allow_undef_prices ........................... ok
+  * rt18210_ovc_statistics_billed_prices ..................... ok
+  * rt7561_unique_search_phrases ............................. ok
+  * rt14621_discount_periodic_rethink ........................ ok
+  * rt14590_knowledge_graph .................................. ok
+  * rt15002_remove_domain_pages_column ....................... ok
+  * rt14901_retry_socialmedia_posts .......................... ok
+  * rt16216_ovc_steuernews_info .............................. ok
+  * rt7275_external_postings ................................. ok
+  * rt16949_list_view_optimizations_SMM ...................... ok
+  * rt1255_regular_grm_reports ............................... ok
+  * rt18395_ovc_appointment_list ............................. ok
+  * rt16386_webmaster ........................................ ok
+  * rt16054_export_data_to_fibu .............................. ok
+  * rt16748_sales_employee_responsible_for_payment_reminder .. ok
+  * rt18912_ovc_activation ................................... ok
+  * rt19619_mail_import ...................................... ok
+  * rt19620_callcenter_schema ................................ ok
+  * rt17667_infolinks_quantity ............................... ok
+  * rt19633_callcenter ....................................... ok
+  * rt20138_keep_used_customer_numbers ....................... ok
+  * rt20932_contact_notes .................................... ok
+  * rt20332_omit_sales_calls_in_appointment_statistics ....... ok
+  * rt20631_order_articles_fixes ............................. ok
+  * rt20768_dsgvo_tasklist ................................... ok
+  * rt20826_statistics_fixes ................................. ok
+  * rt19136_geo_coding ....................................... ok
+  * activate_iw_tasklists .................................... ok
+  * rt21107_lohnzettel_per_email ............................. ok
+  * dsgvo_article_key ........................................ ok
+  * rt20598_use_billed_values ................................ ok
+  * rt20458_offer_articles_update_on_cancellation ............ ok
+  * rt20413_ovc_data_event_update ............................ ok
+  * rt21107_employee_company_id .............................. ok
+  * rt22262_tasklist_facebook ................................ ok
+  * rt22505_fix_discount_sign_out ............................ ok
+  * rt19634_callcenter_tasks_for_employees ................... ok
+  * rt19636_act_prototype_calender ........................... ok
+  * rt18012_video_products ................................... ok
+  * rt22569_quantity_unit_hour ............................... ok
+  * rt22608_legacy_steuernews_in_video_panel ................. ok
+  * active_new_tasklists ..................................... ok
+  * rt22606_calendar_send_mail ............................... ok
+  * rt22628_magic_order_replication .......................... ok
+  * rt19620_act_database ..................................... ok
+  * rt22660_missing_signouts ................................. ok
+  * rt22807_main_contact ..................................... ok
+  * rt22750_callcenter_admin_current_contact ................. ok
+  * rt23020_merge_contacts_and_histories ..................... ok
+  * rt19621_further_adaptions ................................ ok
+  * rt22993_data_cleaning_groups ............................. ok
+  * rt22817_fix_update_invoice_details ....................... ok
+  * rt23046_task_priority .................................... ok
+  * rt22846_some_tasklist .................................... ok
+  * rt12508_optimize_queue ................................... ok
+  * rt23424_remove_interests ................................. ok
+  * rt21266_google_and_facebook_ads .......................... ok
+  * rt19621_more_adaptions ................................... ok
+  * rt23700_remove_epoch ..................................... ok
+  * rt23700_remove_epoch_fix ................................. ok
+  * rt22459_cancelled_orders_in_done_appointments ............ ok
+  * rt22779_appointment_main_product ......................... ok
+  * rt23464_additional_sales_statistics ...................... ok
+  * rt23819_multiple_calendars ............................... ok
+  * rt20794_workflow_selfassigment ........................... ok
+  * rt23432_task_group_sorting ............................... ok
+  * hours_calc ............................................... ok
+  * rt22649_task_group_ready ................................. ok
+  * rt23948_due_date_filter .................................. ok
+  * rt22995_contact_duplicates_interface ..................... ok
+  * rt23913_set_main_contact_trigger ......................... ok
+  * rt22641_calendar_notifications ........................... ok
+  * rt4542_remove_infomail ................................... ok
+  * rt24095_appointment_icals_enhanced ....................... ok
+  * rt24686_contact_required_fields .......................... ok
+  * rt24791_stash_bug ........................................ ok
+  * rt21342_batch_save_events ................................ ok
+  * rt19869_enable_377_as_feature ............................ ok
+  * rt25400_assign_error ..................................... ok
+  * rt25509_analytics_api .................................... ok
+  * rt25651_tasklist_google_ads2go ........................... ok
+  * rt25475_unsupported_quantity_unit ........................ ok
+  * rt25691_rename_tasklist .................................. ok
+  * rt24214_finish_invoice_validate_customer_number .......... ok
+  * rt25826_atikon_holding_entries ........................... ok
+  * rt25765_disempower_mail_archiver ......................... ok
+  * rt25769_titles ........................................... ok
+  * act_cleanup .............................................. ok
+  * rt25981_earliest_invoice_for_revenue ..................... ok
+  * fix_statistics_sales_billed_amounts ...................... ok
+  * contact_website_to_customer .............................. ok
+  * rt26561_close_predecessor_task ........................... ok
+  * rt26564_sales_employee_customer .......................... ok
+  * rt25509_default .......................................... ok
+  * rt26681_invoice_products_totals .......................... ok
+  * rt27013_missing_db_fj_despite_issues_per_year ............ ok
+  * google_ads_campaign ...................................... ok
+  * rt27207_google_ads_campaign .............................. ok
+  * rt27291_special_print_children_times_issues .............. ok
+  * rt27384_ust_reporting .................................... ok
+  * rt25330_optimize_to_time_range ........................... ok
+  * rt27669_invoice_products_quantities_prices ............... ok
+  * rt23840_billinglist_ungroup .............................. ok
+  * rt27874_my_business ...................................... ok
+  * rt27905_28109_generator_ftp_adaptions .................... ok
+  * rt28179_individual_solution_ovc .......................... ok
+  * rt28079_tma_statistics_adaption .......................... ok
+  * rt28508_title_mba ........................................ ok
+  * rt28921_deactive_checklist ............................... ok
+  * rt29116_goodbye_tj ....................................... ok
+  * rt29266_karrierepaket .................................... ok
+  * rt29147_mein_atikon_schema ............................... ok
+  * rt29063_domain_sales ..................................... ok
+  * rt28646_create_customer_folder_on_customer_creation ...... ok
+  * rt29507_fix_invoice_typo ................................. ok
+  * rt29527_tasklist ......................................... ok
+  * rt29884_identify_products_in_view ........................ ok
+  * rt20470_remove_pagerank .................................. ok
+  * rt19499_grm_imports ...................................... ok
+  * rt30053_mein-metadata_storage ............................ ok
+  * rt30231_seo_dashboard .................................... ok
+  * rt26564_sales_employee_customer_relaunch ................. ok
+  * rt19404_post_videos ...................................... ok
+  * rt21365_account_adaptions ................................ ok
+  * rt30514_imprint .......................................... ok
+  * rt30216_steuerinfo_first_edition_selector ................ ok
+  * rt31101_relevant_for_grm ................................. ok
+  * socialmedia_feed_cached_shorturls ........................ ok
+  * rt30922_imprint_at ....................................... ok
+  * rt30781_mein_atikon_session .............................. ok
+  * rt30796_refactor_atikonapi ............................... ok
+  * rt31173_meinatikon_newsletter ............................ ok
+  * rt30973_design_feedback_loop ............................. ok
+  * rt31167_atikon_contacts .................................. ok
+  * rt31166_finalize_onboarding .............................. ok
+  * rt31172_socialmedia ...................................... ok
+  * rt31199_general_price_increases .......................... ok
+  * rt31503_contact_update ................................... ok
+  * rt31502_preview .......................................... ok
+  * rt31506_mein_atikon_mails ................................ ok
+  * rt31282_customer_login ................................... ok
+  * rt31730_missing_steuernews_customers ..................... ok
+  * rt31282_login_details .................................... ok
+  * rt31053_controlling_fields ............................... ok
+  * rt32275_confetti ......................................... ok
+  * rt32282_add_location_name ................................ ok
+  * rt32387_digitalisierungspaket ............................ ok
+  * rt32324_krypto_package_in_ovc ............................ ok
+  * rt31897_offer_sums ....................................... ok
+  * rt29520_product_change_orders ............................ ok
+  * rt32748_text_template .................................... ok
+  * rt32647_mein_atikon_data_takeover ........................ ok
+  * rt33023_imprint_professions .............................. ok
+  * rt33103_mark_for_deletion ................................ ok
+  * rt17747_validate_invoice_fields .......................... ok
+  * rt33235_takover_adaptation ............................... ok
+  * rt33319_no_extension ..................................... ok
+  * rt32967_digitalisierung_automation ....................... ok
+  * rt33546_mein_atikon_seo_contract ......................... ok
+  * rt33463_mining_interface ................................. ok
+  * rt31956_import_postings .................................. ok
+  * rt34120_optional_photos .................................. ok
+  * rt34129_feedback_mails ................................... ok
+  * rt34388_smm_facebook_log ................................. ok
+  * rt36118_marketing_paket_features ......................... ok
+  * rt36167_restrict_invoice_deletion ........................ ok
+  * rt36517_report_last_visit ................................ ok
+  * rt35450_posting_check .................................... ok
+  * radicale_curtification ................................... ok
+  * rt36879_cookie_banner .................................... ok
+  * rt36961_new_sector_bilanzbuchhalter ...................... ok
+  * rt33583_text_settings .................................... ok
+  * rt35940_record_customer_locations_and_employeee_numbers .. ok
+  * rt33953_meinatikon_notifications ......................... ok
+  * rt36294_homepage_changes ................................. ok
+  * rt37867_new_articles_as_ovc_hp_features .................. ok
+  * rt37867_quick_vlog ....................................... ok
+  * rt38087_remove_mein_atikon_sessions ...................... ok
+  * rt38163_add_edited_by_customer_column .................... ok
+  * rt38534_some_drafts ...................................... ok
+  * rt36085_available_flag_for_absence ....................... ok
+  * rt36373_paid_out_overtime ................................ ok
+  * rt38565_make_newsletter_timemngt_independent ............. ok
+  * rt37867_karrierepakete ................................... ok
+  * rt37808_fixed_postings ................................... ok
+  * rt38910_new_some_packages ................................ ok
+  * rt38565_remove_opt_html_from_timemngt .................... ok
+  * rt39212_processing_state ................................. ok
+  * rt39260_treat_some_products_as_some_products ............. ok
+  * rt39365_some_flex_package ................................ ok
+  * rt39261_some_checklist_articles .......................... ok
+  * rt39098_add_copyright_to_impressum ....................... ok
+  * rt39774_ovc_video_appointment ............................ ok
+  * rt39414_video_automation_flag ............................ ok
+  * rt39414_video_automation_flag_default_false .............. ok
+  * rt40064_database_structure ............................... ok
+  * rt40042_social_media_posting_template .................... ok
+  * rt36689 .................................................. ok
+  * rt40324_new_product_intranet ............................. ok
+  * rt36676_tmg_responsibility ............................... ok
+  * rt40668_changelog_queue .................................. ok
+  * rt36675_streitverfahren_to_imprint ....................... ok
+  * rt40659_chefinfo_db_schema ............................... ok
+  * rt40663_chefinfo_charts .................................. ok
+  * cancel_order_article ..................................... ok
+  * rt40658_homeoffice_performance ........................... ok
+  * rt40250_cancel_order_article_no_on_order_list ............ ok
+  * rt40972_tasklists_customer_intranet ...................... ok
+  * rt41607_personas ......................................... ok
+  * rt33452_sign_out_article_change_changes .................. ok
+  * rt38074_release_textnote ................................. ok
+  * rt40447_imprint_DSGVO .................................... ok
+  * rt40998_empty_module_intranet ............................ ok
+  * rt41864_add_tma .......................................... ok
+  * rt41901_new_product_boxit ................................ ok
+  * rt39417_new_contacts_role ................................ ok
+  * rt40472_tracking_setting ................................. ok
+  * ABLRT-12_jira_performance ................................ ok
+  * master_fix_articles_billing_overview ..................... ok
+  * INT-918_statistics_breakdown ............................. ok
+  * INT-722_undo_idiotic_requirements ........................ Verify script verify/INT-722_undo_idiotic_requirements.sql does not exist
+ok
+  * rt31199_old_prices ....................................... ok
+  * KPT-194_nothing_to_do__budgets ........................... ok
+  * smm_plan_builder ......................................... ok
+  * SMM-190 .................................................. ok
+  * INT-4363_goodbye_twitter ................................. ok
+  * SMM-186 .................................................. ok
+  * KPT-205_karrierepaket_20_tasklist ........................ ok
+  * INT-4398 ................................................. ok
+  * int-4374_git_commit_hardening ............................ ok
+  * B20-320_ovc3000 .......................................... ok
+  * INT-4382_bill_date_fj .................................... ok
+  * INT-4387_views_use_new_bill_date ......................... ok
+  * INT-4424_adapt_buyer_personas ............................ ok
+  * ma-565_eigenwartung_standalone ........................... ok
+  * int-4497_cleanup_eigenwartung_in_newsletter_metadata ..... Verify script verify/int-4497_cleanup_eigenwartung_in_newsletter_metadata.sql does not exist
+ok
+  * NLU-40 ................................................... ok
+  * ma-868_impressum_unternehmer ............................. ok
+  * smm-210_posting_problems ................................. ok
+  * SMM-211_no_pictures_in_linkedin_postings ................. ok
+  * B20-609_content_id_administration_page_count ............. ok
+  * INT-4531_better_kpt_ad_articles .......................... Verify script verify/INT-4531_better_kpt_ad_articles.sql does not exist
+ok
+  * INT-4444_properly_check_bill_dates ....................... ok
+Verify successful
++ /bin/bash /opt/atikon/jenkins/onlinetools/import_onlinetools_jenkins.sh
++ set -e
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''onlinetools_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''onlinetools_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists onlinetools_jenkins
++ createdb onlinetools_jenkins
++ psql onlinetools_jenkins -c 'drop schema if exists public'
+DROP SCHEMA
++ psql onlinetools_jenkins -c 'create language plperlu'
+CREATE EXTENSION
++ pg_restore -d onlinetools_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/onlinetools/onlinetools_schema.sql
++ pg_restore -d onlinetools_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/onlinetools/onlinetools_sqitch.sql
++ pg_restore -d onlinetools_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/onlinetools/onlinetools_data.sql
++ psql onlinetools_jenkins -c 'create extension pgcrypto'
+CREATE EXTENSION
++ ./sqitcher onlinetools deploy
+Deploying changes to db:pg:onlinetools_jenkins
+  + rt31209_email_envelope ................. ok
+  + rt34216_corona_stresstest .............. ok
+  + rt34686_at_corona ...................... ok
+  + rt33378_rtr ............................ ok
+  + rt33718_dkim_for_newsletters ........... ok
+  + rt36179_automatic_newsletter ........... ok
+  + rt37468_travelcost_bmd_export .......... ok
+  + rt36602_digital_fitness_check .......... ok
+  + rt37769_on_the_fly_special_news ........ ok
+  + rt37952_enhance_bounce_handling ........ ok
+  + rt38784_olv_text_color ................. ok
+  + rt24030_export_cha_first_blood ......... ok
+  + rt38741_ch_onlinetools ................. ok
+  + rt39174_olv_custom_header_fonts ........ ok
+  + bounce_parser_dsn ...................... ok
+  + bounce_last_updated .................... ok
+  + rt40041_dfc_at_de ...................... ok
+  + rt40134_newsletter_dsgvo_adaptions ..... ok
+  + rt40539_newsletter_historical_groups ... ok
+  + rt40550_active_flag_templates .......... ok
+  + rt41264_linked_designs_not_deleteable .. ok
+  + rt24967_hide_newsletter_design ......... ok
+  + rt41426_remove_dkim .................... ok
+  + rt3425_revisited_2021 .................. ok
+  + rt30765_revisted_2021 .................. ok
+  + rt41110_newsletter_message_limits ...... ok
+  + rt41200_speed_up_lists ................. ok
+  + rt42210_arbeitnehmernews_de ............ ok
+  + rt41031_anonymize_blacklist ............ ok
+  + OLT-1671 ............................... ok
+  + OLT-1680 ............................... ok
+  + ORZOS-1 ................................ ok
+  + NLU-88 ................................. ok
+  + OLT-1749_remove_doctor_reminder_tool ... ok
+  + OLT-1657_database_sessions ............. ok
++ ./sqitcher onlinetools verify
+Verifying db:pg:onlinetools_jenkins
+  * rt15366_sqitch ................................ ok
+  * rt16231_short_urls ............................ ok
+  * rt15805_nls_subscription_mail_correction ...... ok
+  * rt_10982_newsletter_news ...................... ok
+  * newsletter_responsive_since ................... ok
+  * rt19221 ....................................... ok
+  * rt19268_reisekosten ........................... ok
+  * rt19529_smtp_port ............................. ok
+  * rt19529_smtp_starttls ......................... ok
+  * rt22215_dsgvo_link ............................ ok
+  * rt19571_standard_introduction ................. ok
+  * rt22138_hide_blacklist ........................ ok
+  * newsletter_next_level ......................... ok
+  * rt27697_sorting_journeys_list ................. ok
+  * rt27849_categories_of_expenses ................ ok
+  * rt28255_travelcost_teams ...................... ok
+  * rt28015_travelcost_receipt_upload ............. ok
+  * rt27582_uid_tool .............................. ok
+  * rt28283_travelcost_teamup ..................... ok
+  * rt6401_newsletter_data_migration .............. ok
+  * rt28454_import_travel_data .................... ok
+  * rt6401_data_takeover .......................... ok
+  * rt28639_mark_journey_as_settled ............... ok
+  * rt29098_remove_message_limitation ............. ok
+  * rt27692_shorturl_customer_tool ................ ok
+  * rt29225_keep_calculated_data_for_journey ...... ok
+  * rt29513_default_departure ..................... ok
+  * rt28655_export_travelcost_receipts_for_DATEV .. ok
+  * rt29515_add_breakfast_expenses ................ ok
+  * rt6401_fixing_another_constraint .............. ok
+  * rt6401_keep_archive ........................... ok
+  * rt30805_newsletter_subscription_log ........... ok
+  * rt24030_olv_update ............................ ok
+  * rt31209_email_envelope ........................ ok
+  * rt34216_corona_stresstest ..................... ok
+  * rt34686_at_corona ............................. ok
+  * rt33378_rtr ................................... ok
+  * rt33718_dkim_for_newsletters .................. ok
+  * rt36179_automatic_newsletter .................. ok
+  * rt37468_travelcost_bmd_export ................. ok
+  * rt36602_digital_fitness_check ................. ok
+  * rt37769_on_the_fly_special_news ............... ok
+  * rt37952_enhance_bounce_handling ............... ok
+  * rt38784_olv_text_color ........................ ok
+  * rt24030_export_cha_first_blood ................ ok
+  * rt38741_ch_onlinetools ........................ ok
+  * rt39174_olv_custom_header_fonts ............... ok
+  * bounce_parser_dsn ............................. ok
+  * bounce_last_updated ........................... ok
+  * rt40041_dfc_at_de ............................. ok
+  * rt40134_newsletter_dsgvo_adaptions ............ ok
+  * rt40539_newsletter_historical_groups .......... ok
+  * rt40550_active_flag_templates ................. ok
+  * rt41264_linked_designs_not_deleteable ......... ok
+  * rt24967_hide_newsletter_design ................ ok
+  * rt41426_remove_dkim ........................... ok
+  * rt3425_revisited_2021 ......................... ok
+  * rt30765_revisted_2021 ......................... ok
+  * rt41110_newsletter_message_limits ............. ok
+  * rt41200_speed_up_lists ........................ ok
+  * rt42210_arbeitnehmernews_de ................... ok
+  * rt41031_anonymize_blacklist ................... ok
+  * OLT-1671 ...................................... ok
+  * OLT-1680 ...................................... ok
+  * ORZOS-1 ....................................... ok
+  * NLU-88 ........................................ ok
+  * OLT-1749_remove_doctor_reminder_tool .......... ok
+  * OLT-1657_database_sessions .................... ok
+Verify successful
++ /bin/bash /opt/atikon/jenkins/zms/import_zms_jenkins.sh
++ set -e
++ create_zms_db zms
++ db_name=zms
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''zms_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''zms_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists zms_jenkins
++ createdb zms_jenkins
++ psql zms_jenkins -c 'drop schema if exists public'
+DROP SCHEMA
++ psql zms_jenkins -c 'create language plperlu'
+CREATE EXTENSION
++ pg_restore -d zms_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_schema.sql
++ pg_restore -d zms_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_sqitch.sql
++ pg_restore -d zms_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_features_newssystem.sql
++ pg_restore -d zms_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_features_listen.sql
++ psql zms_jenkins -c 'create extension pg_trgm'
+CREATE EXTENSION
++ psql zms_jenkins -c 'create extension if not exists cube'
+CREATE EXTENSION
++ psql zms_jenkins -c 'create extension if not exists earthdistance'
+CREATE EXTENSION
++ psql zms_jenkins -c 'create extension if not exists pgcrypto'
+CREATE EXTENSION
++ psql zms_jenkins -c 'insert into zms_user (id, password, roles) VALUES('\''test'\'', '\''9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'\'', '\''Manager'\'');'
+INSERT 0 1
++ create_zms_db zms_online
++ db_name=zms_online
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''zms_online_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''zms_online_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists zms_online_jenkins
++ createdb zms_online_jenkins
++ psql zms_online_jenkins -c 'drop schema if exists public'
+DROP SCHEMA
++ psql zms_online_jenkins -c 'create language plperlu'
+CREATE EXTENSION
++ pg_restore -d zms_online_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_schema.sql
++ pg_restore -d zms_online_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_sqitch.sql
++ pg_restore -d zms_online_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_features_newssystem.sql
++ pg_restore -d zms_online_jenkins --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/zms/zms_features_listen.sql
++ psql zms_online_jenkins -c 'create extension pg_trgm'
+CREATE EXTENSION
++ psql zms_online_jenkins -c 'create extension if not exists cube'
+CREATE EXTENSION
++ psql zms_online_jenkins -c 'create extension if not exists earthdistance'
+CREATE EXTENSION
++ psql zms_online_jenkins -c 'create extension if not exists pgcrypto'
+CREATE EXTENSION
++ psql zms_online_jenkins -c 'insert into zms_user (id, password, roles) VALUES('\''test'\'', '\''9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'\'', '\''Manager'\'');'
+INSERT 0 1
++ ./sqitcher mailer deploy
+Deploying changes to db:pg:zms_jenkins
+  + rt33107_cms_backup_queue ......... ok
+  + rt38154_management_locked ........ ok
+  + rt29946_restore_backup_via_cron .. ok
+  + rt38563_sync_queue ............... ok
+  + rt40754_id ....................... ok
+  + KIT-241_password_reset ........... ok
+  + B20_jsonb_support ................ ok
++ ./sqitcher mailer verify
+Verifying db:pg:zms_jenkins
+  * intial_deploy .................... ok
+  * rt16842_log_mail_ip_address ...... ok
+  * dbic_session_store ............... ok
+  * fix_public_zms_user .............. ok
+  * rt33107_cms_backup_queue ......... ok
+  * rt38154_management_locked ........ ok
+  * rt29946_restore_backup_via_cron .. ok
+  * rt38563_sync_queue ............... ok
+  * rt40754_id ....................... ok
+  * KIT-241_password_reset ........... ok
+  * B20_jsonb_support ................ ok
+Verify successful
++ ./sqitcher mailer_online deploy
+Deploying changes to db:pg:zms_online_jenkins
+  + rt33107_cms_backup_queue ......... ok
+  + rt38154_management_locked ........ ok
+  + rt29946_restore_backup_via_cron .. ok
+  + rt38563_sync_queue ............... ok
+  + rt40754_id ....................... ok
+  + KIT-241_password_reset ........... ok
+  + B20_jsonb_support ................ ok
++ ./sqitcher mailer_online verify
+Verifying db:pg:zms_online_jenkins
+  * intial_deploy .................... ok
+  * rt16842_log_mail_ip_address ...... ok
+  * dbic_session_store ............... ok
+  * fix_public_zms_user .............. ok
+  * rt33107_cms_backup_queue ......... ok
+  * rt38154_management_locked ........ ok
+  * rt29946_restore_backup_via_cron .. ok
+  * rt38563_sync_queue ............... ok
+  * rt40754_id ....................... ok
+  * KIT-241_password_reset ........... ok
+  * B20_jsonb_support ................ ok
+Verify successful
++ /bin/bash /opt/atikon/jenkins/meinatikon/import_meinatikon_jenkins.sh
++ set -e
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''meinatikon_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''meinatikon_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists meinatikon_jenkins
++ createdb --lc-collate=en_US.UTF-8 meinatikon_jenkins
++ ./sqitcher meinatikon deploy
+Adding registry tables to db:pg:meinatikon_jenkins
+Deploying changes to db:pg:meinatikon_jenkins
+  + rt37779_mein_atikon_local_session_storage ...... ok
+  + rt39587_expire_later ........................... ok
+  + rt39801_last_authenticated_at_null_by_default .. ok
++ ./sqitcher meinatikon verify
+Verifying db:pg:meinatikon_jenkins
+  * rt37779_mein_atikon_local_session_storage ...... ok
+  * rt39587_expire_later ........................... ok
+  * rt39801_last_authenticated_at_null_by_default .. ok
+Verify successful
++ /bin/bash /opt/atikon/jenkins/rt4/import_rt4_jenkins.sh
++ set -e
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''rt4'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''rt4'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists rt4
++ createdb rt4
++ psql rt4 -c 'drop schema if exists public'
+DROP SCHEMA
++ pg_restore -d rt4 --no-acl --single-transaction --exit-on-error /opt/atikon/jenkins/rt4/rt4_schema.sql
++ psql rt4 -c 'insert into tickets (id, subject) values (1, '\''test'\'')'
+INSERT 0 1
++ psql postgres -c 'UPDATE pg_database SET datallowconn = '\''false'\'' WHERE datname = '\''virtual_mail_jenkins'\'''
+UPDATE 1
++ psql postgres -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '\''virtual_mail_jenkins'\'''
+ pg_terminate_backend 
+----------------------
+(0 rows)
+
++ dropdb --if-exists virtual_mail_jenkins
++ createdb virtual_mail_jenkins
++ popd
+/var/jenkins/workspace/CMS/repo/ZMS
++ perl -Ilib script/cleanup_test_instances.pl
++ pkill -u jenkins dbus-daemon
++ prove -l -j5
+t/004style.t ..................................... skipped: Author test.  Set $ENV{TEST_AUTHOR} to a true value to run.
+t/002pod.t ....................................... skipped: set TEST_POD to enable this test
+t/003podcoverage.t ............................... skipped: set TEST_POD to enable this test
+t/001app.t ....................................... ok
+Use of uninitialized value in lc at lib/ZMS/Graphic.pm line 90.
+t/008textarea.t .................................. ok
+t/005controller_System.t ......................... ok
+t/006controller_System-Metaobject.t .............. ok
+t/007content_management.t ........................ ok
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/e6/e11/manage at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/e6/e11/manage at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news/index_ger.html at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news/index_ger.html at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news/index_ger.html?string=t%C3%B6stim%C3%A4ge at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news/index_ger.html?string=t%C3%B6stim%C3%A4ge at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news/index_ger.html?string=t%C3%B6stim%C3%A4ge at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news/index_ger.html?string=t%C3%B6stim%C3%A4ge at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news/news_ger.pdf at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news/news_ger.pdf at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news?string=t%C3%B6stim%C3%A4ge at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news?string=t%C3%B6stim%C3%A4ge at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news/?string=t%C3%B6stim%C3%A4ge at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+WARNING: The key derivation method "opensslv1" is deprecated. Using -pbkdf=>'pbkdf2' would be better.
+Pass -nodeprecate=>1 to inhibit this message.
+ at lib/ZMS/Plugin/Atikon.pm line 184. when rendering /var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test14123.example/bodyContentZMSCustom_news_entry.dtml for http://localhost/test14123.example/content/testfolder/news/?string=t%C3%B6stim%C3%A4ge at /var/jenkins/workspace/CMS/repo/ZMS/lib/DTML/Renderer.pm line 343.
+t/009content.t ................................... ok
+t/010file_management.t ........................... ok
+t/011onlinetools.t ............................... ok
+t/013tables.t .................................... ok
+t/012instance_copy.t ............................. ok
+t/015zms_graphic.t ............................... ok
+t/014attributes.t ................................ ok
+t/016alternate.t ................................. ok
+t/017resource.t .................................. ok
+t/018dictionary.t ................................ ok
+t/019clone_project.t ............................. ok
+t/020request.t ................................... ok
+t/021contentimport.t ............................. skipped: old contentimport test disabled
+t/023linkelement.t ............................... ok
+t/025controller_System-Language.t ................ ok
+t/022generate.t .................................. ok
+t/026pythonscript.t .............................. ok
+t/027datetime.t .................................. ok
+t/029constant.t .................................. ok
+Use of uninitialized value $filtered_roles[0] in join or string at lib/ZMS/Authorization.pm line 203.
+t/030dtmlmethod.t ................................ ok
+t/032custom.t .................................... ok
+t/031dtml.t ...................................... ok
+t/028access.t .................................... ok
+t/033identifier.t ................................ ok
+t/034delimiter.t ................................. ok
+t/035has_page_elements.t ......................... ok
+t/036global_actions.t ............................ skipped: instance features_listen required
+t/037instance_delete.t ........................... ok
+t/039folder_names.t .............................. ok
+t/038move_custom.t ............................... ok
+CONSOLE SECURITY ERROR Did not parse stylesheet at 'http://localhost:64432/static/css/OpenSans-Regular.ttf' because non CSS MIME types are not allowed in strict mode.
+CONSOLE SECURITY ERROR Did not parse stylesheet at 'http://localhost:64432/static/css/OpenSans-Regular.ttf' because non CSS MIME types are not allowed in strict mode.
+CONSOLE SECURITY ERROR Did not parse stylesheet at 'http://localhost:64432/static/css/OpenSans-Regular.ttf' because non CSS MIME types are not allowed in strict mode.
+CONSOLE SECURITY ERROR Did not parse stylesheet at 'http://localhost:64432/static/css/OpenSans-Regular.ttf' because non CSS MIME types are not allowed in strict mode.
+CONSOLE SECURITY ERROR Did not parse stylesheet at 'http://localhost:64432/static/css/OpenSans-Regular.ttf' because non CSS MIME types are not allowed in strict mode.
+CONSOLE SECURITY ERROR Did not parse stylesheet at 'http://localhost:64432/static/css/OpenSans-Regular.ttf' because non CSS MIME types are not allowed in strict mode.
+t/041metaobject_drag.t ........................... ok
+t/042metaobject_export.t ......................... ok
+t/045manage_tree.t ............................... ok
+t/043synctoonline.t .............................. ok
+t/040upload_checks.t ............................. ok
+Too late to run INIT block at /opt/atikon/perl-local-lib/lib/perl5/x86_64-linux-thread-multi/Glib/Object/Introspection.pm line 257, <DATA> line 137.
+t/105controller_System-Language.t ................ ok
+t/047_global_action_feed.t ....................... ok
+t/048onlinetools_update_address_from_location.t .. ok
+t/107content_management.t ........................ ok
+t/110language_api.t .............................. ok
+t/111linkcontainer.t ............................. ok
+t/112teaser.t .................................... ok
+t/113note.t ...................................... ok
+t/114language_option.t ........................... ok
+t/115files_lang.t ................................ ok
+t/306controller_System-Metaobject.t .............. ok
+t/307content_management.t ........................ ok
+t/309content.t ................................... ok
+t/310file_management.t ........................... ok
+t/analyse_webshop.t .............................. skipped: analyse.eu instance needed
+t/anifit_achievements.t .......................... skipped: anifit.de instance needed
+t/anifit_ads.t ................................... skipped: anifit.de instance needed
+t/anifit_aftersalechanges.t ...................... skipped: anifit.de instance needed
+t/anifit_appointments.t .......................... skipped: anifit.de instance needed
+Activate live domain tests by setting LIVE_DOMAINS=1 at t/anifit_basics.t line 42.
+t/anifit_basics.t ................................ ok
+t/anifit_client_search.t ......................... skipped: anifit.de instance needed
+t/anifit_clientportal.t .......................... skipped: anifit.de instance needed
+t/anifit_consultant_cockpit.t .................... skipped: anifit.de instance needed
+t/anifit_consultant_logs_management.t ............ skipped: anifit.de instance needed
+t/anifit_consultant_management.t ................. skipped: anifit.de instance needed
+t/anifit_consultant_message.t .................... skipped: anifit.de instance needed
+t/046controller_System-Authorization.t ........... ok
+t/anifit_consultant_newsletter.t ................. skipped: anifit.de instance needed
+t/anifit_crm_management.t ........................ skipped: anifit.de instance needed
+t/anifit_data_cleaner.t .......................... skipped: anifit.de instance needed
+t/anifit_domains.t ............................... skipped: anifit.de instance needed
+t/anifit_events.t ................................ skipped: anifit.de instance needed
+t/anifit_events_oop.t ............................ skipped: anifit.de instance needed
+t/anifit_export.t ................................ skipped: anifit.de instance needed
+t/anifit_export_oop.t ............................ skipped: anifit.de instance needed
+t/anifit_foodcalculator.t ........................ skipped: anifit.de instance needed
+t/anifit_foodcalculator_unittests.t .............. ok
+t/anifit_free_samples.t .......................... skipped: anifit.de instance needed
+t/anifit_import_price_groups_for_countries.t ..... skipped: anifit.de instance needed
+t/anifit_management.t ............................ skipped: anifit.de instance needed
+t/anifit_management_cockpit.t .................... skipped: anifit.de instance needed
+t/anifit_management_cockpit_unittests.t .......... ok
+t/anifit_navision_functions_unittests.t .......... ok
+t/anifit_navision_functions.t .................... ok
+t/anifit_partnerpages.t .......................... skipped: anifit.de instance needed
+t/anifit_partnerpages_unittests.t ................ ok
+t/anifit_polls.t ................................. skipped: anifit.de instance needed
+t/anifit_potential_customers.t ................... skipped: anifit.de instance needed
+t/anifit_product_evaluation.t .................... skipped: anifit.de instance needed
+t/anifit_reminder.t .............................. skipped: anifit.de instance needed
+t/anifit_ryzoom.t ................................ skipped: anifit.de instance needed
+t/anifit_sales_data.t ............................ skipped: anifit.de instance needed
+t/anifit_sales_data_multiple_parents.t ........... skipped: anifit.de instance needed
+t/anifit_shop.t .................................. skipped: anifit.de instance needed
+t/anifit_shop_article.t .......................... skipped: anifit.de instance needed
+t/anifit_shop_checkout.t ......................... skipped: anifit.de instance needed
+t/anifit_shop_client_change.t .................... skipped: anifit.de instance needed
+t/anifit_shop_client_protection.t ................ skipped: anifit.de instance needed
+t/anifit_shop_country.t .......................... skipped: anifit.de instance needed
+t/anifit_shop_coupons.t .......................... skipped: anifit.de instance needed
+t/anifit_shop_coupons_general.t .................. skipped: anifit.de instance needed
+t/anifit_shop_discounts.t ........................ skipped: anifit.de instance needed
+t/anifit_shop_general.t .......................... skipped: anifit.de instance needed
+t/anifit_shop_javascript.t ....................... skipped: anifit.de instance needed
+t/anifit_shop_new_clients.t ...................... skipped: anifit.de instance needed
+t/anifit_shop_paypal.t ........................... skipped: anifit.de instance needed
+t/anifit_shop_phone_orders.t ..................... skipped: anifit.de instance needed
+t/anifit_shop_potential_customer.t ............... skipped: anifit.de instance needed
+t/anifit_shop_quick_order.t ...................... skipped: anifit.de instance needed
+t/anifit_shop_shipping_costs.t ................... skipped: anifit.de instance needed
+t/anifit_shop_unittests.t ........................ ok
+t/anifit_subscription.t .......................... skipped: anifit.de instance needed
+t/anifit_subscriptions_general.t ................. skipped: anifit.de instance needed
+t/anifit_team_sales.t ............................ skipped: anifit.de instance needed
+t/anifit_timemanagement.t ........................ skipped: anifit.de instance needed
+t/anifit_user_management.t ....................... skipped: anifit.de instance needed
+t/anifit_vacation.t .............................. skipped: anifit.de instance needed
+t/anifit_warehouse.t ............................. skipped: anifit.de instance needed
+t/anifit_warehouse_returns.t ..................... skipped: anifit.de instance needed
+Use of uninitialized value in concatenation (.) or string at /var/jenkins/workspace/CMS/repo/ZMS/lib/ZMS/Attribute/Image.pm line 547.
+Use of uninitialized value in concatenation (.) or string at /var/jenkins/workspace/CMS/repo/ZMS/lib/ZMS/Attribute/Image.pm line 547.
+t/attribute_href_encoding.t ...................... ok
+t/attribute_named_content.t ...................... ok
+t/bpbb.eu.t ...................................... skipped: bpbb.eu instance needed
+t/before_change_after_change.t ................... ok
+Use of uninitialized value $id in substitution (s///) at lib/ZMS/ContainerObject.pm line 619.
+Use of uninitialized value $id in substitution (s///) at lib/ZMS/ContainerObject.pm line 620.
+Use of uninitialized value $id in lc at lib/ZMS/ContainerObject.pm line 622.
+t/broken_link_element_management.t ............... ok
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test77122.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test77122.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test77122.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test77122.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+Use of uninitialized value in concatenation (.) or string at lib/ZMS/BuildingBlock/Metadata.pm line 76.
+t/building_blocks_instance_structure.t ........... ok
+t/building_blocks_locator.t ...................... ok
+undeploy: NYI at lib/ZMS/BuildingBlock/RPM/Deploy/Properties.pm line 229.
+undeploy: NYI at lib/ZMS/BuildingBlock/RPM/Deploy/Properties.pm line 229.
+t/building_blocks_rpm.t .......................... ok
+t/building_blocks_misc.t ......................... ok
+t/calendar.t ..................................... ok
+t/attributes.t ................................... ok
+t/building_blocks_v2.t ........................... skipped: skip for now: this needs a better test environment that should unified with t/system_api_*
+Inappropriate ioctl for device at lib/ZMS/BuildingBlock/BuildingBlock.pm line 1109.
+Use of uninitialized value $type in exists at lib/ZMS/Attribute.pm line 575.
+t/coding_conventions_linelength.t ................ ok
+t/coding_conventions_makefile.t .................. ok
+t/building_blocks_v0.t ........................... ok
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test48750.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test48750.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Use of uninitialized value in string eq at lib/ZMS/BuildingBlock/BuildingBlock/V1.pm line 617.
+t/cfh-hamburg_import.t ........................... ok
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test48750.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test48750.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test48750.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test48750.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test48750.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test48750.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test48750.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+Couldn't render template "/var/jenkins/workspace/CMS/repo/ZMS/root/static/instances/test48750.example/special_objects/contentimport.manage_main.dtml". Error: "Can't call method "__hasattr__" on an undefined value at lib/DTML/Renderer.pm line 467.". at lib/DTML/Renderer.pm line 358.
+t/cmp.t .......................................... ok
+t/building_blocks_v1.t ........................... ok
+t/content_management.t ........................... skipped: waiting for new contentimport
+t/contentimport.t ................................ ok
+t/contentimport_check.t .......................... skipped: waiting for new content import
+t/contentimport_unique_sort_id.t ................. ok
+t/copy_files.t ................................... ok
+t/coding_conventions_sub_length.t ................ ok
+t/copy_paste_errors.t ............................ ok
+t/copy_paste_multiple_objects.t .................. ok
+t/dtml_analyzer.t ................................ ok
+t/dtml_compiler.t ................................ ok
+t/dtml_optimizer.t ............................... ok
+t/dtml_compiler_backend_python.t ................. ok
+t/coding_conventions_white_space.t ............... ok
+t/dtml_recursion_limit.t ......................... ok
+t/dtml_renderer.t ................................ ok
+t/custom_registration.t .......................... ok
+t/dispatch.t ..................................... ok
+expected error at t/eRecruiter.t line 18.
+expected error at t/eRecruiter.t line 18.
+expected error at t/eRecruiter.t line 18.
+t/eRecruiter.t ................................... ok
+Subroutine ZMS::External::Edudip::Request::uri_request redefined at /var/jenkins/workspace/CMS/repo/ZMS/t/lib/ZMS/Testcase/External/Edudip/Import.pm line 52.
+t/edudip.t ....................................... ok
+t/dynamic.t ...................................... ok
+t/htindex.t ...................................... ok
+t/error_handling.t ............................... ok
+t/export.t ....................................... skipped: skip for now
+t/file_management.t .............................. ok
+t/foreign_timezone.t ............................. ok
+t/instance.t ..................................... ok
+t/instance_copy_regression.t ..................... ok
+t/kammermitteilungen_import.t .................... skipped: instance kammermitteilungen.de required
+t/kappa_airic_unit.t ............................. ok
+t/ksw.t .......................................... skipped: gruenderbonus.at instance needed
+t/kollegeninfo_rest.t ............................ skipped: kollegeninfo.at instance needed
+t/kappa_airic_integration.t ...................... skipped: instance kappa-fs.com needed
+t/lbg_registration.t ............................. ok
+t/lbg_stepstone.t ................................ ok
+t/link_element_delete.t .......................... ok
+t/link_element_page_with_elements.t .............. ok
+t/linkelement.t .................................. ok
+t/local_timezone.t ............................... ok
+07:05:40> to test@atikon.com 254.253.252.251: not blacklisted
+07:05:40> to test@atikon.com 254.253.252.251: not blacklisted
+07:05:40> to test@atikon.com 254.253.252.251: not blacklisted
+07:05:41> to test@atikon.com 254.253.252.251: not blacklisted
+t/mailer.t ....................................... ok
+t/model_DB-Custom-Anifit.t ....................... ok
+t/management_locked.t ............................ ok
+t/master_building_blocks_v1.t .................... skipped: no master specified! use MASTER=test.de prove t/master_building_blocks.t to run
+t/messages.t ..................................... ok
+Wide character in print at lib/ZMS/Import/Object/File.pm line 108.
+Wide character in print at lib/ZMS/Import/Object/File.pm line 108.
+t/model_DB.t ..................................... ok
+t/marschall_import.t ............................. ok
+t/oegsw_registration.t ........................... skipped: instance oegsw.at required
+t/nika.t ......................................... ok
+2022/04/28 09:05:59> INFO apply mypatch-dtml
+2022/04/28 09:05:59> INFO .. patchme.com
+2022/04/28 09:05:59> INFO .... do dtml-patch
+Use of uninitialized value in string eq at lib/ZMS/Patcher/Modes/ByDTMLParserCondition.pm line 108.
+*** NO DATABASE *** SKIPPING patchme.com at lib/ZMS/Patcher.pm line 199.
+2022/04/28 09:05:59> INFO #################
+2022/04/28 09:05:59> INFO instances checked: 1
+2022/04/28 09:05:59> INFO untouched: 
+2022/04/28 09:05:59> INFO done: patchme.com
+2022/04/28 09:05:59> INFO done and no skips: patchme.com
+2022/04/28 09:05:59> INFO apply mypatch-dtml
+2022/04/28 09:05:59> INFO .. patchme.com
+2022/04/28 09:05:59> INFO .... do dtml-patch
+*** NO DATABASE *** SKIPPING patchme.com at lib/ZMS/Patcher.pm line 199.
+2022/04/28 09:05:59> INFO #################
+2022/04/28 09:05:59> INFO instances checked: 1
+2022/04/28 09:05:59> INFO untouched: 
+2022/04/28 09:05:59> INFO done: patchme.com
+2022/04/28 09:05:59> INFO done and no skips: patchme.com
+t/patcher.t ...................................... ok
+t/plugin_deubnernews.t ........................... ok
+t/plugin_semanticwebschema.t ..................... ok
+t/plugin_geo.t ................................... ok
+t/python_parser.t ................................ ok
+t/plugin_generation.t ............................ ok
+t/profiler.t ..................................... ok
+t/plugin_onlinetools.t ........................... ok
+t/plugin_intranet.t .............................. ok
+t/request.t ...................................... ok
+t/restriction.t .................................. ok
+t/search_api.t ................................... ok
+t/search_api_any_with_duplicate_ids.t ............ ok
+t/sellyrasset_user_interface.t ................... skipped: instance sellyrasset.com required
+t/seminaroberlaa.t ............................... skipped: schema seminaroberlaa_/data required
+t/rss_feed_import.t .............................. ok
+t/seminaroberlaa_arbeitsbuch.t ................... skipped: schema seminaroberlaa_/data required
+t/seminaroberlaa_forum.t ......................... skipped: seminaroberlaa_/data instance needed
+t/slim_fit_bmi_graph.t ........................... ok
+t/seminaroberlaa_mpay.t .......................... skipped: skip mpay live tests
+t/short_urls.t ................................... ok
+t/slim_fit.t ..................................... skipped: anifit.de instance needed
+t/sofort.t ....................................... ok
+t/slim_fit_calculations.t ........................ skipped: anifit.de instance needed
+t/sidebar.t ...................................... ok
+t/slim_fit_javascript.t .......................... skipped: anifit.de instance needed
+t/slim_fit_mails.t ............................... skipped: anifit.de instance needed
+t/stbk-niedersachsen.de.t ........................ skipped: stbk-niedersachsen.de instance needed
+t/steuerberaterkammer-muenchen.de.t .............. ok
+t/steuercheck24.t ................................ skipped: steuercheck24.de instance needed
+        # {"api_result":{"title":"Test instance test56886.example","id":"test56886.example"}}
+        # {"api_result":{"error":"Authorization failed"}}
+t/system_api_global.t ............................ ok
+Deactivation::Object won't delete object with uid 3 since it has children
+t/system_api_instance.t .......................... ok
+t/system_backup.t ................................ ok
+t/system_language.t .............................. ok
+t/textarea_application_link.t .................... ok
+t/trashcan.t ..................................... ok
+get_html_source(): error encountered: Operation was cancelled at /opt/atikon/perl-local-lib/lib/perl5/x86_64-linux-thread-multi/Glib/Object/Introspection.pm line 67.
+t/unauthorized.t ................................. ok
+t/upload_file_with_special_chars.t ............... ok
+t/system_metaobjects.t ........................... ok
+t/wechselberger.t ................................ ok
+
+    #   Failed test 'wait_for_element_present_ok(css=div.browser.browserloading, 30000, )'
+    #   at /var/jenkins/workspace/CMS/repo/ZMS/t/lib/ZMS/WebKit/System/Authorization.pm line 91.
+    # 
+    # Looks like you failed 1 test of 59.
+
+#   Failed test 'ZMSEditor'
+#   at /var/jenkins/workspace/CMS/repo/ZMS/t/lib/ZMS/Testrunner.pm line 98.
+# Looks like you failed 1 test of 13.
+t/system_authorization.t ......................... 
+Failed 1/13 subtests 
+Use of uninitialized value in join or string at lib/ZMS/BuildingBlock/BuildingBlock/V1.pm line 293.
+Use of uninitialized value in join or string at lib/ZMS/BuildingBlock/BuildingBlock/V1.pm line 293.
+Use of uninitialized value in join or string at lib/ZMS/BuildingBlock/BuildingBlock/V1.pm line 293.
+Use of uninitialized value in join or string at lib/ZMS/BuildingBlock/BuildingBlock/V1.pm line 293.
+t/system_create.t ................................ ok
+
+Test Summary Report
+-------------------
+t/system_authorization.t                       (Wstat: 0 Tests: 13 Failed: 1)
+  Failed test:  13
+Files=229, Tests=3775, 618 wallclock secs ( 1.59 usr  0.28 sys + 2288.77 cusr 203.30 csys = 2493.94 CPU)
+Result: FAIL
+Build step 'Execute shell' marked build as failure
+[WARN] Not a WorkflowRun, onCompleted won't be propagated to listeners
+Finished: FAILURE

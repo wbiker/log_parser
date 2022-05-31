@@ -1,0 +1,39 @@
+commit 2b7db0b76af549a042854279c804425a7fadde3d
+tree 3e397b7921b7b0b088a037694aa2aa4c167eb289
+parent f0854d210056abd8d5bb1407b086cecb29969775
+author René De Alvarado <rd@atikon.com> 2022-04-25 10:01:39 +0200
+committer rd <rd@heps-beta-2.atikon.io> 2022-04-27 08:37:01 +0200
+
+    INT-4444 : Make sure our aggregate is added.
+    
+    Also, our aggregate depends on our function choose_date,
+    this is why aggregates are now created after functions.
+
+
+:100644 100644 cb9f4bbd906021c6091806741e8ffce5ffc67523 697faa377a38e4b583a24dc26f9c2ac0e490695a M	DB/Timemngt.pm
+:100755 100755 e030e1d0eab50f101c3539a509628b3ac6bf12e8 ba32de4defd84d02da4966fb3de5142c93392911 M	DB/Util.pm
+commit f0854d210056abd8d5bb1407b086cecb29969775
+tree d08d9b3bca89289e9a3a3cb25cc876accea780ea
+parent 2710380e9d0c3c799ba9d1fc11684910042c7bc1
+author René De Alvarado <rd@atikon.com> 2022-04-25 09:43:01 +0200
+committer rd <rd@heps-beta-2.atikon.io> 2022-04-27 08:37:01 +0200
+
+    INT-4444 : Only one order_billed_at column exists now (again).
+
+
+:100644 100644 96ef212879115cf3fb041196f93f981745adb5ed 61e1eb8ad1d58fd26a311bc5e38d5e3750c29b70 M	DB/Timemngt/ResultSet/CombinedOrderRootArticle.pm
+commit 2710380e9d0c3c799ba9d1fc11684910042c7bc1
+tree 5cc61f956d8df67149a149e4c8d0edd73262b6ee
+parent 1c1539b662c8cde7d50865d56aab01af7eaab143
+author René De Alvarado <rd@atikon.com> 2022-04-25 09:34:10 +0200
+committer rd <rd@heps-beta-2.atikon.io> 2022-04-27 08:36:59 +0200
+
+    INT-4444 : Sqitch and dump for changes.
+
+
+:100644 100644 5e9803ecda199289adb4c2cf485b67973abe54e4 aa2e00f84687111e9b9281d1bf4e70a9743b281a M	DB/Timemngt/Result/CombinedOrderRootArticle.pm
+:100644 100644 dee8ef14977c9c9a1f705c336f70d97fa6ea9551 aa5632d0c89ac81191e73de6c0db23a72525ec96 M	DB/Timemngt/Result/OrderArticlesTotal.pm
+:000000 100644 0000000000000000000000000000000000000000 fe9898a2265a5d978f3685027df0cb45cd5f0a1e A	DB/Timemngt/deploy/INT-4444_properly_check_bill_dates.sql
+:000000 100644 0000000000000000000000000000000000000000 c268d81993711131df65862d6f408566af0c3ebf A	DB/Timemngt/revert/INT-4444_properly_check_bill_dates.sql
+:100644 100644 bab24c4e1d0b9e1e353f729e5745f2667fe244fe 034675b1a66cd93380043f1e3a87d36528558404 M	DB/Timemngt/sqitch.plan
+:000000 100644 0000000000000000000000000000000000000000 64b509939d0523f772eeaa0024d524c990ad724b A	DB/Timemngt/verify/INT-4444_properly_check_bill_dates.sql

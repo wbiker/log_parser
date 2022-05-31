@@ -1,0 +1,10 @@
+commit 6fd9c761ff4a358aa7e40e74a27a5ae5f4c0c7e6
+tree eea0decd33b02ee0d08b2aaccda774625e68d7e0
+parent 85065311835d819a26e7d879427b26b35c3faa44
+author Philipp Lehner <pl@atikon.com> 2022-04-28 08:55:36 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-28 08:55:36 +0200
+
+    SeminarOberlaa: Update key for klarna payment system
+
+
+:100755 100755 bbfb5a0e52a796b58c9904f3a0f115f01357ccba 4dd0486c22c6de936b33aa2f9390c5b7795e9bf1 M	zms.yml

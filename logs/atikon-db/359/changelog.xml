@@ -1,0 +1,12 @@
+commit 1c1539b662c8cde7d50865d56aab01af7eaab143
+tree 0fb8c73c186d20a4d16826b0294a8f6ac36344cc
+parent 9a434d1545bfde29b62011f608b1cccf2f521276
+author rd <rd@heps-beta-2.atikon.io> 2022-04-27 08:22:45 +0200
+committer rd <rd@heps-beta-2.atikon.io> 2022-04-27 08:22:45 +0200
+
+    INT-4531 : Adding articles missing from jenkins... just jenkins.
+
+
+:000000 100644 0000000000000000000000000000000000000000 531a2597c5a54a9e0db465b7c80ff6a78013aef1 A	DB/Timemngt/deploy/INT-4531_better_kpt_ad_articles.sql
+:000000 100644 0000000000000000000000000000000000000000 025f81a08da4a8c5003d3f244eee0634223f9faa A	DB/Timemngt/revert/INT-4531_better_kpt_ad_articles.sql
+:100644 100644 88fe59db2f6c71fb722fe4c8fdc23c0bcc2235b5 bab24c4e1d0b9e1e353f729e5745f2667fe244fe M	DB/Timemngt/sqitch.plan

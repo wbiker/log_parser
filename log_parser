@@ -5,126 +5,135 @@ use Elasticsearch::Data;
 use Exporter::Sqlite;
 use FailedTests;
 use JenkinsLog;
-use TestSearch;
 use JenkinsTest;
 
-# Implement error string search. Error strings starts with [error]
-my $data_file = 'data.json'.IO;
-#my $log_dir = '/home/wb/Dokumente/jenkins/intranet/builds'.IO;
-#my $log_dir = '/home/wb/Dokumente/jenkins/mein-atikon/builds'.IO;
-#my $log_dir = '/home/wb/log/jenkins'.IO;
-my $log_dir = '/home/wb/tools/log_parser/intranet'.IO;
+my $log_dir = '/home/wb/tools/log_parser/logs/'.IO;
 
 my $db = Exporter::Sqlite.new;
-#my %auth =
-#    username => 'elastic',
-#    password => 'verySecret';
-my %auth =
-    username => 'admin',
-    password => 'admin',
-    ;
-my $elasticsearch = Elasticsearch::Data.new(url => "https://server:9200", index => "tests", auth => %auth);
+# my %auth =
+#     username => 'elastic',
+#     password => 'verySecret';
+#my $elasticsearch = Elasticsearch::Data.new(url => "http://server:9200", index => "tests", auth => %auth);
 
 multi sub MAIN('refresh', Bool :$drop-table) {
     $db.drop-table() if $drop-table;
     $db.create-table();
 
-    my $failed;
-    my $passed;
-    my $aborted;
-    my $total;
+    my @projects = find-projects($log_dir);
+    for @projects -> %project {
+        my %total_status =
+            failed => 0,
+            passed => 0,
+            aborted => 0,
+            total => 0,
+        ;
 
-    say "Look for log files";
-    my @log_files = find-files($log_dir);
-    say "{ @log_files.elems } log files found";
-    say "Parse logs";
-    for @log_files -> %log_file_data {
-        ++$total;
-        my %build = $db.get-build(%log_file_data<build>.Int);
-        if %build.elems {
-            given %build<status> {
-                when 'failure' { ++$failed; }
-                when 'success' { ++$passed }
-                when 'aborted' { ++$aborted }
-            }
-            say "Build ", %build<number>, " already parsed - ", %build<status>;
-            next;
-        }
+        say "Check project {%project<name>.uc}";
+        %project<id> = $db.find-or-create-project-id(%project<name>);
+        say "Look for log files";
+        my @log_files = find-files(%project<path>, %project<id>);
+        say "{@log_files.elems} log files found";
 
-        print "Parse new log file { %log_file_data<log>.Str }. Status  ";
-
-        my $file = %log_file_data<log>.slurp(:enc('utf8-c8'), :close);
-        my $status = JenkinsLog.subparse($file);
-        if not $status {
-            $db.store-build(%log_file_data<build>.Int, 'no status found');
-            #            $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'no status found', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
-            note "could not find status in log file { %log_file_data<log> }";
-            next;
-        }
-
-        if $status<finished><status>.Str.lc eq 'failure' {
-            say 'failure';
-            ++$failed;
-            my $build_id = $db.store-build(%log_file_data<build>.Int, 'failure');
-            #            $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'failure', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
-            my $m = JenkinsLog::TestSummaryReport.subparse($file, :actions(Action::JenkinsLog::TestSummaryReport.new));
-
-            if $m {
-                my $ma = $m.made;
-                my $fail_date = %log_file_data<starttime>.DateTime;
-                for $ma.flat -> $h {
-                    my $name = $h<name>.Str;
-                    my %testh;
-                    for $h<errors>.flat -> $error {
-                        if $error.starts-with('Failed test') or $error ~~ /^ \d+/ {
-                            my $m = FailedTests.subparse($error, :actions(Action::FailedTests.new));
-                            my $test_file_id = $db.get-test-file-id($name);
-
-                            if $m {
-                                for $m.made -> $n {
-                                    for $n.flat {
-                                        my %elastic;
-                                        %elastic<test> = $name;
-                                        %elastic<build> = %log_file_data<build>;
-                                        %elastic<date> = $fail_date;
-                                        %elastic<failed_test> = $_;
-                                        #                          $elasticsearch.post(data => %elastic);
-
-                                        %testh<failed_tests>{$_}.push: $fail_date;
-                                        $db.store-test-number($build_id, $test_file_id, $_, $fail_date.posix);
-                                    }
-                                }
-                            } else {
-                                note "Nothing found for test { $h<name> } in error { $error }";
-                            }
-                        }
-                    }
+        say "Parse logs";
+        for @log_files -> %log_file_data {
+            ++%total_status<total>;
+            my %build = $db.get-build(%log_file_data<build>.Int, %project<id>);
+            if %build.elems {
+                given %build<status> {
+                    when 'failure' { ++%total_status<failed>; }
+                    when 'success' { ++%total_status<passed> }
+                    when 'aborted' { ++%total_status<aborted> }
                 }
-            } else {
-                $db.store-build(%log_file_data<build>.Int, 'Error passing log');
-                #$elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'Error passing log', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
-                say "war wohl nichts mit { %log_file_data<log> }";
+                # say "Build ", %build<number>, " already parsed - ", %build<status>;
+                next;
             }
+
+            print "Parse new log file {%log_file_data<log>.Str}. Status  ";
+
+            my $file = %log_file_data<log>.slurp(:enc('utf8-c8'), :close);
+            my $status = JenkinsLog.subparse($file);
+            if not $status {
+                $db.store-build(%log_file_data<build>.Int, 'no status found', %project<id>);
+    #            $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'no status found', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
+                note "could not find status in log file {%log_file_data<log>}";
+                next;
+            }
+
+            status($status<finished><status>.Str.lc, %log_file_data, %total_status, $file);
         }
-        elsif $status<finished><status>.Str.lc eq 'aborted' {
-            say 'aborted';
-            ++$aborted;
-            $db.store-build(%log_file_data<build>.Int, 'aborted');
-            # $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'aborted', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
-        }
-        elsif $status<finished><status>.Str.lc eq 'success' {
-            say 'success';
-            ++$passed;
-            $db.store-build(%log_file_data<build>.Int, 'success');
-            # $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'success', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
-        }
+
+        say "Total/Passed/Failed/Aborted ", "{%total_status<total>}/{%total_status<passed>}/{%total_status<failed>}/{%total_status<aborted>}";
     }
 
-    say "Total/Passed/Failed/Aborted ", "$total/$passed/$failed/$aborted";
 }
 
-multi sub MAIN(:$count = 0, :$startdate, :$name, :$build, *%rest) {
-    my @tests = $db.get-tests($startdate, $name, $build);
+multi sub status('failure', %log_file_data, %total_status, Str $file) {
+    say 'failure';
+    ++%total_status<failed>;
+#            $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'failure', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
+    my $m = JenkinsLog::TestSummaryReport.subparse($file, :actions(Action::JenkinsLog::TestSummaryReport.new));
+
+    if $m {
+        my $build_id = $db.store-build(%log_file_data<build>.Int, 'failure', %log_file_data<project_id>);
+        my $ma = $m.made;
+        my $fail_date = %log_file_data<starttime>.DateTime;
+        for $ma.flat -> $h {
+            my $name = $h<name>.Str;
+            my %testh;
+            for $h<errors>.flat -> $error {
+                if $error.starts-with('Failed test') or $error ~~ /^ \d+/ {
+                    my $m = FailedTests.subparse($error, :actions(Action::FailedTests.new));
+                    my $test_file_id = $db.get-test-file-id($name, %log_file_data<project_id>);
+
+                    if $m {
+                        for $m.made -> $n {
+                            for $n.flat {
+                                # my %elastic;
+                                # %elastic<test> = $name;
+                                # %elastic<build> = %log_file_data<build>;
+                                # %elastic<date> = $fail_date;
+                                # %elastic<failed_test> = $_;
+        #                          $elasticsearch.post(data => %elastic);
+
+                                %testh<failed_tests>{$_}.push: $fail_date;
+                                $db.store-test-number($build_id, $test_file_id, $_, $fail_date.posix);
+                            }
+                        }
+                    } else {
+                        note "Nothing found for test {$h<name>} in error {$error}";
+                    }
+                }
+            }
+        }
+    } else {
+        $db.store-build(%log_file_data<build>.Int, 'Error passing log', %log_file_data<project_id>);
+        #$elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'Error passing log', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
+        say "war wohl nichts mit {%log_file_data<log>}";
+    }
+}
+
+multi sub status('aborted', %log_file_data, %total_status, $file) {
+    say 'aborted';
+    ++%total_status<aborted>;
+    $db.store-build(%log_file_data<build>.Int, 'aborted', %log_file_data<project_id>);
+    # $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'aborted', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
+}
+
+multi sub status('success', %log_file_data, %total_status, $file) {
+    say 'success';
+    ++%total_status<passed>;
+    $db.store-build(%log_file_data<build>.Int, 'success', %log_file_data<project_id>);
+    # $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'success', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
+}
+
+multi sub MAIN(:$count = 0, :$startdate, :$name, :$build, :$project = 'intranet') {
+    my $project_id = $db.get-project-id($project.lc);
+    unless $project_id {
+        note "'$project' does not exists";
+        exit 1;
+    }
+
+    my @tests = $db.get-tests($startdate, $name, $build, $project_id);
     for @tests -> %test {
         say %test<test>;
         for %test<numbers>.pairs.sort(*.key.Int) -> $number {
@@ -133,95 +142,29 @@ multi sub MAIN(:$count = 0, :$startdate, :$name, :$build, *%rest) {
     }
 }
 
-multi sub MAIN('upload') {
-    my @tests = $db.get-tests("", "", "");
-    for @tests -> %test {
-        say %test<test>;
-        for %test<numbers>.pairs -> $pair {
-            say $pair.key;
-            for $pair.value.Array -> $date_build_string {
-                if $date_build_string ~~ /(<-[(]>+) '(' (\d+) ')'/ {
-                    my %data = %(test_file => %test<test>, test_number => $pair.key, date => $0.Str, build => $1.Int);
-                    $elasticsearch.post(data => %data);
-                }
-            }
-        };
-    }
-}
+sub find-projects($dir) {
+    my @projects;
 
-sub create-test-objects(%tests) {
-    my @tests;
-    for %tests -> $test {
-        @tests.push: JenkinsTest.new(test => $test.value);
+    for $dir.dir -> $item {
+        next unless $item.d;
+
+        @projects.push: %(name => $item.basename, path => $item.absolute);
     }
 
-    return @tests;
+    return @projects;
 }
 
-sub filter-test-count($count, @tests) {
-    return @tests if $count == 0;
-
-    my $count-search = TestCount.new(threshold => $count);
-    return $count-search.check(@tests);
-}
-
-sub filter-date($startdate, @tests) {
-    return @tests unless $startdate;
-
-    if $startdate ~~ /(\d ** 4) '-' (\d ** 2) '-' (\d ** 2)/ {
-        my $year = $0.Int;
-        my $month = $1.Int;
-        my $day = $2.Int;
-
-        my $date-search = TestStarttime.new(starttime => DateTime.new(year => $year, month => $month, day => $day));
-        return  $date-search.check(@tests);
-    }
-
-    note "Could not find date in '$startdate'. Expect pattern 'YYYY-MM-DD'" and exit;
-}
-
-sub filter-name($name, @tests) {
-    return @tests unless $name;
-
-    my $name-search = TestName.new(name => $name);
-    return $name-search.check(@tests);
-}
-
-sub filter-tests-without-errors(@tests) {
-    my $filter = TestWithoutErrors.new;
-    return $filter.check(@tests);
-}
-
-sub parse-failed-tests($test) {
-    my BagHash $tn .= new;
-    for $test.errors -> $error {
-        my $m = FailedTests.subparse($error, :actions(Action::FailedTests.new));
-
-        if $m {
-            for $m.made -> $n {
-                for $n.flat {
-                    $tn.add($_);
-                }
-            }
-        } else {
-            note "Nothing found for test { $test.name } in error { $error }";
-        }
-    }
-
-    $test.failed_test_numbers = $tn;
-}
-
-sub find-files($dir) {
+sub find-files(IO() $dir, Int $project_id) {
     my @files;
 
     for $dir.dir -> $item {
         if $item.d {
-            @files.append(find-files($item));
+            @files.append(find-files($item, $project_id));
             next;
         }
         next unless $item.basename eq 'log';
 
-        my %test_data;
+        my %test_data = %(project_id => $project_id);
         my $build = $item.parent.add('build.xml');
         if $build.e {
             my @build_content = $build.slurp(:close);

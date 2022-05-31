@@ -1,0 +1,54 @@
+commit 0219fdd0415c1abbdca6451e10b4f1857d90a88d
+tree 8c4729a47fe166677bee3c78e3a368ae907fb704
+parent 8b755cf850951822fc7e02098c40f10dc7cfc93e
+author Philipp Voglhofer <pv@atikon.com> 2022-04-27 13:59:45 +0200
+committer Philipp Voglhofer <pv@atikon.com> 2022-04-27 15:12:21 +0200
+
+    ORZOS-58: default avab kids to 0 for better UX
+
+
+:100755 100755 0ad295bbf1e62b608b8ef70ed821e9f2e775fc2d 964da320ed62411ebcccb2ebdefb650521bdd929 M	root/templates/compat/layout_2014/at/oeamtc/oekosozialreform/form.zpt
+commit 8b755cf850951822fc7e02098c40f10dc7cfc93e
+tree cdee5693fa7c891b91d50a6aa129908a9d0502ad
+parent 4820b006517d148e3b61ede89857b5e2a66d53e1
+author Philipp Voglhofer <pv@atikon.com> 2022-04-27 13:53:28 +0200
+committer Philipp Voglhofer <pv@atikon.com> 2022-04-27 15:12:21 +0200
+
+    ORZOS-58: fix js error on resultpage, no validation here
+
+
+:100755 100755 89a1ecb70fac310a120bc9d228f512a3f77b0d17 9dec8c9b089522a0dfc4581484801efa26d3bd21 M	root/static/js/at/oeamtc/oekosozialreform/Calc.js
+commit 4820b006517d148e3b61ede89857b5e2a66d53e1
+tree b0600ca818c38612aefcebedd23869f717ca157b
+parent a5032bdd80465540904a2f28fcbc4a2dc798435f
+author Philipp Voglhofer <pv@atikon.com> 2022-04-27 13:28:44 +0200
+committer Philipp Voglhofer <pv@atikon.com> 2022-04-27 15:12:21 +0200
+
+    ORZOS-58: replace simplified KMB calculation with full one
+
+
+:100755 100755 48e7d3e0762f2baae7f6803a356d3cbd8352bdeb d5f064c3140a80aa90f7b2988256a0c7e30fc272 M	lib/Atikon/OnlineTools/Calculations/At/Oeamtc/Oekosozialreform.pm
+commit a5032bdd80465540904a2f28fcbc4a2dc798435f
+tree 54820c82aca5928ec560a54462bc5ee3ef20bde8
+parent ea12d177dc3c725eabf0b359fddbef9aaf896304
+author Philipp Voglhofer <pv@atikon.com> 2022-04-27 11:38:43 +0200
+committer Philipp Voglhofer <pv@atikon.com> 2022-04-27 15:12:21 +0200
+
+    ORZOS-58: replace simplified fambonus+ calculation with full one
+    
+    The simplified calculation cannot deal with situations where the family
+    bonus would lower tax into the negative (which isn't possible) and other
+    edge cases.
+
+
+:100755 100755 45f6bf49794e25e1a162e6869d7b47f1ba689e1e 48e7d3e0762f2baae7f6803a356d3cbd8352bdeb M	lib/Atikon/OnlineTools/Calculations/At/Oeamtc/Oekosozialreform.pm
+commit ea12d177dc3c725eabf0b359fddbef9aaf896304
+tree 731b6951643a3539e97969f3d6b57677ba4d9194
+parent 132d22a6c14cc57e7540e8f5672e8e0cac6a0b2f
+author Philipp Voglhofer <pv@atikon.com> 2022-04-26 13:31:41 +0200
+committer Philipp Voglhofer <pv@atikon.com> 2022-04-27 15:12:21 +0200
+
+    ORZOS-58: fix mail link
+
+
+:100755 100755 0972e7554ad93f516d34f63be80d1bf83b25cd51 f4a4fdda4ab3f987cb2e871f0ef03c434117e803 M	root/static/js/at/oeamtc/oekosozialreform/Custom/SendMailLink.js

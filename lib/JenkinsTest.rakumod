@@ -1,11 +1,13 @@
 unit class JenkinsTest;
 
+has $.project;
 has $.name;
 has $.count;
 has $.starttime;
 has %.failed_tests;
 
 submethod BUILD(:%test) {
+    $!project = %test<project>;
     $!name = %test<name>;
     $!count = %test<count>;
     my $date = DateTime.new(%test<starttime> ~ "T00:00:00Z");

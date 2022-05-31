@@ -1,0 +1,284 @@
+commit d58fd8e0e0fe2c86584e5ef981f57aead1236e6a
+tree db91a978f53fefbf509fd20e43bb82af289bfb3b
+parent 8a2f4a881630c8c68ee57935551bd32f5e0033af
+author Philipp Lehner <pl@atikon.com> 2022-04-26 15:12:40 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 15:12:40 +0200
+
+    CMS-2597: Backwards compatibility for copy/paste cookies
+
+
+:100644 100644 6db01448aa7747ad5a32319edb8abb5e3140f236 64d2160d082d8f2e3e98ac0d2675de8289f3cfe1 M	root/static/scripts/scripts.js
+commit 8a2f4a881630c8c68ee57935551bd32f5e0033af
+tree 92827614c4e60fd8190a730f30589174a9dd68fe
+parent 8c8f91fde93552ea5897ee586f5b5210352e49d7
+author Philipp Lehner <pl@atikon.com> 2022-04-26 11:14:56 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 11:14:56 +0200
+
+    CMS-2597: Make sure to use up-to-date files
+
+
+:100755 100755 1dfa4731cbca3174d963e254edf55582caf406a2 3edf8be55133463b953a31cc0ab41d9fb262cfde M	root/templates/management_interface_macros.zpt
+commit 8c8f91fde93552ea5897ee586f5b5210352e49d7
+tree fa55d219683085fe8e2728ccb34803f54cdecd1b
+parent 53954f653e4a4704039811a93a80b1fd9dda1caa
+author Philipp Lehner <pl@atikon.com> 2022-04-26 10:09:28 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 10:09:28 +0200
+
+    CMS-2597: Fix drag and drop in Firefox
+
+
+:100644 100644 a8425faef96d6c07de91da526beae4e5b270e912 ba08bc4f97d4b626d44b99c7efab5973714c663f M	root/static/css/style.css
+:100644 100644 557624772c59f587139d96cbb76292c34a490c4e 6db01448aa7747ad5a32319edb8abb5e3140f236 M	root/static/scripts/scripts.js
+commit 53954f653e4a4704039811a93a80b1fd9dda1caa
+tree 7540a82d8cdb981ae677e576b4e797babefc1227
+parent 6058a7b5a965e27d6d0772b9b9f1f4a8bf5f1f38
+author Philipp Lehner <pl@atikon.com> 2022-04-13 15:11:27 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:32 +0200
+
+    CMS-2597: Add secure to cookie
+
+
+:100644 100644 ca344ccedb1a0f8e06526c23a7dbf4909a5766a9 a8425faef96d6c07de91da526beae4e5b270e912 M	root/static/css/style.css
+:100644 100644 67b0b8593f88f324048579b5bfad51504e8783b7 557624772c59f587139d96cbb76292c34a490c4e M	root/static/scripts/scripts.js
+commit 6058a7b5a965e27d6d0772b9b9f1f4a8bf5f1f38
+tree 7a9111b455526b23bf0f81125a7b48ff248f0193
+parent 5b7a5ed838dcb8055e5748257d00362111f8c4f5
+author Philipp Lehner <pl@atikon.com> 2022-04-08 11:54:56 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:29 +0200
+
+    CMS-2597: metaobject drag
+
+
+:100644 100644 f06315bc8136b575c54751dac0e0181aa4444ef9 0c0153d06ade7b4920c6919e4577d904209b5f2a M	.gitignore
+:100644 100644 f9504696b555ad07eba8ec5684844c1da841f25d ca344ccedb1a0f8e06526c23a7dbf4909a5766a9 M	root/static/css/style.css
+:100644 100644 b511c07b3ef73ae10befc60f4a35c4dea1d74cb1 c45d16ac34bf48a05aa7c96bf31ebc7484fbec5a R080	root/static/scripts/MooResize.js	root/static/scripts/CMSResize.js
+:100644 100644 ff5c10c68f8df2ca6ec01cda2a9fc5e8ce9a74ae 67b0b8593f88f324048579b5bfad51504e8783b7 M	root/static/scripts/scripts.js
+:100755 100755 95cd7a494fb8a15a83a4689f6ac3bd1081a8192b 1dfa4731cbca3174d963e254edf55582caf406a2 M	root/templates/management_interface_macros.zpt
+:100644 100644 721e1de6d6fce00c665c9a1559376d0fd1cbad73 4794fcf4b44da3ad1c1f111415a0d8c847d2c57a M	t/coding_conventions_linelength.t
+:100644 100644 c75f718c9228ef575cc7ff2a3c1d4b2b4895349e 6e4c72a416b81d83ffdfd02f43ad152b06d0c8f7 M	t/lib/ZMS/Testcase/Attribute/Image/Crop.pm
+:100644 100644 adc76a76cbdc48cc1cb0e3acc94025d5754d03a9 87c54200a612bfba29d08d93f08ebba644b96ca9 M	t/lib/ZMS/Testcase/Attribute/Image/Resize.pm
+:100644 100644 8478e0f1e044dc904762f690f8da8fe087a528e9 aa0dbaae3ef171c6c1fa4bb53b21026e0ac14dab M	t/lib/ZMS/Testcase/Attribute/Image/Restore.pm
+commit 5b7a5ed838dcb8055e5748257d00362111f8c4f5
+tree 923f61a86d689c82b3315eae70610bcbc258fcd3
+parent d6de07026306936787c9dda29118344b2a590e7d
+author Philipp Lehner <pl@atikon.com> 2022-04-05 16:00:43 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:27 +0200
+
+    CMS-2597: datepicker WIP
+
+
+:100644 100644 8ad184423410ff9c0e5deffab061c6c973428194 f9504696b555ad07eba8ec5684844c1da841f25d M	root/static/css/style.css
+:100644 100644 c8a1512965cd929910b763af0c9031eb47d5b5dc 019d619eddc22dfcbd05643478149fc9b003ee15 M	root/static/scripts/datepicker.js
+:100644 100644 427fca34ca45289b28e836ea3f1569e9c0c9b64c ff5c10c68f8df2ca6ec01cda2a9fc5e8ce9a74ae M	root/static/scripts/scripts.js
+:100755 100755 3a2317c732d6edb97b616b52de9cba7b6359fa24 95cd7a494fb8a15a83a4689f6ac3bd1081a8192b M	root/templates/management_interface_macros.zpt
+commit d6de07026306936787c9dda29118344b2a590e7d
+tree 827eb2b81d97523d4346c7ac72472e7e2f16b83b
+parent 1e3045b1a7c7c05212f84e04b6cf4a8e354d2a8b
+author Philipp Lehner <pl@atikon.com> 2022-04-05 11:04:25 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:20 +0200
+
+    CMS-2597: tidy up JS code
+
+
+:100644 100644 cedb882bab2dbb126136f20d62b2d7ab581c2939 427fca34ca45289b28e836ea3f1569e9c0c9b64c M	root/static/scripts/scripts.js
+commit 1e3045b1a7c7c05212f84e04b6cf4a8e354d2a8b
+tree 94cf7f808a392fc70dad343ffb0d30f683c6df44
+parent 9e835a797e3c7982e00178d150adf6685e1b3011
+author Philipp Lehner <pl@atikon.com> 2022-04-05 10:52:05 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:18 +0200
+
+    CMS-2597: generationStatus
+
+
+:100644 100644 f42f15ec5bb7cd487efe11babb7c7f50d23fb997 8ad184423410ff9c0e5deffab061c6c973428194 M	root/static/css/style.css
+:100644 100644 a6de2e0a759e32fd2aada221dcc00332ff1353a5 cedb882bab2dbb126136f20d62b2d7ab581c2939 M	root/static/scripts/scripts.js
+commit 9e835a797e3c7982e00178d150adf6685e1b3011
+tree 91c31b6478e665ec1144becc37611ff7f43fa636
+parent 4fec61c11ce4119f85edadd2b26d6ec66725c946
+author Philipp Lehner <pl@atikon.com> 2022-04-05 10:23:58 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:17 +0200
+
+    CMS-2597: project info
+
+
+:100644 100644 328fdebba0dcbdc204ef2174473126db532153e3 a6de2e0a759e32fd2aada221dcc00332ff1353a5 M	root/static/scripts/scripts.js
+commit 4fec61c11ce4119f85edadd2b26d6ec66725c946
+tree 532652dc1779633f301a58b4c688859386b07526
+parent 6404bd6ad718ade35d86314e26bd298936ad2d7a
+author Philipp Lehner <pl@atikon.com> 2022-04-05 10:05:51 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:14 +0200
+
+    CMS-2597: login screen + dtml examples
+
+
+:100644 100644 b44324150e285776a4a3d40d11ada323b39bcf90 f42f15ec5bb7cd487efe11babb7c7f50d23fb997 M	root/static/css/style.css
+:100644 100644 acd1efa86da55c01dff53790972022c0ebb64f18 328fdebba0dcbdc204ef2174473126db532153e3 M	root/static/scripts/scripts.js
+commit 6404bd6ad718ade35d86314e26bd298936ad2d7a
+tree 2f0466d238ff527ad0013085a0d00c48754694e9
+parent 448d5ab86bd49a95e26fd69bd23fa0ca2c62d9b0
+author Philipp Lehner <pl@atikon.com> 2022-04-05 09:42:03 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:12 +0200
+
+    CMS-2597: global search and replace
+
+
+:100644 100644 9bfee65ff71ab73a5f70f32842722c5066fec42f b44324150e285776a4a3d40d11ada323b39bcf90 M	root/static/css/style.css
+:100644 100644 cdf6b1c2cf262cab627fc942986a19f8261147a5 23ab3b13e295d68cdf7eb6d0a7856fef4c24ae6c M	root/static/scripts/cms_messages.js
+:100644 100644 231619e3bf310cf4057dbebe17ade5209d784d02 acd1efa86da55c01dff53790972022c0ebb64f18 M	root/static/scripts/scripts.js
+commit 448d5ab86bd49a95e26fd69bd23fa0ca2c62d9b0
+tree 701e82de041e1725dabcf21fe9c3d4d705f63bee
+parent 5a885bb7b408b499544b33b4858ba0b74986bb78
+author Philipp Lehner <pl@atikon.com> 2022-04-04 17:36:47 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:10 +0200
+
+    CMS-2597: showSelect options in meta object attribute select/multiselect
+
+
+:100644 100644 7a002d9a19bf7150d1745ef42263dcac1eabef38 231619e3bf310cf4057dbebe17ade5209d784d02 M	root/static/scripts/scripts.js
+commit 5a885bb7b408b499544b33b4858ba0b74986bb78
+tree ef5e6e0be5fea2144754d7df8ac3a947965026df
+parent 2e77815001ba5ab632ccb4353cd58cb40f050dc7
+author Philipp Lehner <pl@atikon.com> 2022-04-04 17:29:54 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:08 +0200
+
+    CMS-2597: browser selector error
+
+
+:100644 100644 5d2e255e608cddd5339be412e196ca8f301cd5c0 7a002d9a19bf7150d1745ef42263dcac1eabef38 M	root/static/scripts/scripts.js
+commit 2e77815001ba5ab632ccb4353cd58cb40f050dc7
+tree b951fe2dd10c27ec08f6b102c315e4afb3645d46
+parent ee3c9bec2b1ec903ba8d33e3127417a4fca0c5e1
+author Philipp Lehner <pl@atikon.com> 2022-04-04 17:19:14 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:06 +0200
+
+    CMS-2597: table editor
+
+
+:100644 100644 5dbb560093baa22b4c1d491ccee252732b81af38 5d2e255e608cddd5339be412e196ca8f301cd5c0 M	root/static/scripts/scripts.js
+commit ee3c9bec2b1ec903ba8d33e3127417a4fca0c5e1
+tree 83c323f6ac2ad9532c4a4c3f2c7d2bc78f82d0ca
+parent b12ce41ea2390895b3dd4d5a32a1d4c867a6679d
+author Philipp Lehner <pl@atikon.com> 2022-04-04 16:27:26 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:04 +0200
+
+    CMS-2597: show more metaobject usage
+
+
+:100644 100644 c1d37e0e064cf41473bec6f364d24393b713e6f2 5dbb560093baa22b4c1d491ccee252732b81af38 M	root/static/scripts/scripts.js
+commit b12ce41ea2390895b3dd4d5a32a1d4c867a6679d
+tree e1cc50c33c3652ef4c2ea9b81251917cc90a8947
+parent 71b6e3bf0984c7b3c954771ec3df98e0ceeab211
+author Philipp Lehner <pl@atikon.com> 2022-04-04 16:16:02 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:19:02 +0200
+
+    CMS-2597: zms author menu and anifit js
+
+
+:100644 100644 8597b7bb3812e99108b2a52b3e1b5096da6d6fd8 eef63d096feb69b850feae3ff4d30ad5d05e43a4 M	root/static/instances/anifit.de/bodyContentZMSCustom_event_manager.dtml
+:100644 100644 c7e366b5c9327a86bd2d6acabbc2b5259af6865c 3385d3ab93b473b4c5cb2118c6891ae38d2e9ea1 M	root/static/instances/anifit.de/bodyContentZMSCustom_teampartner_website.dtml
+:100644 100644 df3b005443d502f55067e315f0bdac3dfc76d20d 110b1bce179a6bdc1509d790e8e8177e40e630c7 M	root/static/instances/anifit.de/bodyContent_Functions.dtml
+:100644 100644 5ee06a4a4269d96ba578b484761a85e02ce4da6e c1d37e0e064cf41473bec6f364d24393b713e6f2 M	root/static/scripts/scripts.js
+commit 71b6e3bf0984c7b3c954771ec3df98e0ceeab211
+tree 5be9c3afa908d75d61cfae9c6b2744111aa1bec9
+parent f91462309ba10fd1d9649c9ae6099ae710d78cb5
+author Philipp Lehner <pl@atikon.com> 2022-04-04 13:15:41 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:18:59 +0200
+
+    CMS-2597: rename some functions
+
+
+:100644 100644 5b92448eac4353fb1cd638340d00f154df8a5e15 5ee06a4a4269d96ba578b484761a85e02ce4da6e M	root/static/scripts/scripts.js
+commit f91462309ba10fd1d9649c9ae6099ae710d78cb5
+tree 4c72ed437c778f3c3c1d280e3a68ce314d798c6e
+parent 7637cf5d1959b24dcdc32aaa6f4408d5ae740052
+author Philipp Lehner <pl@atikon.com> 2022-04-04 13:07:53 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:18:57 +0200
+
+    CMS-2597: authorization
+
+
+:100644 100644 66b06f662ed7d854ae0dc4d176c523d944f1b074 cdf6b1c2cf262cab627fc942986a19f8261147a5 M	root/static/scripts/cms_messages.js
+:100644 100644 35aed5d69e9e85136c7c21c21319d9925c552516 5b92448eac4353fb1cd638340d00f154df8a5e15 M	root/static/scripts/scripts.js
+commit 7637cf5d1959b24dcdc32aaa6f4408d5ae740052
+tree e22efa223e9a964e993164175e2db1dcfeb110bb
+parent 7a8b4ecd640e7a8f6d0722d0ec9cb235e0bf9140
+author Philipp Lehner <pl@atikon.com> 2022-04-04 11:30:40 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:18:55 +0200
+
+    CMS-2597: metaobject deletion, form validation
+
+
+:100644 100644 74737f235659f3f8f4f3cae7008bb2ea745d4c65 41649e540718c0d98cec7614a4acdbf42c0c4a27 M	lib/ZMS/Messages.pm
+:100644 100644 5d4fcb4affd2ba001441f0484da0d8064725c605 35aed5d69e9e85136c7c21c21319d9925c552516 M	root/static/scripts/scripts.js
+:100755 100755 a1be8df3c19c9dfebc74ac26d360493e618b9b4f 3a2317c732d6edb97b616b52de9cba7b6359fa24 M	root/templates/management_interface_macros.zpt
+commit 7a8b4ecd640e7a8f6d0722d0ec9cb235e0bf9140
+tree fdd9457d5f6537f465808e7524f575e1cf7a0ea2
+parent 5ed4cb7092edd0b24681177d02b957bda64150ae
+author Philipp Lehner <pl@atikon.com> 2022-04-04 11:02:00 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:18:53 +0200
+
+    CMS-2597: codemirror, css colors, ajax deletion, multiselects
+
+
+:100644 100644 1cee24d4a38ab99a223f6aa382c2f35527c3e600 c8b36d9f084c9f6bb44954dfd6704f6748c6e0b7 M	root/static/instances/anifit.de/401.html.dtml
+:100644 100644 abc7db39b3b222aaf08788dc7429a5cd89d4c7f6 5d4fcb4affd2ba001441f0484da0d8064725c605 M	root/static/scripts/scripts.js
+commit 5ed4cb7092edd0b24681177d02b957bda64150ae
+tree 5c7375faf86e7f35f8aef16a55078e4e463b3e1c
+parent e3754855c7ad98e3eb79a65cfa404b74da5c4a05
+author Philipp Lehner <pl@atikon.com> 2022-04-04 10:33:21 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:18:51 +0200
+
+    CMS-2597: HTML Popup
+
+
+:100644 100644 4ad1758e7b194321fdc644e9a8c0b4adcd1cd40d 9bfee65ff71ab73a5f70f32842722c5066fec42f M	root/static/css/style.css
+:100644 100644 cedbc6f7a082c2abb9ed3500041fd2229167689b abc7db39b3b222aaf08788dc7429a5cd89d4c7f6 M	root/static/scripts/scripts.js
+commit e3754855c7ad98e3eb79a65cfa404b74da5c4a05
+tree 33e140a6c5cb0edf927b9b772822404559efaa47
+parent 4fbffef51e6ef99fcf3dfbacb7da6fcf172e34e7
+author Philipp Lehner <pl@atikon.com> 2022-04-01 13:39:33 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:18:47 +0200
+
+    CMS-2597: fixed filemanagement
+
+
+:100644 100644 3d611c2981c6061b589592f102f98c12dd8ef628 cedbc6f7a082c2abb9ed3500041fd2229167689b M	root/static/scripts/scripts.js
+commit 4fbffef51e6ef99fcf3dfbacb7da6fcf172e34e7
+tree e6010de45257bd11fd74a2f452c3c0b9b100c949
+parent b59c4b0c5266cded69e7c388907f0af7b0f54edc
+author Philipp Lehner <pl@atikon.com> 2022-03-31 16:09:13 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:18:44 +0200
+
+    CMS-2597: content management functions, multiselects, etc.
+
+
+:100644 100644 9d1738660f6f5e68fefb82d57ec7eaf73ed0dd14 4ad1758e7b194321fdc644e9a8c0b4adcd1cd40d M	root/static/css/style.css
+:100644 100644 7db2d7dee374b8a3f8dab5677ab07ecf62e575a9 3d611c2981c6061b589592f102f98c12dd8ef628 M	root/static/scripts/scripts.js
+commit b59c4b0c5266cded69e7c388907f0af7b0f54edc
+tree 889fe4642e5c208176bad5c64a912b8b6a1c84e3
+parent c89cd86ab850f9452418716ddeb595ae24a28578
+author Philipp Lehner <pl@atikon.com> 2022-03-31 12:16:28 +0200
+committer Philipp Lehner <pl@atikon.com> 2022-04-26 09:18:41 +0200
+
+    CMS-2597: fix browser, sidebar, tinymce plugin
+
+
+:100644 100644 932e1ab2f1a23018ebceb0b0c2b2065da0e0526e 9d1738660f6f5e68fefb82d57ec7eaf73ed0dd14 M	root/static/css/style.css
+:100644 100644 d25f809f80396cfadb8121608c9ce4221fd3a408 7db2d7dee374b8a3f8dab5677ab07ecf62e575a9 M	root/static/scripts/scripts.js
+:100644 100644 488dfc4f1a07930223327544c75e4bb491d3c6d5 0042e856a3edceae303aa67147e9c2b03897ffdc M	root/static/scripts/tiny_mce/plugins/link_image_browser/plugin.min.js
+:100755 100755 e1c9fca3a8c46c884cb6f8bb8dee1e57cad20086 c98e54681a742f3a112f800adb5f52b126f0014f M	root/templates/manage_sync.zpt
+:100755 100755 8cf5541b431e3c33194049bed21ac3a573a9458e 514f2acd427fc186a61a7ec34088f33609392479 M	root/templates/object_changes.zpt
+commit c89cd86ab850f9452418716ddeb595ae24a28578
+tree 07da113029eb5d3bce25fd67f153cdc7f101fc36
+parent baf34a2755dfe84c20190c3a04416fb6134a4c8c
+author Philipp Lehner <pl@atikon.com> 2022-03-23 14:01:40 +0100
+committer Philipp Lehner <pl@atikon.com> 2022-04-25 14:10:17 +0200
+
+    CMS-2597: CMSImageResize instead of MooResize
+
+
+:100644 100644 529a44eb28c33fb2ca7a5b2ed708f94fe63a53c3 932e1ab2f1a23018ebceb0b0c2b2065da0e0526e M	root/static/css/style.css
+:100644 100644 9be5154dc26db2b0386e7a3985e2def989967afe b511c07b3ef73ae10befc60f4a35c4dea1d74cb1 M	root/static/scripts/MooResize.js
+:000000 100644 0000000000000000000000000000000000000000 523a479b6066f3a7508eb04c75f2fc960fd35a22 A	root/static/scripts/jcrop.js
+:100644 100644 44524c7b168940a8e9e928cb138d9517b745a4e6 d25f809f80396cfadb8121608c9ce4221fd3a408 M	root/static/scripts/scripts.js
+:100755 100755 537729cbc4232e99ff367c16a70168785b3e8d67 a1be8df3c19c9dfebc74ac26d360493e618b9b4f M	root/templates/management_interface_macros.zpt

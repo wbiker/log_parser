@@ -1,0 +1,10 @@
+commit a4ab669c3da190aed15721f2ef3fa22fd25cccd3
+tree bb2b16125a8eb31f0bf98f9ec7e963c47e7ed3aa
+parent 2b7db0b76af549a042854279c804425a7fadde3d
+author Philipp Voglhofer <pv@atikon.com> 2022-04-28 08:46:29 +0200
+committer Philipp Voglhofer <pv@atikon.com> 2022-04-28 08:46:29 +0200
+
+    INT-4537: allow additional sale for KPT 2.0 products regardless of invoicing status
+
+
+:100644 100644 521abb4338353f158291cf9ab1e29c7c45bc3df2 eadc8428e2278f13eae281aa2a1cf238939db677 M	DB/Timemngt/Result/Customer.pm
