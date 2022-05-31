@@ -16,5 +16,5 @@ submethod BUILD(:%test) {
 submethod Str() {
     return
         "$!name\n\tcount: $!count\n"
-        ~ (~ "\t" ~ $_ ~"\n" for %!failed_tests.pairs.sort(*.key.Int));
+        ~ (~"\t" ~ $_ ~ "\n" for %!failed_tests.pairs.sort(*.key.Int));
 }

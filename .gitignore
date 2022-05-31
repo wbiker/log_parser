@@ -1,2 +1,6 @@
+# Caches
 .precomp/
-intranet/
+node_modules/
+
+# Backup files
+*~

@@ -16,6 +16,7 @@ method drop-table() {
     $.dbh.execute(q:to/STATEMENT/);
         DROP TABLE IF EXISTS test_numbers;
         STATEMENT
+
 }
 
 method create-table() {
@@ -43,6 +44,7 @@ method create-table() {
         date INTEGER
     );
     STATEMENT
+
 }
 
 method get-builds() {
@@ -79,23 +81,26 @@ method get-test-file-id(Str $name) {
 }
 
 method store-test-number(Int $build_id, Int $test_file_id, Int $number, Int $date) {
-   $.dbh.execute('INSERT INTO test_numbers (build_id, test_id, number, date) VALUES (?, ?, ?, ?)', $build_id, $test_file_id, $number, $date);
+    $.dbh.execute('INSERT INTO test_numbers (build_id, test_id, number, date) VALUES (?, ?, ?, ?)', $build_id,
+        $test_file_id, $number, $date);
 }
 
 method get-tests($startdate, $name, $build) {
     my @tests;
     if $name {
-       @tests = $.dbh.execute('SELECT * from test_files where name = ?', $name).allrows(:array-of-hash)
+        @tests = $.dbh.execute('SELECT * from test_files where name = ?', $name).allrows(:array-of-hash)
     } elsif $build {
         my $build_info = $.dbh.execute('SELECT id from builds where number = ?', $build.Int);
         $build_info = $build_info.row(:hash);
         return unless $build_info.elems;
 
-        my @test_numbers = $.dbh.execute('SELECT * from test_numbers JOIN test_files ON test_id = test_files.id where build_id = ?', $build_info<id>).allrows(:array-of-hash);
+        my @test_numbers = $.dbh.execute(
+            'SELECT * from test_numbers JOIN test_files ON test_id = test_files.id where build_id = ?', $build_info<id>)
+            .allrows(:array-of-hash);
         my @all_data;
         my %test_number;
         for @test_numbers {
-            %test_number{$_<name>}{$_<number>}.push: "{DateTime.new($_<date>).Date}({$build})";
+            %test_number{$_<name>}{$_<number>}.push: "{ DateTime.new($_<date>).Date }({ $build })";
         }
         for %test_number.kv -> $name, $numbers {
             @all_data.push: { test => $name, numbers => $numbers };
@@ -111,14 +116,16 @@ method get-tests($startdate, $name, $build) {
         $epoch = DateTime.new($startdate ~ 'T00:00:00Z').posix;
     }
 
-    my $sth = $.dbh.prepare('SELECT num.number, num.date, build.number as build FROM test_numbers as num JOIN builds as build On build.id = num.build_id where test_id = ? and date >= ? order by num.number ASC, num.date DESC, build.number DESC');
+    my $sth = $.dbh
+        .
+        prepare('SELECT num.number, num.date, build.number as build FROM test_numbers as num JOIN builds as build On build.id = num.build_id where test_id = ? and date >= ? order by num.number ASC, num.date DESC, build.number DESC');
     my @all_data;
     for @tests -> %test_file {
         my @test_numbers = $sth.execute(%test_file<id>, $epoch).allrows(:array-of-hash);
         if @test_numbers {
             my %test_number;
             for @test_numbers -> $number {
-                %test_number{$number<number>}.push: "{DateTime.new($number<date>).Date}({$number<build>})";
+                %test_number{$number<number>}.push: "{ DateTime.new($number<date>).Date }({ $number<build> })";
             }
             @all_data.push: { test => %test_file<name>, numbers => %test_number };
         }
