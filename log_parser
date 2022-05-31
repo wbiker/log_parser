@@ -1,6 +1,6 @@
 #!/usr/bin/env raku
 use JSON::Fast;
-use Elasticsearch::Data;
+#use Elasticsearch::Data;
 
 use Exporter::Sqlite;
 use FailedTests;
