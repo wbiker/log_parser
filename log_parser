@@ -20,7 +20,6 @@ multi sub MAIN('refresh', Bool :$drop-table) {
     $db.create-table();
 
     my @projects = find-projects($log_dir);
-
     for @projects -> %project {
         my %total_status =
             failed => 0,

@@ -1,7 +1,7 @@
 role TestSearch {
     has @.tests;
 
-    method check(@tests) { ... }
+    method check(@tests) {...}
 }
 
 class AndTest does TestSearch {
@@ -35,7 +35,7 @@ class OrTest does TestSearch {
 class TestCount does TestSearch {
     has $.threshold is required;
 
-    method check(@tests){
+    method check(@tests) {
         my @matchedTests;
         for @tests -> $test {
             @matchedTests.push: $test if $test.count >= $!threshold;
@@ -78,7 +78,7 @@ class TestWithoutErrors does TestSearch {
         my @matched-tests;
         for @tests -> $test {
             if $test.errors.elems > 0 {
-               @matched-tests.push: $test;
+                @matched-tests.push: $test;
             }
         }
 

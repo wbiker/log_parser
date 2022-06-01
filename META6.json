@@ -1,0 +1,32 @@
+{
+  "tags": [
+    ""
+  ],
+  "description": "Write me!",
+  "resources": [
+  ],
+  "depends": [
+    "Cro::HTTP",
+    "Cro::WebSocket"
+  ],
+  "test-depends": [
+  ],
+  "auth": "Write me!",
+  "name": "Logs",
+  "build-depends": [
+  ],
+  "authors": [
+    ""
+  ],
+  "raku": null,
+  "license": "Write me!",
+  "source-url": "Write me!",
+  "support": {
+    "source": "Write me!"
+  },
+  "version": "0.0.1",
+  "meta-version": "0",
+  "provides": {
+    "Routes": "lib/Routes.pm6"
+  }
+}

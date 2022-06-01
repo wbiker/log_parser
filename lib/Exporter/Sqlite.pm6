@@ -56,6 +56,7 @@ method create-table() {
         date INTEGER
     );
     STATEMENT
+
 }
 
 method get-project-id($project) {
@@ -125,7 +126,8 @@ method get-test-file-id(Str $name, Int $project_id) {
 }
 
 method store-test-number(Int $build_id, Int $test_file_id, Int $number, Int $date) {
-   $.dbh.execute('INSERT INTO test_numbers (build_id, test_id, number, date) VALUES (?, ?, ?, ?)', $build_id, $test_file_id, $number, $date);
+    $.dbh.execute('INSERT INTO test_numbers (build_id, test_id, number, date) VALUES (?, ?, ?, ?)', $build_id,
+        $test_file_id, $number, $date);
 }
 
 method get-tests($startdate, $name, $build, Int $project_id) {
@@ -137,11 +139,13 @@ method get-tests($startdate, $name, $build, Int $project_id) {
         $build_info = $build_info.row(:hash);
         return unless $build_info.elems;
 
-        my @test_numbers = $.dbh.execute('SELECT * from test_numbers JOIN test_files ON test_id = test_files.id where build_id = ?', $build_info<id>).allrows(:array-of-hash);
+        my @test_numbers = $.dbh.execute(
+            'SELECT * from test_numbers JOIN test_files ON test_id = test_files.id where build_id = ?', $build_info<id>)
+            .allrows(:array-of-hash);
         my @all_data;
         my %test_number;
         for @test_numbers {
-            %test_number{$_<name>}{$_<number>}.push: "{DateTime.new($_<date>).Date}({$build})";
+            %test_number{$_<name>}{$_<number>}.push: "{ DateTime.new($_<date>).Date }({ $build })";
         }
         for %test_number.kv -> $name, $numbers {
             @all_data.push: { test => $name, numbers => $numbers };
@@ -164,7 +168,7 @@ method get-tests($startdate, $name, $build, Int $project_id) {
         if @test_numbers {
             my %test_number;
             for @test_numbers -> $number {
-                %test_number{$number<number>}.push: "{DateTime.new($number<date>).Date}({$number<build>})";
+                %test_number{$number<number>}.push: "{ DateTime.new($number<date>).Date }({ $number<build> })";
             }
             @all_data.push: { test => %test_file<name>, numbers => %test_number };
         }

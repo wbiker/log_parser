@@ -1,0 +1,15 @@
+---
+"cro": 1
+"endpoints": 
+  - 
+    "host-env": "LOGS_HOST"
+    "id": "http"
+    "name": "HTTP"
+    "port-env": "LOGS_PORT"
+    "protocol": "http"
+"entrypoint": "service.p6"
+"env":  []
+"id": "Logs"
+"links":  []
+"name": "Logs"
+...
