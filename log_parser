@@ -7,9 +7,12 @@ use FailedTests;
 use JenkinsLog;
 use JenkinsTest;
 
-my $log_dir = '/home/wb/tools/log_parser/logs/'.IO;
+#my $log_dir = '/home/wb/tools/log_parser/logs/'.IO;
 
-my $db = Exporter::Sqlite.new;
+my $root = $*PROGRAM.parent;
+my $log_dir = $root.add('/logs');
+
+my $db = Exporter::Sqlite.new(database => $root.add('tests.sqlite3').absolute);
 # my %auth =
 #     username => 'elastic',
 #     password => 'verySecret';

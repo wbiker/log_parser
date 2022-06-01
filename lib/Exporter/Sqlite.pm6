@@ -2,7 +2,13 @@ use DBIish;
 
 unit class Exporter::Sqlite;
 
-has $.dbh = DBIish.connect('SQLite', :database<tests.sqlite3>);
+has $.database is required;
+
+has $.dbh;
+
+submethod TWEAK() {
+    $!dbh = DBIish.connect('SQLite', :database($!database));
+}
 
 method drop-table() {
     $.dbh.execute(q:to/STATEMENT/);
