@@ -1,32 +1,32 @@
 {
-  "tags": [
-    ""
-  ],
-  "description": "Write me!",
-  "resources": [
-  ],
-  "depends": [
-    "Cro::HTTP",
-    "Cro::WebSocket"
-  ],
-  "test-depends": [
-  ],
-  "auth": "Write me!",
   "name": "Logs",
-  "build-depends": [
-  ],
+  "description": "Write me!",
+  "version": "0.0.1",
+  "meta-version": "0",
   "authors": [
     ""
   ],
-  "raku": null,
-  "license": "Write me!",
-  "source-url": "Write me!",
+  "auth": "Write me!",
+  "depends": [
+    "Cro::HTTP",
+    "Cro::WebSocket",
+    "DBIish",
+    "Cro::WebApp::Template"
+  ],
+  "build-depends": [],
+  "test-depends": [],
+  "provides": {
+    "Exporter::Sqlite": "lib/Exporter/Sqlite.rakumod",
+    "Routes": "lib/Routes.rakumod"
+  },
+  "resources": [],
   "support": {
     "source": "Write me!"
   },
-  "version": "0.0.1",
-  "meta-version": "0",
-  "provides": {
-    "Routes": "lib/Routes.pm6"
-  }
+  "license": "Write me!",
+  "tags": [
+    ""
+  ],
+  "source-url": "Write me!",
+  "raku": {}
 }
