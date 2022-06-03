@@ -8,8 +8,11 @@ sub routes() is export {
             template 'templates/greet.crotmp', {};
         }
 
-        get -> 'greet', $name {
-            template 'templates/greet.crotmp', { :$name };
+        get -> 'data' {
+            content 'application/json', {
+                labels => [1, 2, 3, 4],
+                values => [23, 54, 23, 22],
+            };
         }
 
         get -> 'js',  *@path {
