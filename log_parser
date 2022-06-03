@@ -145,6 +145,22 @@ multi sub MAIN(:$count = 0, :$startdate, :$name, :$build, :$project = 'intranet'
     }
 }
 
+multi sub MAIN('aa', :$count = 0, :$startdate, :$name, :$build) {
+    samewith(:$count, :$startdate, :$name, :$build, project => 'atikon-api');
+}
+
+multi sub MAIN('ao', :$count = 0, :$startdate, :$name, :$build) {
+    samewith(:$count, :$startdate, :$name, :$build, project => 'onlinetools');
+}
+
+multi sub MAIN('cms', :$count = 0, :$startdate, :$name, :$build) {
+    samewith(:$count, :$startdate, :$name, :$build, project => 'cms');
+}
+
+multi sub MAIN('ma', :$count = 0, :$startdate, :$name, :$build) {
+    samewith(:$count, :$startdate, :$name, :$build, project => 'mein-atikon');
+}
+
 sub find-projects($dir) {
     my @projects;
 
