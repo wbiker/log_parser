@@ -1,1 +1,13 @@
-<h1>Logs</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/frappe-charts@1.2.4/dist/frappe-charts.min.iife.js"></script>
+        <script type="module" src="/js/frappe_chart.js"></script>
+    </head>
+    <body>
+        <h1>Logs</h1>
+        <h2>Mahe</h2>
+
+        <div id="chart"></div>
+    </body>
+</html>
