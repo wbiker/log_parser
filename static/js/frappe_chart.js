@@ -58,8 +58,26 @@
 // });
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    get_data();
+    let project_select = document.getElementById('projects');
+    project_select.onchange = get_project_data;
 });
+
+async function get_project_data(event) {
+    let select = event.target;
+    if (select.selectedIndex < 1) {
+        return
+    }
+
+    let response = await fetch(`/project/${select[select.selectedIndex].value}`);
+
+    if (response.ok) { // if HTTP-status is 200-299
+        // get the response body (the method explained below)
+        let json = await response.json();
+        write_graph(json);
+   } else {
+        alert("HTTP-Error: " + response.status);
+   }
+}
 
 async function get_data() {
    let response = await fetch('/data');

@@ -74,6 +74,40 @@ method get-project-id($project) {
     return Nil;
 }
 
+method get-projects(--> Array) {
+    my @projects = $.dbh.execute('SELECT id,name FROM projects').allrows(:array-of-hash);
+
+    return @projects;
+}
+
+method get-project(Int $project-id, --> Hash) {
+    my @tests = $.dbh.execute('SELECT * from test_files where project_id =? order by name', $project-id).allrows(:array-of-hash);
+
+    my $sth = $.dbh.prepare(
+            'SELECT num.number, num.date, build.number as build FROM test_numbers as num ' ~
+            'JOIN builds as build On build.id = num.build_id ' ~
+            'where test_id = ? and date >= ? and project_id = ? ' ~
+            'order by num.number ASC, num.date DESC, build.number DESC');
+
+    my %data;
+    for @tests -> %test_file {
+        my @test_numbers = $sth.execute(%test_file<id>, 0, $project-id).allrows(:array-of-hash);
+        if @test_numbers {
+            %data<labels>.push: %test_file<name>;
+
+            my $count = 0;
+            for @test_numbers -> $number {
+#                %test_number{$number<number>}.push: "{ DateTime.new($number<date>).Date }({ $number<build> })";
+                ++$count;
+            }
+
+            %data<values>.push: $count;
+        }
+    }
+
+    return %data;
+}
+
 method find-or-create-project-id($project) {
     my $sth = $.dbh.execute('SELECT id FROM projects where name = ?', $project);
 
@@ -154,7 +188,7 @@ method get-tests($startdate, $name, $build, Int $project_id) {
             %test_number{$_<name>}{$_<number>}.push: "{ DateTime.new($_<date>).Date }({ $build })";
         }
         for %test_number.kv -> $name, $numbers {
-            @all_data.push: { test => $name, numbers => $numbers };
+            @all_data.push: { test => $name, :$numbers};
         }
 
         return @all_data;

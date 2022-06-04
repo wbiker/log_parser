@@ -6,8 +6,16 @@
     </head>
     <body>
         <h1>Logs</h1>
-        <h2>Mahe</h2>
 
         <div id="chart"></div>
+
+        <div>
+            <select name="projects" id="projects">
+                    <option value="">--Please choose an project--</option>
+                <@projects>
+                    <option value="<.id>"><.name></option>
+                </@>
+            </select>
+        </div>
     </body>
 </html>

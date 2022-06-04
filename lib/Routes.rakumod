@@ -3,36 +3,33 @@ use Cro::HTTP::Router::WebSocket;
 use Cro::WebApp::Template;
 
 use Exporter::Sqlite;
+use Model::Tests;
 
 my $db = Exporter::Sqlite.new(database => 'tests.sqlite3');
 
 sub routes() is export {
     route {
+        template-location 'templates/';
+
         get -> {
-            template 'templates/greet.crotmp', {};
+            my $tests = Model::Tests.new(:$db);
+            my @projects = $tests.get-projects();
+
+            template 'greet.crotmp', { :@projects };
+        }
+
+        get -> 'project', Int $project_id {
+            my $tests = Model::Tests.new(:$db);
+            my $project-data = $tests.get-project($project_id);
+
+            content 'application/json', {
+                labels => $project-data<labels>,
+                values => $project-data<values>,
+            }
         }
 
         get -> 'data' {
-            my $project_id = $db.get-project-id('intranet');
-
-            my @tests = $db.get-tests("", "", "", $project_id);
-            my %test_count;
-            my @labels;
-            my @values;
-            for @tests -> %test {
-                my $count = 0;
-                for %test<numbers>.pairs.sort(*.key.Int) -> $number {
-                    ++$count;
-                }
-                next unless $count > 1;
-
-                @labels.push: %test<test>;
-                @values.push: $count;
-            }
-            content 'application/json', {
-                :@labels,
-                :@values,
-            };
+            content 'application/json', { };
         }
 
         get -> 'js',  *@path {
