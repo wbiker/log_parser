@@ -1,10 +1,11 @@
 use DBIish;
+use Logger;
 
 unit class Exporter::Sqlite;
 
 has $.database is required;
-
 has $.dbh;
+has $.log = Logger.new(level => Logger::DEBUG);
 
 submethod TWEAK() {
     $!dbh = DBIish.connect('SQLite', :database($!database));
@@ -93,18 +94,25 @@ method get-project(Int $project-id, --> Hash) {
     for @tests -> %test_file {
         my @test_numbers = $sth.execute(%test_file<id>, 0, $project-id).allrows(:array-of-hash);
         if @test_numbers {
+            my %t = name => %test_file<name>;
             %data<labels>.push: %test_file<name>;
 
             my $count = 0;
             for @test_numbers -> $number {
-#                %test_number{$number<number>}.push: "{ DateTime.new($number<date>).Date }({ $number<build> })";
+                %data<tests>{%test_file<name>}{$number<number>} ~= "{ DateTime.new($number<date>).Date }({ $number<build> }) ";
                 ++$count;
             }
 
             %data<values>.push: $count;
+            for %data<tests>{%test_file<name>}.sort -> $num {
+                %t<tests>.push: $num;
+            }
+
+            %data<tests>{%test_file<name>} = %t;
         }
     }
 
+    %data<numbers> = %data<tests>.keys.sort.map({name => $_, tests => %data<tests>{$_}}).Array;
     return %data;
 }
 

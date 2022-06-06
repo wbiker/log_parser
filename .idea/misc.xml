@@ -82,6 +82,6 @@
       <textMaps />
     </LinkMapSettings>
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Raku v2022.02" project-jdk-type="Raku SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Raku v2022.04" project-jdk-type="Raku SDK" />
   <component name="edument.perl6idea.language.RakuLanguageVersionService" version="D" explicit-for-new="true" />
 </project>

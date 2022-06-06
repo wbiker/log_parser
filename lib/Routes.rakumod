@@ -14,17 +14,20 @@ sub routes() is export {
         get -> {
             my $tests = Model::Tests.new(:$db);
             my @projects = $tests.get-projects();
+            my $project-data = $tests.get-project(1);
 
-            template 'greet.crotmp', { :@projects };
+            template 'index.crotmp', { :@projects, :$project-data };
         }
 
         get -> 'project', Int $project_id {
             my $tests = Model::Tests.new(:$db);
             my $project-data = $tests.get-project($project_id);
+            dd $project-data<numbers>;
 
             content 'application/json', {
                 labels => $project-data<labels>,
                 values => $project-data<values>,
+                tests  => $project-data<numbers>,
             }
         }
 

@@ -64,19 +64,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 async function get_project_data(event) {
     let select = event.target;
-    if (select.selectedIndex < 1) {
-        return
-    }
+    select.disabled = true;
 
     let response = await fetch(`/project/${select[select.selectedIndex].value}`);
 
     if (response.ok) { // if HTTP-status is 200-299
         // get the response body (the method explained below)
         let json = await response.json();
-        write_graph(json);
-   } else {
+//        write_graph(json);
+         fill_test_table(json);
+    } else {
         alert("HTTP-Error: " + response.status);
-   }
+    }
+    select.disabled = false;
 }
 
 async function get_data() {
@@ -86,6 +86,7 @@ async function get_data() {
      // get the response body (the method explained below)
      let json = await response.json();
      write_graph(json);
+     fill_test_table(json);
    } else {
      alert("HTTP-Error: " + response.status);
    }
@@ -119,4 +120,12 @@ function write_graph(json) {
         height: 250,
         colors: ['#7cd6fd', '#743ee2']
     })
+}
+
+function fill_test_table(json) {
+    console.log(json);
+    for (let test in json.tests) {
+        console.log(test[0][0]);
+        console.log(test[0][1]);
+    }
 }
