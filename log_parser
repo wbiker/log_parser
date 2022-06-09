@@ -129,12 +129,15 @@ multi sub status('success', %log_file_data, %total_status, $file) {
     # $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'success', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
 }
 
-multi sub MAIN(:$count = 0, :$startdate, :$name, :$build, :$project = 'intranet') {
+multi sub MAIN(:$count = 0, :$since, :$name, :$build, :$project = 'intranet') {
     my $project_id = $db.get-project-id($project.lc);
     unless $project_id {
         note "'$project' does not exists";
         exit 1;
     }
+
+    my $startdate = calculate-since($since);
+    dd $startdate;
 
     my @tests = $db.get-tests($startdate, $name, $build, $project_id);
     for @tests -> %test {
@@ -145,20 +148,41 @@ multi sub MAIN(:$count = 0, :$startdate, :$name, :$build, :$project = 'intranet'
     }
 }
 
-multi sub MAIN('aa', :$count = 0, :$startdate, :$name, :$build) {
-    samewith(:$count, :$startdate, :$name, :$build, project => 'atikon-api');
+multi sub MAIN('aa', :$count = 0, :$since, :$name, :$build) {
+    samewith(:$count, :$since, :$name, :$build, project => 'atikon-api');
 }
 
-multi sub MAIN('ao', :$count = 0, :$startdate, :$name, :$build) {
-    samewith(:$count, :$startdate, :$name, :$build, project => 'onlinetools');
+multi sub MAIN('ao', :$count = 0, :$since, :$name, :$build) {
+    samewith(:$count, :$since, :$name, :$build, project => 'onlinetools');
 }
 
-multi sub MAIN('cms', :$count = 0, :$startdate, :$name, :$build) {
-    samewith(:$count, :$startdate, :$name, :$build, project => 'cms');
+multi sub MAIN('cms', :$count = 0, :$since, :$name, :$build) {
+    samewith(:$count, :$since, :$name, :$build, project => 'cms');
 }
 
-multi sub MAIN('ma', :$count = 0, :$startdate, :$name, :$build) {
-    samewith(:$count, :$startdate, :$name, :$build, project => 'mein-atikon');
+multi sub MAIN('ma', :$count = 0, :$since, :$name, :$build) {
+    samewith(:$count, :$since, :$name, :$build, project => 'mein-atikon');
+}
+
+sub calculate-since($since) {
+    return unless $since;
+
+    return $since if is-date($since);
+
+    given $since {
+        when 'yesterday' { return DateTime.now.earlier(:1day).Date.Str }
+        when /(\d+) 'd' 'ay'? 's'?/ { return DateTime.now.earlier(day => $0.Int).Date.Str }
+        when /(\d+) 'w' 'eek'? 's'?/ { return DateTime.now.earlier(week => $0.Int).Date.Str }
+        default { die "Could not calculate since from string: '$since'. Expected are strings like '2022-06-06', '2days', '1week' or 'yesterday'"}
+    }
+}
+
+sub is-date(Str $string --> Bool) {
+    return False unless $string;
+
+    return True if so $string ~~ /\d ** 4 '-' \d ** 2 '-' \d ** 2/;
+
+    return False;
 }
 
 sub find-projects($dir) {
