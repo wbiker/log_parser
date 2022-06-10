@@ -12,4 +12,8 @@ class Model::Tests {
     method get-project(Int $project-id) {
         return $!db.get-project($project-id);
     }
+
+    method get-test-file-data(Int $test-file-id) {
+        return $!db.get-test-file-data($test-file-id);
+    }
 }

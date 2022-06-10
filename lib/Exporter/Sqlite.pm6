@@ -92,27 +92,81 @@ method get-project(Int $project-id, --> Hash) {
 
     my %data;
     for @tests -> %test_file {
+        %data<test_files>.push: %test_file;
+
         my @test_numbers = $sth.execute(%test_file<id>, 0, $project-id).allrows(:array-of-hash);
         if @test_numbers {
-            my %t = name => %test_file<name>;
+            my %temp;
             %data<labels>.push: %test_file<name>;
 
             my $count = 0;
             for @test_numbers -> $number {
-                %data<tests>{%test_file<name>}{$number<number>} ~= "{ DateTime.new($number<date>).Date }({ $number<build> }) ";
+                %temp{$number<number>} ~= "{ DateTime.new($number<date>).Date }({ $number<build> }) ";
                 ++$count;
             }
 
             %data<values>.push: $count;
-            for %data<tests>{%test_file<name>}.sort -> $num {
-                %t<tests>.push: $num;
+
+            my @t;
+            for %temp.sort(*.key.Int) -> $pair {
+                @t.push: [$pair.key, $pair.value];
             }
 
-            %data<tests>{%test_file<name>} = %t;
+            %data<numbers>.push: %(name => %test_file<name>, tests => @t);
         }
     }
 
-    %data<numbers> = %data<tests>.keys.sort.map({name => $_, tests => %data<tests>{$_}}).Array;
+    return %data;
+}
+
+method get-test-file-data(Int $test-file-id, --> Hash) {
+    my %test = $.dbh.execute('SELECT id,name from test_files where id = ?', $test-file-id).row(:hash);
+
+    my $sth = $.dbh.prepare(
+            'SELECT num.number, num.date, build.number as build FROM test_numbers as num ' ~
+            'JOIN builds as build On build.id = num.build_id ' ~
+            'where test_id = ? and date >= ?' ~
+            'order by num.number ASC, num.date DESC, build.number DESC');
+
+    my %data;
+        my @test_numbers = $sth.execute(%test<id>, 0).allrows(:array-of-hash);
+
+        my @dates;
+        my $date = DateTime.now.earlier(:3weeks);
+        loop {
+            @dates.push: $date.Date.Str;
+            %data<values>.push: 0;
+
+            $date = $date.later(:1day);
+
+            last if $date > DateTime.now;
+        }
+
+        %data<labels> = @dates;
+
+        if @test_numbers {
+            my %temp;
+
+            my $count = 0;
+            for @test_numbers -> $number {
+                my $test-date = DateTime.new($number<date>).Date;
+                for @dates.kv -> $index, $value {
+                    if $value eq $test-date.Str {
+                        ++%data<values>[$index];
+                    }
+                }
+
+                %temp{$number<number>} ~= "{ $test-date }({ $number<build> }) ";
+            }
+
+            my @t;
+            for %temp.sort(*.key.Int) -> $pair {
+                @t.push: [$pair.key, $pair.value];
+            }
+
+            %data<numbers>.push: %(name => %test<name>, tests => @t);
+        }
+
     return %data;
 }
 

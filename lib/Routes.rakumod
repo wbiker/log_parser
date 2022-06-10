@@ -22,12 +22,24 @@ sub routes() is export {
         get -> 'project', Int $project_id {
             my $tests = Model::Tests.new(:$db);
             my $project-data = $tests.get-project($project_id);
-            dd $project-data<numbers>;
 
             content 'application/json', {
-                labels => $project-data<labels>,
-                values => $project-data<values>,
-                tests  => $project-data<numbers>,
+                labels     => $project-data<labels>,
+                values     => $project-data<values>,
+                tests      => $project-data<numbers>,
+                test_files => $project-data<test_files>,
+            }
+        }
+
+        get -> 'test_files', Int $test_file_id {
+            my $tests = Model::Tests.new(:$db);
+            my $test-file-data = $tests.get-test-file-data($test_file_id);
+
+            dd $test-file-data;
+            content 'application/json', {
+                labels => $test-file-data<labels>,
+                values => $test-file-data<values>,
+                tests  => $test-file-data<numbers>,
             }
         }
 

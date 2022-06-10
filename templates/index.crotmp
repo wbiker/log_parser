@@ -19,25 +19,32 @@
                 </@>
             </select>
         </div>
-
         <div>
-            <select name="test_file" id="test_file">
+            <select name="test_file" id="test_files">
                 <option value="">Test file</option>
+                <@project-data.test_files>
+                    <option value="<.id>"><.name></option>
+                </@>
             </select>
         </div>
+
         <div>
-            <table>
+            <table id="test_table">
                 <thead>
                     <tr>
                         <th>Test File</th>
-                        <th>Test number + Date</th>
+                        <th>Test number</th>
+                        <th>Date</th>
                     </rt>
                 </thead>
-                <tbody>
+                <tbody id="test_table_body">
                         <@project-data.numbers>
                             <tr>
-                                <td><.[0].name></td>
-                                <td><.[1].tests></td>
+                                <td><.name></td>
+                                    <@.tests>
+                                        <td><.[0]></td>
+                                        <td><.[1]></td>
+                                    </@>
                             </tr>
                         </@>
                 </tbody>
