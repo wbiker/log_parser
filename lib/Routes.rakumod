@@ -43,6 +43,10 @@ sub routes() is export {
             }
         }
 
+        get -> 'month_view' {
+            template 'month_view.crotmp';
+        }
+
         get -> 'data' {
             content 'application/json', { };
         }

@@ -2,13 +2,13 @@
 <html>
     <head>
         <script src="https://unpkg.com/frappe-charts@1.2.4/dist/frappe-charts.min.iife.js"></script>
-        <script type="module" src="/js/frappe_chart.js"></script>
+        <script type="module" src="/js/frappe_chart_month_view.js"></script>
     </head>
     <body>
         <h1>Logs</h1>
 
         <div>
-            <a href="month_view">Last month</a>
+            <a href="/">Root</a>
         </div>
 
         <div id="chart"></div>
