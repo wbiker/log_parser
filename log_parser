@@ -82,29 +82,27 @@ multi sub status('failure', %log_file_data, %total_status, Str $file) {
         my $fail_date = %log_file_data<starttime>.DateTime;
         for $ma.flat -> $h {
             my $name = $h<name>.Str;
-            my %testh;
+
             for $h<errors>.flat -> $error {
-                if $error.starts-with('Failed test') or $error ~~ /^ \d+/ {
-                    my $m = FailedTests.subparse($error, :actions(Action::FailedTests.new));
-                    my $test_file_id = $db.get-test-file-id($name, %log_file_data<project_id>);
+                my $test_file_id = $db.get-test-file-id($name, %log_file_data<project_id>);
 
-                    if $m {
-                        for $m.made -> $n {
-                            for $n.flat {
-                                # my %elastic;
-                                # %elastic<test> = $name;
-                                # %elastic<build> = %log_file_data<build>;
-                                # %elastic<date> = $fail_date;
-                                # %elastic<failed_test> = $_;
-        #                          $elasticsearch.post(data => %elastic);
+                my $m = FailedTests.subparse($error, :actions(Action::FailedTests.new));
 
-                                %testh<failed_tests>{$_}.push: $fail_date;
-                                $db.store-test-number($build_id, $test_file_id, $_, $fail_date.posix);
-                            }
+                if $m {
+                    for $m.made -> $n {
+                        for $n.flat {
+                            # my %elastic;
+                            # %elastic<test> = $name;
+                            # %elastic<build> = %log_file_data<build>;
+                            # %elastic<date> = $fail_date;
+                            # %elastic<failed_test> = $_;
+                            # $elasticsearch.post(data => %elastic);
+
+                            $db.store-test-number($build_id, $test_file_id, $_, $fail_date.posix);
                         }
-                    } else {
-                        note "Nothing found for test {$h<name>} in error {$error}";
                     }
+                } else {
+                    note "Nothing found for test {$h<name>} in error {$error}";
                 }
             }
         }
@@ -143,7 +141,7 @@ multi sub MAIN(:$count = 0, :$since, :$name, :$build, :$project = 'intranet') {
     for @tests -> %test {
         say %test<test>;
         for %test<numbers>.pairs.sort(*.key.Int) -> $number {
-            put "\t", $number;
+            put "\t", $number.key == -1 ?? 'No plan found in TAP output' ~ "\t" ~ $number.value !! $number;
         }
     }
 }
@@ -162,6 +160,11 @@ multi sub MAIN('cms', :$count = 0, :$since, :$name, :$build) {
 
 multi sub MAIN('ma', :$count = 0, :$since, :$name, :$build) {
     samewith(:$count, :$since, :$name, :$build, project => 'mein-atikon');
+}
+
+multi sub MAIN('deleteandcreatetables') {
+    $db.drop-table();
+    $db.create-table();
 }
 
 sub calculate-since($since) {

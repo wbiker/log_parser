@@ -44,7 +44,10 @@ sub routes() is export {
         }
 
         get -> 'month_view' {
-            template 'month_view.crotmp';
+            my $tests = Model::Tests.new(:$db);
+            my @projects = $tests.get-projects();
+
+            template 'month_view.crotmp', { :@projects };
         }
 
         get -> 'data' {

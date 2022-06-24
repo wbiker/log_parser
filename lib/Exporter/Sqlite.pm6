@@ -109,7 +109,11 @@ method get-project(Int $project-id, --> Hash) {
 
             my @t;
             for %temp.sort(*.key.Int) -> $pair {
-                @t.push: [$pair.key, $pair.value];
+                if $pair.key == -1 {
+                    @t.push: ['No plan found in TAP output', $pair.value];
+                } else {
+                    @t.push: [$pair.key, $pair.value];
+                }
             }
 
             %data<numbers>.push: %(name => %test_file<name>, tests => @t);
@@ -161,7 +165,11 @@ method get-test-file-data(Int $test-file-id, --> Hash) {
 
             my @t;
             for %temp.sort(*.key.Int) -> $pair {
-                @t.push: [$pair.key, $pair.value];
+                if $pair.key == -1 {
+                    @t.push: ['No plan found in TAP output', $pair.value];
+                } else {
+                    @t.push: [$pair.key, $pair.value];
+                }
             }
 
             %data<numbers>.push: %(name => %test<name>, tests => @t);

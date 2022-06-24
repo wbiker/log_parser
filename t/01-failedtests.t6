@@ -1,15 +1,21 @@
 use Test;
 
-use Grammar::ErrorReporting;
-#use Grammar::PrettyErrors;
+# use Grammar::ErrorReporting;
+# use Grammar::PrettyErrors;
+# use Grammar::Debugger;
 
 use FailedTests;
 
 my $test = 'Failed tests:  60-65, 67';
 my $m = FailedTests.subparse($test, :actions(Action::FailedTests.new));
-dd $m.made;
+is $m.made, [60, 61, 62, 63, 64, 65, 67], 'Range and number found';
 
 $test = 'Failed test:  7';
 $m = FailedTests.subparse($test, :actions(Action::FailedTests.new));
-dd $m.made;
+is $m.made, [7], 'Single number found';
+
+$test = '  Parse errors: No plan found in TAP output';
+$m = FailedTests.subparse($test, :actions(Action::FailedTests.new));
+is $m.made, ["Parse errors: No plan found in TAP output"], 'Parse error string found';
+
 done-testing;

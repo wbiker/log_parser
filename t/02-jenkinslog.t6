@@ -1,8 +1,5 @@
 use Test;
 
-use Grammar::ErrorReporting;
-#use Grammar::PrettyErrors;
-
 use JenkinsLog;
 
 my $test = q:to/END/;
@@ -14,11 +11,15 @@ t/invoice_misc.t                                                    (Wstat: 0 Te
   Failed test:  7
 t/process_homepage_change.t                                         (Wstat: 0 Tests: 99 Failed: 7)
   Failed tests:  60-65, 67
+t/ovc_usability.t                                                   (Wstat: 0 Tests: 1 Failed: 0)
+  Parse errors: No plan found in TAP output
 Files=301, Tests=11197, 1985 wallclock secs ( 6.94 usr  0.89 sys + 7448.02 cusr 596.63 csys = 8052.48 CPU)
 Result: FAIL
 END
 
 my $m = JenkinsLog::TestSummaryReport.subparse($test, :actions(Action::JenkinsLog::TestSummaryReport.new));
-dd $m.made;
+is-deeply $m.made, [{:errors($["Failed test:  7"]), :name("t/invoice_misc.t")},
+                    {:errors($["Failed tests:  60-65, 67"]), :name("t/process_homepage_change.t")},
+                    {:errors($["Parse errors: No plan found in TAP output"]), :name("t/ovc_usability.t")}], 'Single number, range and Parse Error found';
 
 done-testing;
