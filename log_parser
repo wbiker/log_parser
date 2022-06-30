@@ -56,7 +56,7 @@ multi sub MAIN('refresh', Bool :$drop-table) {
             my $file = %log_file_data<log>.slurp(:enc('utf8-c8'), :close);
             my $status = JenkinsLog.subparse($file);
             if not $status {
-                $db.store-build(%log_file_data<build>.Int, 'no status found', %project<id>);
+                $db.store-build(%log_file_data<build>.Int, 'no status found', %project<id>, %log_file_data<starttime>.posix);
     #            $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'no status found', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
                 note "could not find status in log file {%log_file_data<log>}";
                 next;
@@ -77,7 +77,7 @@ multi sub status('failure', %log_file_data, %total_status, Str $file) {
     my $m = JenkinsLog::TestSummaryReport.subparse($file, :actions(Action::JenkinsLog::TestSummaryReport.new));
 
     if $m {
-        my $build_id = $db.store-build(%log_file_data<build>.Int, 'failure', %log_file_data<project_id>);
+        my $build_id = $db.store-build(%log_file_data<build>.Int, 'failure', %log_file_data<project_id>, %log_file_data<starttime>.posix);
         my $ma = $m.made;
         my $fail_date = %log_file_data<starttime>.DateTime;
         for $ma.flat -> $h {
@@ -107,7 +107,7 @@ multi sub status('failure', %log_file_data, %total_status, Str $file) {
             }
         }
     } else {
-        $db.store-build(%log_file_data<build>.Int, 'Error passing log', %log_file_data<project_id>);
+        $db.store-build(%log_file_data<build>.Int, 'Error passing log', %log_file_data<project_id>, %log_file_data<starttime>.posix);
         #$elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'Error passing log', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
         say "war wohl nichts mit {%log_file_data<log>}";
     }
@@ -116,14 +116,14 @@ multi sub status('failure', %log_file_data, %total_status, Str $file) {
 multi sub status('aborted', %log_file_data, %total_status, $file) {
     say 'aborted';
     ++%total_status<aborted>;
-    $db.store-build(%log_file_data<build>.Int, 'aborted', %log_file_data<project_id>);
+    $db.store-build(%log_file_data<build>.Int, 'aborted', %log_file_data<project_id>, %log_file_data<starttime>.posix);
     # $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'aborted', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
 }
 
 multi sub status('success', %log_file_data, %total_status, $file) {
     say 'success';
     ++%total_status<passed>;
-    $db.store-build(%log_file_data<build>.Int, 'success', %log_file_data<project_id>);
+    $db.store-build(%log_file_data<build>.Int, 'success', %log_file_data<project_id>, %log_file_data<starttime>.posix);
     # $elasticsearch.post(data => { build => %log_file_data<build>.Int, status => 'success', date => %log_file_data<starttime>.DateTime }, index => 'tests-builds') if %log_file_data<starttime>:exists;
 }
 
@@ -165,6 +165,27 @@ multi sub MAIN('ma', :$count = 0, :$since, :$name, :$build) {
 multi sub MAIN('deleteandcreatetables') {
     $db.drop-table();
     $db.create-table();
+}
+
+multi sub MAIN('passfail') {
+    my $last-week = DateTime.new(date => DateTime.now.Date).earlier(week => 1).posix;
+    my $today = DateTime.now.posix;
+
+    my @builds = $db.get-builds(1, $last-week, $today);
+
+    my ($passed, $failed, $aborted) = 0;
+    my $total = @builds.elems;
+
+    for @builds -> $build {
+        say $build<number>, "\t", $build<status>;
+        given $build<status> {
+            when 'success' { ++$passed }
+            when 'failure' { ++$failed }
+            when 'aborted' { ++$aborted }
+        }
+    }
+
+    say "Total/Passed/Failed/Aborted: $total/$passed/$failed/$aborted"; 
 }
 
 sub calculate-since($since) {
@@ -220,10 +241,12 @@ sub find-files(IO() $dir, Int $project_id) {
                 }
             }
 
-            if not %test_data<starttime>:exists {
-                note "starttime not found: ", $item.parent;
-            }
         }
+
+        if not %test_data<starttime>:exists {
+            %test_data<starttime> = DateTime.new(0);
+        }
+
         %test_data<build> = $item.parent.basename;
         if not %test_data<build>:exists {
             note "build not found: ", $item.parent;

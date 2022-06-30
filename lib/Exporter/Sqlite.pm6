@@ -42,7 +42,8 @@ method create-table() {
         id INTEGER PRIMARY KEY,
         number INTEGER,
         status TEXT,
-        project_id INTEGER
+        project_id INTEGER,
+        date INTEGER
     );
     STATEMENT
 
@@ -189,8 +190,17 @@ method find-or-create-project-id($project) {
     return $.dbh.execute('SELECT id FROM projects where name = ?', $project).row[0];
 }
 
-method get-builds(Int $project_id) {
+multi method get-builds(Int $project_id) {
     my $sth = $.dbh.execute('SELECT * FROM builds where project_id = ?', $project_id);
+
+    my @builds = $sth.allrows(:array-of-hash);
+    $sth.dispose;
+
+    return @builds;
+}
+
+multi method get-builds(Int $project_id, Int $start-date, Int $end-date) {
+    my $sth = $.dbh.execute('SELECT * FROM builds where project_id = ? and date >= ? and date <= ? order by date', $project_id, $start-date, $end-date);
 
     my @builds = $sth.allrows(:array-of-hash);
     $sth.dispose;
@@ -219,8 +229,8 @@ method get-build(Int $number, Int $project_id) {
     return %build;
 }
 
-method store-build(Int $number, Str $status, Int $project_id) {
-    $.dbh.execute('INSERT INTO builds (number, status, project_id) VALUES (?, ?, ?)', $number, $status, $project_id);
+method store-build(Int $number, Str $status, Int $project_id, Int $date) {
+    $.dbh.execute('INSERT INTO builds (number, status, project_id, date) VALUES (?, ?, ?, ?)', $number, $status, $project_id, $date);
 
     return self.get-build($number, $project_id)<id>;
 }
