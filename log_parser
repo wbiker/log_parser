@@ -6,6 +6,7 @@ use Exporter::Sqlite;
 use FailedTests;
 use JenkinsLog;
 use JenkinsTest;
+use Week;
 
 #my $log_dir = '/home/wb/tools/log_parser/logs/'.IO;
 
@@ -167,17 +168,20 @@ multi sub MAIN('deleteandcreatetables') {
     $db.create-table();
 }
 
-multi sub MAIN('passfail') {
-    my $last-week = DateTime.new(date => DateTime.now.Date).earlier(week => 1).posix;
-    my $today = DateTime.now.posix;
+multi sub MAIN('passfail', :$start_date, :$end_date, :$week-number, :$show = False, :$project = 'intranet') {
+    my $project-id = $db.get-project-id($project.lc);
+    my $week = Week.new(DateTime.now.Date);
+    $week.earlier(week => $week-number) if $week-number;
+    my @builds = $db.get-builds($project-id.Int, $week.start-date.DateTime.posix, $week.end-date.DateTime.posix);
 
-    my @builds = $db.get-builds(1, $last-week, $today);
-
-    my ($passed, $failed, $aborted) = 0;
+    my ($passed, $failed, $aborted) = (0, 0, 0);
     my $total = @builds.elems;
 
+    say "Project: $project";
+    say "Week {$week.start-date.Str} to {$week.end-date.Str}";
+
     for @builds -> $build {
-        say $build<number>, "\t", $build<status>;
+        say $build<number>, "\t", $build<status> if $show;
         given $build<status> {
             when 'success' { ++$passed }
             when 'failure' { ++$failed }
@@ -240,7 +244,6 @@ sub find-files(IO() $dir, Int $project_id) {
                     %test_data<starttime> = DateTime.new(+$<starttime> / 1000).local;
                 }
             }
-
         }
 
         if not %test_data<starttime>:exists {

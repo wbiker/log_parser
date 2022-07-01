@@ -17,16 +17,17 @@
             <select name="projects" id="projects">
                 <option value="1" selected>intranet</option>
                 <@projects>
-                    <?{.name ne 'intranet' }>
-                        <option value="<.id>"><.name></option>
+                    <?{$_}>
+                        <?{.name ne 'intranet' }>
+                            <option value="<.id>"><.name></option>
+                        </?>
                     </?>
                 </@>
             </select>
         </div>
         <div>
-            <select name="test_file" id="test_files">
-                <option value="">Test file</option>
-                <@project-data.test_files>
+            <select name="months" id="months">
+                <@months>
                     <option value="<.id>"><.name></option>
                 </@>
             </select>
@@ -42,15 +43,9 @@
                     </rt>
                 </thead>
                 <tbody id="test_table_body">
-                        <@project-data.numbers>
-                            <tr>
-                                <td><.name></td>
-                                    <@.tests>
-                                        <td><.[0]></td>
-                                        <td><.[1]></td>
-                                    </@>
-                            </tr>
-                        </@>
+                    <?{ .numbers.elems() == 0 }>
+                        <tr><td>Keine fehlgeschlagenen Tests</td></tr>
+                    </?>
                 </tbody>
             </table>
         </div>

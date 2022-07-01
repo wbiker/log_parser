@@ -1,6 +1,8 @@
 use DBIish;
 use Logger;
 
+use Month;
+
 unit class Exporter::Sqlite;
 
 has $.database is required;
@@ -82,13 +84,14 @@ method get-projects(--> Array) {
     return @projects;
 }
 
-method get-project(Int $project-id, --> Hash) {
+multi method get-project(Int $project-id, --> Hash) {
     my @tests = $.dbh.execute('SELECT * from test_files where project_id =? order by name', $project-id).allrows(:array-of-hash);
 
+warn;
     my $sth = $.dbh.prepare(
             'SELECT num.number, num.date, build.number as build FROM test_numbers as num ' ~
             'JOIN builds as build On build.id = num.build_id ' ~
-            'where test_id = ? and date >= ? and project_id = ? ' ~
+            'where test_id = ? and num.date >= ? and project_id = ? ' ~
             'order by num.number ASC, num.date DESC, build.number DESC');
 
     my %data;
@@ -96,6 +99,49 @@ method get-project(Int $project-id, --> Hash) {
         %data<test_files>.push: %test_file;
 
         my @test_numbers = $sth.execute(%test_file<id>, 0, $project-id).allrows(:array-of-hash);
+        if @test_numbers {
+            my %temp;
+            %data<labels>.push: %test_file<name>;
+
+            my $count = 0;
+            for @test_numbers -> $number {
+                %temp{$number<number>} ~= "{ DateTime.new($number<date>).Date }({ $number<build> }) ";
+                ++$count;
+            }
+
+            %data<values>.push: $count;
+
+            my @t;
+            for %temp.sort(*.key.Int) -> $pair {
+                if $pair.key == -1 {
+                    @t.push: ['No plan found in TAP output', $pair.value];
+                } else {
+                    @t.push: [$pair.key, $pair.value];
+                }
+            }
+
+            %data<numbers>.push: %(name => %test_file<name>, tests => @t);
+        }
+    }
+
+    return %data;
+}
+
+multi method get-project(Int $project-id, Month $month --> Hash) {
+    my @tests = $.dbh.execute('SELECT * from test_files where project_id =? order by name', $project-id).allrows(:array-of-hash);
+
+    my $sth = $.dbh.prepare(
+            'SELECT num.number, num.date, build.number as build FROM test_numbers as num ' ~
+            'JOIN builds as build On build.id = num.build_id ' ~
+            'where test_id = ? and num.date >= ? and num.date <= ? and project_id = ? ' ~
+            'order by num.number ASC, num.date DESC, build.number DESC');
+
+    my %data = %(
+        months => $month.get-month-names,
+    );
+
+    for @tests -> %test_file {
+        my @test_numbers = $sth.execute(%test_file<id>, $month.start-date-posix, $month.end-date-posix, $project-id).allrows(:array-of-hash);
         if @test_numbers {
             my %temp;
             %data<labels>.push: %test_file<name>;
@@ -281,7 +327,7 @@ method get-tests($startdate, $name, $build, Int $project_id) {
         $epoch = DateTime.new($startdate ~ 'T00:00:00Z').posix;
     }
 
-    my $sth = $.dbh.prepare('SELECT num.number, num.date, build.number as build FROM test_numbers as num JOIN builds as build On build.id = num.build_id where test_id = ? and date >= ? and project_id = ? order by num.number ASC, num.date DESC, build.number DESC');
+    my $sth = $.dbh.prepare('SELECT num.number, num.date, build.number as build FROM test_numbers as num JOIN builds as build On build.id = num.build_id where test_id = ? and num.date >= ? and project_id = ? order by num.number ASC, num.date DESC, build.number DESC');
     my @all_data;
     for @tests -> %test_file {
         my @test_numbers = $sth.execute(%test_file<id>, $epoch, $project_id).allrows(:array-of-hash);

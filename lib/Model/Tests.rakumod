@@ -1,5 +1,7 @@
 use v6.d;
 
+use Month;
+
 class Model::Tests {
     has $.db is required;
 
@@ -9,8 +11,12 @@ class Model::Tests {
         return @projects;
     }
 
-    method get-project(Int $project-id) {
+    multi method get-project(Int $project-id) {
         return $!db.get-project($project-id);
+    }
+
+    multi method get-project(Int $project-id, Month $month) {
+        return $!db.get-project($project-id, $month);
     }
 
     method get-test-file-data(Int $test-file-id) {

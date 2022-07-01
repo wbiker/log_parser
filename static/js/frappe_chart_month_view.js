@@ -63,22 +63,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     get_project_data({ "target": project_select });
 
-    let test_file_select = document.getElementById('test_files');
-    test_file_select.onchange = get_test_file_data;
+    let months_select = document.getElementById('months');
+    months_select.onchange = get_months_data;
 });
 
 async function get_project_data(event) {
     let select = event.target;
     select.disabled = true;
 
-    let response = await fetch(`/project/${select[select.selectedIndex].value}`);
+    let response = await fetch(`/month_view/project/${select[select.selectedIndex].value}`);
 
     if (response.ok) { // if HTTP-status is 200-299
         // get the response body (the method explained below)
         let json = await response.json();
         write_graph(json);
         fill_test_table(json);
-        fill_test_files_select(json);
+        fill_months_select(json);
     } else {
         alert("HTTP-Error: " + response.status);
     }
@@ -86,7 +86,9 @@ async function get_project_data(event) {
 }
 
 function write_graph(json) {
-    console.log(json);
+    if (! json.values) {
+        return;
+    }
 
     const data = {
         labels: json.labels,
@@ -122,6 +124,16 @@ function fill_test_table(json) {
         table_body.removeChild(table_body.firstChild);
     }
 
+    if (! json.tests) {
+        let row = document.createElement("tr");
+        let td_name = document.createElement("td");
+        td_name.innerHTML = "No tests";
+        row.appendChild(td_name);
+        table_body.appendChild(row);
+
+        return;
+    }
+
     json.tests.forEach((test) => {
         let row = document.createElement("tr");
         let td_name = document.createElement("td");
@@ -147,15 +159,17 @@ function fill_test_table(json) {
     });
 }
 
-async function get_test_file_data(event) {
+async function get_months_data(event) {
     let select = event.target;
-    if(select[select.selectedIndex].value == 'Test file') {
+    if(select[select.selectedIndex].value == 'Months') {
         return;
     }
 
+    let project = document.getElementById('projects');
+
     select.disabled = true;
 
-    let response = await fetch(`/test_files/${select[select.selectedIndex].value}`);
+    let response = await fetch(`/months/${project[project.selectedIndex].value}/${select[select.selectedIndex].value}`);
 
     if (response.ok) { // if HTTP-status is 200-299
         // get the response body (the method explained below)
@@ -168,17 +182,14 @@ async function get_test_file_data(event) {
     select.disabled = false;
 }
 
-function fill_test_files_select(json) {
-    let test_file_select = document.getElementById('test_files');
-    test_file_select.options.length = 0;
-    let default_option = document.createElement('option');
-    default_option.innerHTML = 'Test file';
-    test_file_select.options.add(default_option);
+function fill_months_select(json) {
+    let months_select = document.getElementById('months');
+    months_select.options.length = 0;
 
-    json.test_files.forEach((test_file) => {
+    json.months.forEach((month) => {
         let option = document.createElement('option');
-        option.setAttribute('value', test_file.id);
-        option.innerHTML = test_file.name;
-        test_file_select.options.add(option);
+        option.setAttribute('value', month.id);
+        option.innerHTML = month.name;
+        months_select.options.add(option);
     });
 }

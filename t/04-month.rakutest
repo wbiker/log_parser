@@ -1,0 +1,7 @@
+use Test;
+
+use Month;
+
+my $month = Month.new(DateTime.now.Date);
+
+done-testing;
